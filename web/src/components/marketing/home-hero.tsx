@@ -35,13 +35,14 @@ export function HomeHero() {
           transition={{ duration: 18, ease: 'easeOut' }}
           className="relative h-full w-full"
         >
-          <Image
-            src="/images/gallery/dji-0333.webp"
-            alt="Aerial view of the Green Ngoria Bondo gold processing plant"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
+          <video
+            src="/videos/greenngoria-advert.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="object-cover w-full h-full"
+            poster="/images/gallery/dji-0333.webp"
           />
         </motion.div>
         {/* Veil for text legibility */}

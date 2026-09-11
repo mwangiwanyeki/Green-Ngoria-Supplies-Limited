@@ -50,21 +50,21 @@ export interface LeaderProfile {
 
 export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
   {
-    name: 'Kenneth Madete Namboga',
+    name: 'Davis Mragha Ngoo',
     role: 'Chairperson · Director',
     category: 'governance',
-    image: '/images/leadership/kenneth-madete-namboga.webp',
-    email: 'kenmadete@gmail.com',
-    phone: '+256 772 419 871',
-    shares: '250 ordinary shares (25%)',
-    location: 'East Africa / Uganda & Kenya',
+    image: '/images/leadership/davis-mragha-ngoo.webp',
+    email: 'davisngoo@greenngoria.com',
+    phone: '+254722115133',
+    shares: '500 ordinary shares (50%)',
+    location: 'Head Office, Nairobi, Kenya',
     responsibilities:
       'Responsible for strategy and for overseeing the group\'s business, setting governance standards and fostering the effectiveness of the board and of individual directors. His message to clients — "Making your vision become a reality" — frames how Green Ngoria approaches every engagement.',
     dossier: {
       mandate:
         'Board Leadership, Regional Strategic Growth, Investor Partnerships & Corporate Governance Standards.',
       biography:
-        'Kenneth Madete Namboga has steered Green Ngoria Supplies Limited as Chairperson since its foundational growth across Kenya and Uganda. He brings decades of executive leadership in resource allocation, international joint ventures, and strategic corporate governance across East and Central Africa.',
+        'Davis Mragha Ngoo has steered Green Ngoria Supplies Limited as Chairperson since its foundational growth across Kenya and Uganda. He brings decades of executive leadership in resource allocation, international joint ventures, and strategic corporate governance across East and Central Africa.',
       focusAreas: [
         'Corporate Governance & Board Integrity',
         'Cross-Border Strategic Expansion (Kenya, Uganda, Tanzania)',
@@ -84,21 +84,21 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
     },
   },
   {
-    name: 'Davis Mragha Ngoo',
+    name: 'Kenneth Madete Namboga',
     role: 'Managing Director',
     category: 'executive',
-    image: '/images/leadership/davis-mragha-ngoo.webp',
-    email: 'davingoo83@gmail.com',
-    phone: '+254 722 115 133',
-    shares: '500 ordinary shares (50%)',
-    location: 'Head Office, Nairobi, Kenya',
+    image: '/images/leadership/kenneth-madete-namboga.webp',
+    email: 'kennethmadete@greenngoria.com',
+    phone: '+256 772 419 871',
+    shares: '250 ordinary shares (25%)',
+    location: 'East Africa / Uganda & Kenya',
     responsibilities:
       'Accountable for company operations and for giving strategic guidance and direction to the board, ensuring the company achieves its mission and objectives across mining, construction and supplies.',
     dossier: {
       mandate:
         'Operational Leadership, Plant EPC Execution, Commercial Operations & Enterprise Project Delivery.',
       biography:
-        'Davis Mragha Ngoo is the Managing Director and majority principal of Green Ngoria Supplies Limited. With deep hands-on expertise in mining plant engineering, earthworks, and specialized civil construction, he directs daily operations, procurement networks, and plant commissioning throughout the region.',
+        'Kenneth Madete Namboga is the Managing Director of Green Ngoria Supplies Limited. With deep hands-on expertise in mining plant engineering, earthworks, and specialized civil construction, he directs daily operations, procurement networks, and plant commissioning throughout the region.',
       focusAreas: [
         'Gold CIP/CIL Processing Plant Delivery',
         'Heavy Civil, Structural & Mechanical Plant Erection',
@@ -122,8 +122,8 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
     role: 'Legal Officer · Director',
     category: 'governance',
     image: '/images/leadership/raymond-nyange-ngoo.webp',
-    email: 'lawyerrayngoo11@gmail.com',
-    phone: '+254 710 401 406',
+    email: 'raymondngoo@greenngoria.com',
+    phone: '+254710401406',
     shares: '250 ordinary shares (25%)',
     location: 'Nairobi, Kenya',
     responsibilities:
@@ -156,7 +156,7 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
     role: 'Production Manager',
     category: 'operations',
     image: '/images/leadership/chrispine-ryan-ngoo.webp',
-    email: 'info@greenngoriasupplies.com',
+    email: 'chrispinengoo@greenngoria.com',
     phone: '+254 794 065 144',
     shares: 'Executive Management',
     location: 'Field Operations & Mining Sites',

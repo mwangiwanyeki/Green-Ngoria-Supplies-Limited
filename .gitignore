@@ -51,3 +51,9 @@ coverage/
 
 # Gallery source originals (converted to webp, not committed)
 web/public/images/gallery/_source/
+
+# Video masters — only the compressed public deliverable is committed.
+# The raw uncompressed master is 200 MB+ which exceeds GitHub's file
+# size limit and should stay local.
+web/public/videos/raw-*.mp4
+web/public/videos/*-master.mp4

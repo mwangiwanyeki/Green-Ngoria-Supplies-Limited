@@ -5,6 +5,7 @@ import { Section, SectionIntro } from '@/components/marketing/section';
 import { ScopeRegister } from '@/components/marketing/spec-panel';
 import { Reveal, RevealItem } from '@/components/marketing/reveal';
 import { CtaBanner } from '@/components/marketing/cta-banner';
+import { CompanyProfileDocumentSection } from '@/components/marketing/company-profile-document-section';
 import { company } from '@/config/company';
 
 const title = 'Certifications & Compliance';
@@ -61,16 +62,19 @@ export default function CertificationsPage() {
           'Green Ngoria holds quality, environmental and occupational health and safety certifications, and maintains the statutory registrations, permits and approvals required to operate and to bid for work in Kenya.',
           'The credentials below are the ones recorded in the company profile. Documentary copies are held on file and provided during prequalification on request.',
         ]}
-        primaryAction={{ label: 'Request our documents', href: '/contact' }}
-        secondaryAction={{ label: 'About the company', href: '/about' }}
+        primaryAction={{
+          label: 'View Company Profile (PDF)',
+          href: '#company-profile',
+        }}
+        secondaryAction={{ label: 'Request our documents', href: '/contact' }}
         facts={[
+          {
+            term: 'Corporate dossier',
+            value: `${company.profileDocument.pages} Pages`,
+          },
           {
             term: 'Management standards',
             value: String(company.certifications.length),
-          },
-          {
-            term: 'Statutory records',
-            value: String(company.compliance.length),
           },
           {
             term: 'Company number',
@@ -79,6 +83,9 @@ export default function CertificationsPage() {
           { term: 'KRA PIN', value: company.registration.kraPin },
         ]}
       />
+
+      {/* Featured Company Profile Dossier Showcase & Interactive Viewer */}
+      <CompanyProfileDocumentSection id="company-profile" />
 
       {/* Official Certificate Visual Showcase */}
       <Section labelledBy="official-docs-heading">

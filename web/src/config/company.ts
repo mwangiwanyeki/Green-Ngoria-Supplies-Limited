@@ -23,6 +23,24 @@ export const company = {
     registeredOffice: 'P.O. Box 71, Werugha',
   },
 
+  profileDocument: {
+    title: 'Green Ngoria Supplies Limited — Corporate Company Profile',
+    description:
+      'Official 32-page corporate dossier detailing mining & mineral processing capabilities, gold CIP/CIL plant engineering, statutory registrations, civil & mechanical engineering works, and East African regional track record.',
+    fileUrl: '/documents/green-ngoria-supplies-company-profile.pdf',
+    fileName: 'green-ngoria-supplies-company-profile.pdf',
+    downloadName: 'Green-Ngoria-Supplies-Corporate-Profile.pdf',
+    googleDriveUrl:
+      'https://drive.google.com/file/d/1PM0qHk5UVgun3DMbcFgsv27zj2vXJfeD/view?usp=sharing',
+    googleDrivePreviewUrl:
+      'https://drive.google.com/file/d/1PM0qHk5UVgun3DMbcFgsv27zj2vXJfeD/preview',
+    coverImage: '/images/company-profile-cover.webp',
+    pages: 32,
+    fileSize: '15.2 MB',
+    format: 'PDF Document',
+    edition: 'Official Corporate Edition',
+  },
+
   contact: {
     addressLines: [
       'Rehema House, 3rd Floor, Door No. 07',
@@ -161,22 +179,22 @@ export const company = {
 
   leadership: [
     {
-      name: 'Kenneth Madete Namboga',
+      name: 'Davis Mragha Ngoo',
       role: 'Chairperson · Director',
-      image: '/images/leadership/kenneth-madete-namboga.webp',
-      email: 'kenmadete@gmail.com',
-      phone: '+256 772 419 871',
-      shares: '250 ordinary shares (25%)',
+      image: '/images/leadership/davis-mragha-ngoo.webp',
+      email: 'davisngoo@greenngoria.com',
+      phone: '+254722115133',
+      shares: '500 ordinary shares (50%)',
       responsibilities:
         'Responsible for strategy and for overseeing the group\'s business, setting governance standards and fostering the effectiveness of the board and of individual directors. His message to clients — "Making your vision become a reality" — frames how Green Ngoria approaches every engagement.',
     },
     {
-      name: 'Davis Mragha Ngoo',
+      name: 'Kenneth Madete Namboga',
       role: 'Managing Director',
-      image: '/images/leadership/davis-mragha-ngoo.webp',
-      email: 'davingoo83@gmail.com',
-      phone: '+254 722 115 133',
-      shares: '500 ordinary shares (50%)',
+      image: '/images/leadership/kenneth-madete-namboga.webp',
+      email: 'kennethmadete@greenngoria.com',
+      phone: '+256 772 419 871',
+      shares: '250 ordinary shares (25%)',
       responsibilities:
         'Accountable for company operations and for giving strategic guidance and direction to the board, ensuring the company achieves its mission and objectives across mining, construction and supplies.',
     },
@@ -184,8 +202,8 @@ export const company = {
       name: 'Raymond Nyange Ngoo',
       role: 'Legal Officer · Director',
       image: '/images/leadership/raymond-nyange-ngoo.webp',
-      email: 'lawyerrayngoo11@gmail.com',
-      phone: '+254 710 401 406',
+      email: 'raymondngoo@greenngoria.com',
+      phone: '+254710401406',
       shares: '250 ordinary shares (25%)',
       responsibilities:
         "Provides legal expertise across the organisation's structures and activities, advising management on the legal and regulatory framework and monitoring corporate governance compliance.",
@@ -194,7 +212,7 @@ export const company = {
       name: 'Chrispine Ryan Ngoo',
       role: 'Production Manager',
       image: '/images/leadership/chrispine-ryan-ngoo.webp',
-      email: 'info@greenngoriasupplies.com',
+      email: 'chrispinengoo@greenngoria.com',
       phone: '+254 794 065 144',
       shares: 'Executive Management',
       responsibilities:
