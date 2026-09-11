@@ -183,13 +183,14 @@ export function CompanyProfileDocumentSection({
                 </div>
 
                 {/* Interactive Action Buttons */}
-                <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-hairline pt-6">
+                <div className="mt-8 flex flex-col gap-3 border-t border-hairline pt-6 sm:flex-row sm:items-center sm:flex-wrap">
                   {/* Primary: Preview in Modal */}
                   <Button
                     variant="brand"
+                    size="lg"
                     onClick={() => setIsOpen(true)}
-                    leftIcon={<Eye className="h-4 w-4" />}
-                    className="font-medium"
+                    leftIcon={<Eye className="h-4 w-4 shrink-0" />}
+                    className="w-full sm:w-auto font-semibold"
                   >
                     View Company Profile
                   </Button>
@@ -198,15 +199,16 @@ export function CompanyProfileDocumentSection({
                   <Button
                     asChild
                     variant="outline"
-                    leftIcon={<Download className="h-4 w-4" />}
-                    className="font-medium"
+                    size="lg"
+                    className="w-full sm:w-auto font-semibold"
                   >
                     <a
                       href={doc.fileUrl}
                       download={doc.downloadName}
                       aria-label="Download the full Green Ngoria Company Profile PDF"
                     >
-                      Download PDF ({doc.fileSize})
+                      <Download className="h-4 w-4 shrink-0" />
+                      <span>Download PDF ({doc.fileSize})</span>
                     </a>
                   </Button>
 
@@ -214,8 +216,8 @@ export function CompanyProfileDocumentSection({
                   <Button
                     asChild
                     variant="ghost"
-                    leftIcon={<ExternalLink className="h-4 w-4" />}
-                    className="text-xs text-muted-foreground hover:text-foreground"
+                    size="lg"
+                    className="w-full sm:w-auto font-semibold text-muted-foreground hover:text-foreground border border-input sm:border-transparent"
                   >
                     <a
                       href={doc.googleDriveUrl}
@@ -223,7 +225,8 @@ export function CompanyProfileDocumentSection({
                       rel="noopener noreferrer"
                       title="Open source file on Google Drive"
                     >
-                      Open on Google Drive
+                      <ExternalLink className="h-4 w-4 shrink-0" />
+                      <span>Open on Google Drive</span>
                     </a>
                   </Button>
                 </div>
