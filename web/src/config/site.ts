@@ -15,12 +15,14 @@ export const siteConfig = {
   description:
     'Gold and gemstone mining, building works, road construction, water projects, mechanical and electrical services, oil and petroleum, timber importation and general supplies across East and Central Africa.',
   tagline: company.tagline,
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://greenngoria.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://greenngoria.com',
   portalUrl:
-    process.env.NEXT_PUBLIC_PORTAL_URL ?? 'https://portal.greenngoria.com',
+    process.env.NEXT_PUBLIC_PORTAL_URL?.trim() ||
+    'https://portal.greenngoria.com',
   adminUrl:
-    process.env.NEXT_PUBLIC_ADMIN_URL ?? 'https://admin.greenngoria.com',
-  apiUrl: process.env.NEXT_PUBLIC_API_URL ?? 'https://api.greenngoria.com',
+    process.env.NEXT_PUBLIC_ADMIN_URL?.trim() || 'https://admin.greenngoria.com',
+  apiUrl:
+    process.env.NEXT_PUBLIC_API_URL?.trim() || 'https://api.greenngoria.com',
 
   contact: {
     email: company.contact.emails[0].value,

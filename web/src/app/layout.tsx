@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description:
     'Gold and gemstone mining, building works, road construction, water projects, mechanical and electrical services, oil and petroleum, timber importation and general supplies across East and Central Africa.',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.greenngoriasupplies.com',
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://www.greenngoriasupplies.com',
   ),
   openGraph: {
     type: 'website',

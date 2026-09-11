@@ -35,7 +35,7 @@ export function CompanyProfileDocumentSection({
 }: CompanyProfileDocumentSectionProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [viewerMode, setViewerMode] = React.useState<'native' | 'drive'>(
-    'native',
+    'drive',
   );
   const doc = company.profileDocument;
 
@@ -319,12 +319,19 @@ export function CompanyProfileDocumentSection({
           {/* Viewer Area */}
           <div className="relative flex-1 w-full bg-mineral-charcoal/95 min-h-[60vh] sm:min-h-[75vh]">
             {viewerMode === 'native' ? (
-              <iframe
-                src={`${doc.fileUrl}#view=FitH&toolbar=1`}
-                title="Green Ngoria Supplies Company Profile PDF"
+              <object
+                data={`${doc.fileUrl}#view=FitH&toolbar=1`}
+                type="application/pdf"
                 className="h-full w-full border-0"
                 style={{ height: '75vh' }}
-              />
+              >
+                <iframe
+                  src={`${doc.fileUrl}#view=FitH&toolbar=1`}
+                  title="Green Ngoria Supplies Company Profile PDF"
+                  className="h-full w-full border-0"
+                  style={{ height: '75vh' }}
+                />
+              </object>
             ) : (
               <iframe
                 src={doc.googleDrivePreviewUrl}

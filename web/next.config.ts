@@ -1,10 +1,15 @@
 import type { NextConfig } from 'next';
 
-const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000')
-  .replace(/\/api\/v1\/?$/, '')
-  .replace(/\/$/, '');
+const rawApiUrl =
+  process.env.NEXT_PUBLIC_API_URL?.trim() || 'http://localhost:3000';
+const API_URL = rawApiUrl.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '');
 const isProduction = process.env.NODE_ENV === 'production';
-const apiOrigin = new URL(API_URL).origin;
+let apiOrigin = 'http://localhost:3000';
+try {
+  apiOrigin = new URL(API_URL).origin;
+} catch {
+  apiOrigin = 'http://localhost:3000';
+}
 // `script-src` allows 'unsafe-inline': Next.js emits inline bootstrap/
 // streaming scripts for hydration on every (including statically prerendered)
 // page. A strict `script-src 'self'` blocked them → hydration failed (React
@@ -27,11 +32,11 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://plus.unsplash.com https://vercel.com https://vercel.live",
   "font-src 'self' data: https://vercel.live https://assets.vercel.com",
   `connect-src 'self' ${apiOrigin} ${VERCEL_LIVE} wss://ws-us3.pusher.com${isProduction ? '' : ' ws: wss:'}`,
-  `frame-src 'self' ${VERCEL_LIVE}`,
-  "object-src 'none'",
+  `frame-src 'self' https://drive.google.com https://docs.google.com ${VERCEL_LIVE}`,
+  "object-src 'self' data:",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'none'",
+  "frame-ancestors 'self'",
   ...(isProduction ? ['upgrade-insecure-requests'] : []),
 ].join('; ');
 
@@ -61,10 +66,18 @@ const nextConfig: NextConfig = {
   headers: () =>
     Promise.resolve([
       {
+        source: '/documents/:path*',
+        headers: [
+          { key: 'Content-Type', value: 'application/pdf' },
+          { key: 'Content-Disposition', value: 'inline' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+        ],
+      },
+      {
         source: '/(.*)',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Content-Security-Policy', value: contentSecurityPolicy },
           { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
