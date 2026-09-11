@@ -110,27 +110,33 @@ function Tile({
 }
 
 /**
- * Editorial masonry peek of the /gallery — 8 photos in Pinterest-style
- * columns, each with an elegant hover lift.
+ * Editorial showcase peek of the /gallery — 8 photos in a balanced
+ * responsive grid with elegant hover reveal and uniform spacing across all viewports.
  */
 export function GalleryPeek() {
   const picks = pickForShowcase(galleryImages, 8);
   return (
-    <div className="[column-fill:_balance] gap-4 sm:columns-2 md:columns-3 md:gap-5">
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:gap-5">
       {picks.map((img) => (
         <Link
           key={img.src}
           href="/gallery"
-          className="group mb-4 block overflow-hidden rounded-xl ring-1 ring-hairline transition-all duration-500 hover:-translate-y-1 hover:ring-brand-500/40 hover:shadow-xl md:mb-5"
+          className="group relative block aspect-[4/3] overflow-hidden rounded-xl border border-hairline bg-surface-sunken transition-all duration-500 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-xl"
         >
           <Image
             src={img.src}
             alt={img.alt}
-            width={img.width}
-            height={img.height}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="h-auto w-full transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
+            className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-3.5 opacity-0 transition-all duration-300 group-hover:opacity-100">
+            <span className="text-xs font-semibold text-white">
+              View in gallery
+            </span>
+            <ArrowUpRight className="h-4 w-4 shrink-0 text-white" />
+          </div>
         </Link>
       ))}
     </div>
