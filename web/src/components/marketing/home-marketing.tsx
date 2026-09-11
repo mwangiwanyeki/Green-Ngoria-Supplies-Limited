@@ -59,7 +59,9 @@ export function ValueProps() {
             <h3 className="mt-5 font-display text-base font-bold tracking-tight text-foreground">
               {d.title}
             </h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">{d.body}</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              {d.body}
+            </p>
           </li>
         );
       })}
@@ -77,7 +79,11 @@ const offerings = [
     image: '/images/gallery/ace4116.webp',
     href: '/gold-processing',
     cta: 'Explore plant delivery',
-    bullets: ['CIP / CIL circuits', 'Elution & doré pour', 'Tailings management'],
+    bullets: [
+      'CIP / CIL circuits',
+      'Elution & doré pour',
+      'Tailings management',
+    ],
   },
   {
     tag: 'Catalogue',
@@ -95,7 +101,11 @@ const offerings = [
     image: '/images/gallery/ace4063.webp',
     href: '/technical-assessment',
     cta: 'Request an assessment',
-    bullets: ['Recovery diagnostics', 'Reagent optimisation', 'Throughput uplift'],
+    bullets: [
+      'Recovery diagnostics',
+      'Reagent optimisation',
+      'Throughput uplift',
+    ],
   },
 ];
 
@@ -124,7 +134,9 @@ export function Offerings() {
             <h3 className="font-display text-lg font-bold tracking-tight text-foreground">
               {o.title}
             </h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">{o.body}</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              {o.body}
+            </p>
             <ul className="mt-4 space-y-1.5">
               {o.bullets.map((b) => (
                 <li
@@ -202,7 +214,9 @@ export function DeliveryFunnel() {
           <h3 className="mt-4 font-display text-lg font-bold tracking-tight text-foreground">
             {f.title}
           </h3>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">{f.body}</p>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            {f.body}
+          </p>
           <div className="mt-6 h-px w-8 bg-brand-500 transition-all duration-500 group-hover:w-full group-hover:bg-brand-500/70" />
         </li>
       ))}
@@ -271,7 +285,9 @@ export function CertificationsStrip() {
             aria-hidden="true"
           />
           <div className="text-left">
-            <div className="text-xs font-semibold text-foreground">{c.name}</div>
+            <div className="text-xs font-semibold text-foreground">
+              {c.name}
+            </div>
             <div className="text-[0.62rem] leading-tight text-muted-foreground">
               {c.scope}
             </div>
@@ -305,18 +321,16 @@ export function VisionPanel() {
         transition={{ duration: 0.7, ease: EASE }}
         className="max-w-3xl font-display text-2xl font-medium leading-[1.35] tracking-tight sm:text-3xl sm:leading-[1.3]"
       >
-        <Leaf
-          className="mb-6 h-6 w-6 text-brand-400"
-          aria-hidden="true"
-        />
+        <Leaf className="mb-6 h-6 w-6 text-brand-400" aria-hidden="true" />
         &ldquo;{company.vision}&rdquo;
       </motion.blockquote>
-      <div className="mt-8 flex flex-wrap items-center gap-4">
-        <Link href="/about">
+      <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <Link href="/about" className="w-full sm:w-auto">
           <Button
             variant="brand"
             size="lg"
-            rightIcon={<ArrowRight className="h-4 w-4" />}
+            className="w-full sm:w-auto font-semibold"
+            rightIcon={<ArrowRight className="h-4 w-4 shrink-0" />}
           >
             About Green Ngoria
           </Button>
@@ -356,21 +370,23 @@ export function ContactStrip() {
           . RFQs are acknowledged within 24 hours.
         </p>
       </div>
-      <div className="flex flex-wrap gap-3">
-        <Link href="/request-rfq">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center w-full lg:w-auto">
+        <Link href="/request-rfq" className="w-full sm:w-auto">
           <Button
             variant="brand"
             size="lg"
-            rightIcon={<ArrowUpRight className="h-4 w-4" />}
+            className="w-full sm:w-auto font-semibold"
+            rightIcon={<ArrowUpRight className="h-4 w-4 shrink-0" />}
           >
             Send an RFQ
           </Button>
         </Link>
-        <Link href="/contact">
+        <Link href="/contact" className="w-full sm:w-auto">
           <Button
             variant="outline"
             size="lg"
-            leftIcon={<Mail className="h-4 w-4" />}
+            className="w-full sm:w-auto font-semibold"
+            leftIcon={<Mail className="h-4 w-4 shrink-0" />}
           >
             Contact office
           </Button>

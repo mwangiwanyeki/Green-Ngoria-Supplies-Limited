@@ -39,18 +39,22 @@ export function CtaBanner({
               {body}
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link href={primary.href}>
+              <Link href={primary.href} className="w-full sm:w-auto">
                 <Button
                   variant="brand"
                   size="lg"
-                  className="w-full sm:w-auto"
-                  rightIcon={<ArrowRight className="h-4 w-4" />}
+                  className="w-full sm:w-auto font-semibold"
+                  rightIcon={<ArrowRight className="h-4 w-4 shrink-0" />}
                 >
                   {primary.label}
                 </Button>
               </Link>
-              <Link href={secondary.href}>
-                <Button variant="on-ink" size="lg" className="w-full sm:w-auto">
+              <Link href={secondary.href} className="w-full sm:w-auto">
+                <Button
+                  variant="on-ink"
+                  size="lg"
+                  className="w-full sm:w-auto font-semibold"
+                >
                   {secondary.label}
                 </Button>
               </Link>

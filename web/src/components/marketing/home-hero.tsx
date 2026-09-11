@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, ArrowDown } from 'lucide-react';
@@ -65,39 +64,43 @@ export function HomeHero() {
             className="mt-6 max-w-[16ch] font-display text-[2.75rem] font-extrabold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.25rem]"
           >
             Gold, engineered
-            <span className="block text-brand-400">end&#8209;to&#8209;end.</span>
+            <span className="block text-brand-400">
+              end&#8209;to&#8209;end.
+            </span>
           </motion.h1>
 
           <motion.p
             {...rise(0.14)}
             className="mt-6 max-w-xl text-base leading-7 text-white/80 sm:text-lg"
           >
-            Producing mines, NEMA-approved CIP/CIL processing plants, and turnkey
-            equipment installation across Kenya, Tanzania and East Africa.
+            Producing mines, NEMA-approved CIP/CIL processing plants, and
+            turnkey equipment installation across Kenya, Tanzania and East
+            Africa.
           </motion.p>
 
           <motion.div
             {...rise(0.22)}
-            className="mt-9 flex flex-wrap items-center gap-4"
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <Link href="/technical-assessment">
+            <Link href="/technical-assessment" className="w-full sm:w-auto">
               <Button
                 variant="brand"
                 size="xl"
-                className="font-semibold shadow-2xl shadow-brand-500/20 transition-transform duration-300 hover:-translate-y-0.5"
-                rightIcon={<ArrowRight className="h-5 w-5" />}
+                className="w-full sm:w-auto font-semibold shadow-2xl shadow-brand-500/20 transition-transform duration-300 hover:-translate-y-0.5"
+                rightIcon={<ArrowRight className="h-5 w-5 shrink-0" />}
               >
                 Request a plant assessment
               </Button>
             </Link>
-            <Link
-              href="/gold-processing"
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-white/85 transition-colors hover:text-white"
-            >
-              <span className="border-b border-white/30 pb-0.5 transition-colors group-hover:border-white">
+            <Link href="/gold-processing" className="w-full sm:w-auto">
+              <Button
+                variant="on-ink"
+                size="xl"
+                className="w-full sm:w-auto font-semibold transition-transform duration-300 hover:-translate-y-0.5"
+                rightIcon={<ArrowRight className="h-5 w-5 shrink-0" />}
+              >
                 Explore the Bondo plant
-              </span>
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
             </Link>
           </motion.div>
         </div>

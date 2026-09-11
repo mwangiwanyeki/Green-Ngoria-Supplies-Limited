@@ -162,10 +162,15 @@ export default function HomePage() {
           title="What we sell"
           lead="Turnkey plants, certified equipment and independent optimisation — priced line-item, delivered as one contract."
           action={
-            <Link href="/services">
+            <Link
+              href="/services"
+              className="block w-full sm:inline-block sm:w-auto"
+            >
               <Button
                 variant="outline"
-                rightIcon={<ArrowUpRight className="h-4 w-4" />}
+                size="lg"
+                className="w-full sm:w-auto font-semibold"
+                rightIcon={<ArrowUpRight className="h-4 w-4 shrink-0" />}
               >
                 Full services catalogue
               </Button>
@@ -213,17 +218,25 @@ export default function HomePage() {
               photograph on this site is from that plant, or one we&rsquo;ve
               built.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/gold-processing">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link href="/gold-processing" className="w-full sm:w-auto">
                 <Button
                   variant="brand"
-                  rightIcon={<ArrowRight className="h-4 w-4" />}
+                  size="lg"
+                  className="w-full sm:w-auto font-semibold"
+                  rightIcon={<ArrowRight className="h-4 w-4 shrink-0" />}
                 >
                   Explore the plant
                 </Button>
               </Link>
-              <Link href="/certifications">
-                <Button variant="outline">Licensing &amp; permits</Button>
+              <Link href="/certifications" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto font-semibold"
+                >
+                  Licensing &amp; permits
+                </Button>
               </Link>
             </div>
           </Reveal>
@@ -240,10 +253,26 @@ export default function HomePage() {
         <div className="mt-12">
           <Metrics
             items={[
-              { value: '5', label: 'East-African countries', hint: 'KE · TZ · UG · RW · BI' },
-              { value: '2', label: 'Producing mines', hint: 'Bondo & Taita Taveta' },
-              { value: '10', label: 'Engineering divisions', hint: 'Mining · plant · civil · electrical · logistics' },
-              { value: '7', label: 'Stage CIP/CIL circuit', hint: 'Ore to doré' },
+              {
+                value: '5',
+                label: 'East-African countries',
+                hint: 'KE · TZ · UG · RW · BI',
+              },
+              {
+                value: '2',
+                label: 'Producing mines',
+                hint: 'Bondo & Taita Taveta',
+              },
+              {
+                value: '10',
+                label: 'Engineering divisions',
+                hint: 'Mining · plant · civil · electrical · logistics',
+              },
+              {
+                value: '7',
+                label: 'Stage CIP/CIL circuit',
+                hint: 'Ore to doré',
+              },
             ]}
           />
         </div>
@@ -269,10 +298,15 @@ export default function HomePage() {
           title="Ore to doré, in seven stages"
           lead="Select any stage to inspect its equipment scope and metallurgy."
           action={
-            <Link href="/gold-processing">
+            <Link
+              href="/gold-processing"
+              className="block w-full sm:inline-block sm:w-auto"
+            >
               <Button
                 variant="brand"
-                rightIcon={<ArrowUpRight className="h-4 w-4" />}
+                size="lg"
+                className="w-full sm:w-auto font-semibold"
+                rightIcon={<ArrowUpRight className="h-4 w-4 shrink-0" />}
               >
                 Full plant walkthrough
               </Button>
@@ -294,10 +328,15 @@ export default function HomePage() {
           title="On site with Green Ngoria"
           lead="A visual record from our mines, plants and installations."
           action={
-            <Link href="/gallery">
+            <Link
+              href="/gallery"
+              className="block w-full sm:inline-block sm:w-auto"
+            >
               <Button
                 variant="outline"
-                rightIcon={<ArrowUpRight className="h-4 w-4" />}
+                size="lg"
+                className="w-full sm:w-auto font-semibold"
+                rightIcon={<ArrowUpRight className="h-4 w-4 shrink-0" />}
               >
                 View full gallery
               </Button>
@@ -316,10 +355,15 @@ export default function HomePage() {
           title="Ten in-house divisions"
           lead="On remote mining sites, single-source delivery keeps the plant running."
           action={
-            <Link href="/services">
+            <Link
+              href="/services"
+              className="block w-full sm:inline-block sm:w-auto"
+            >
               <Button
                 variant="outline"
-                rightIcon={<ArrowUpRight className="h-4 w-4" />}
+                size="lg"
+                className="w-full sm:w-auto font-semibold"
+                rightIcon={<ArrowUpRight className="h-4 w-4 shrink-0" />}
               >
                 Browse all divisions
               </Button>
@@ -360,10 +404,15 @@ export default function HomePage() {
           title="The people directing the company"
           lead="Board and executive management — accessible, accountable, on the ground."
           action={
-            <Link href="/leadership">
+            <Link
+              href="/leadership"
+              className="block w-full sm:inline-block sm:w-auto"
+            >
               <Button
                 variant="outline"
-                rightIcon={<ArrowUpRight className="h-4 w-4" />}
+                size="lg"
+                className="w-full sm:w-auto font-semibold"
+                rightIcon={<ArrowUpRight className="h-4 w-4 shrink-0" />}
               >
                 Full leadership profiles
               </Button>
