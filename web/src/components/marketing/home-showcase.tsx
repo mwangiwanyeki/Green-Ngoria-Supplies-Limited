@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { galleryImages } from '@/config/gallery';
 
 /**
@@ -11,13 +12,13 @@ import { galleryImages } from '@/config/gallery';
  */
 export function CapabilityTiles() {
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:gap-5">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:gap-5 lg:gap-6">
       <Tile
         href="/services/gold-mining"
         eyebrow="01 · Extraction"
         title="Gold mining"
         image="/images/gallery/dji-0308.webp"
-        className="md:col-span-4 md:row-span-2 md:aspect-[16/11]"
+        className="md:col-span-4 md:row-span-2 md:h-full md:aspect-auto"
         featured
       />
       <Tile
@@ -25,28 +26,28 @@ export function CapabilityTiles() {
         eyebrow="02 · Processing"
         title="CIP · CIL plants"
         image="/images/gallery/ace4116.webp"
-        className="md:col-span-2 md:aspect-[6/5]"
+        className="md:col-span-2 md:aspect-[16/10]"
       />
       <Tile
         href="/equipment"
         eyebrow="03 · Machinery"
         title="Equipment install"
         image="/images/gallery/greenngoria-10.webp"
-        className="md:col-span-2 md:aspect-[6/5]"
+        className="md:col-span-2 md:aspect-[16/10]"
       />
       <Tile
         href="/technical-assessment"
         eyebrow="04 · Optimisation"
         title="Plant assessment"
         image="/images/gallery/ace4055.webp"
-        className="md:col-span-3 md:aspect-[16/10]"
+        className="md:col-span-3 md:aspect-[16/9]"
       />
       <Tile
         href="/projects"
         eyebrow="05 · Delivered"
         title="Completed projects"
         image="/images/gallery/dji-0338.webp"
-        className="md:col-span-3 md:aspect-[16/10]"
+        className="md:col-span-3 md:aspect-[16/9]"
       />
     </div>
   );
@@ -70,7 +71,10 @@ function Tile({
   return (
     <Link
       href={href}
-      className={`group relative block overflow-hidden rounded-2xl ring-1 ring-white/10 aspect-[4/3] ${className}`}
+      className={cn(
+        'group relative block overflow-hidden rounded-2xl ring-1 ring-white/10 aspect-[4/3]',
+        className,
+      )}
     >
       <Image
         src={image}
@@ -89,7 +93,9 @@ function Tile({
         </span>
         <h3
           className={`mt-1 font-display font-bold tracking-tight text-white ${
-            featured ? 'text-3xl sm:text-4xl md:text-5xl' : 'text-xl sm:text-2xl'
+            featured
+              ? 'text-3xl sm:text-4xl md:text-5xl'
+              : 'text-xl sm:text-2xl'
           }`}
         >
           {title}
