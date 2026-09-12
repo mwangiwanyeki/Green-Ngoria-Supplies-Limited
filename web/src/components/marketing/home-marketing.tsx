@@ -233,24 +233,44 @@ export function LeadershipPreview() {
         <Link
           key={leader.name}
           href="/leadership"
-          className="group block overflow-hidden rounded-2xl border border-hairline bg-card transition-all duration-500 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-lg"
+          className="group flex flex-col overflow-hidden rounded-2xl border border-hairline bg-card shadow-card transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-500/50 hover:shadow-xl"
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
+          {/* Portrait Container with pure white studio backdrop */}
+          <div className="relative aspect-[4/5] w-full overflow-hidden border-b border-hairline bg-white dark:bg-zinc-950/80">
             <Image
               src={leader.image}
               alt={leader.name}
               fill
-              sizes="(max-width: 640px) 100vw, 25vw"
-              className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-cover object-top transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-4">
-              <h3 className="font-display text-base font-bold tracking-tight text-white">
-                {leader.name}
-              </h3>
-              <p className="mt-0.5 text-xs font-medium text-white/80">
+            {/* Top equity / mandate badge */}
+            <div className="absolute left-3 top-3">
+              <span className="inline-flex items-center rounded-full border border-black/5 bg-white/95 px-2.5 py-0.5 text-[11px] font-semibold text-zinc-800 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-zinc-900/90 dark:text-zinc-200">
+                {leader.shares.includes('%')
+                  ? `${leader.shares.split('(')[1]?.replace(')', '')} Equity`
+                  : 'Site Operations'}
+              </span>
+            </div>
+          </div>
+
+          {/* Director details */}
+          <div className="flex flex-1 flex-col justify-between p-5">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
                 {leader.role}
               </p>
+              <h3 className="mt-1 font-display text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                {leader.name}
+              </h3>
+              <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                {leader.responsibilities}
+              </p>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between border-t border-hairline pt-3 text-xs font-semibold text-foreground/80 transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-400">
+              <span>View Executive Profile</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </div>
           </div>
         </Link>
