@@ -101,7 +101,9 @@ const EMPTY_ASSET: AssetForm = {
 };
 
 /** Client-side mirror of CreateAssetDto's @IsNotEmpty fields. */
-function validateAsset(form: AssetForm): Partial<Record<keyof AssetForm, string>> {
+function validateAsset(
+  form: AssetForm,
+): Partial<Record<keyof AssetForm, string>> {
   const errors: Partial<Record<keyof AssetForm, string>> = {};
   if (!form.name.trim()) errors.name = 'Name is required.';
   if (!form.assetNumber.trim())
@@ -119,9 +121,9 @@ function RegisterAssetDialog({
   orgId: string;
 }) {
   const [form, setForm] = useState<AssetForm>(EMPTY_ASSET);
-  const [errors, setErrors] = useState<Partial<Record<keyof AssetForm, string>>>(
-    {},
-  );
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof AssetForm, string>>
+  >({});
   const [submitError, setSubmitError] = useState<string | null>(null);
   const createAsset = useCreateAsset(orgId);
 

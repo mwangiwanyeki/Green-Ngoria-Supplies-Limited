@@ -219,7 +219,7 @@ export const publicSiteNav: PublicNavItem[] = [
           {
             label: 'Certifications & compliance',
             href: '/certifications',
-            description: 'ISO, OHSAS, registration and permits',
+            description: 'Statutory licences, mining permits & company profile',
             icon: 'BadgeCheck',
           },
         ],
@@ -252,7 +252,8 @@ export const publicSiteNav: PublicNavItem[] = [
       image: '/images/gallery/dji-0338.webp',
       imageCaption: 'Head office · Nairobi',
       eyebrow: 'Five countries',
-      title: 'Operating sites in Kenya and Tanzania, projects across the region',
+      title:
+        'Operating sites in Kenya and Tanzania, projects across the region',
       body: 'Delivered institutional works in Uganda, Rwanda and Burundi. Customer Care on the ground in Nairobi.',
       href: '/about',
       action: 'About Green Ngoria',

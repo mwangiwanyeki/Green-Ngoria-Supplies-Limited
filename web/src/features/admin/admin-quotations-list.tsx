@@ -310,27 +310,48 @@ export function AdminQuotationsList() {
   };
 
   const handleExport = () => {
-    if (!quotations.length) { toast.error('No data to export'); return; }
-    const headers = ['Quote #', 'Title', 'Client', 'Status', 'Rev', 'Currency', 'Total', 'Valid Until', 'Created'];
+    if (!quotations.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Quote #',
+      'Title',
+      'Client',
+      'Status',
+      'Rev',
+      'Currency',
+      'Total',
+      'Valid Until',
+      'Created',
+    ];
     const csv = [
       headers.join(','),
-      ...quotations.map((q) => [
-        q.quoteNumber ?? '',
-        q.title ?? '',
-        q.client?.companyName ?? '',
-        q.status ?? '',
-        `R${q.revision ?? 0}`,
-        q.currency ?? '',
-        Number(q.totalAmount ?? 0).toFixed(2),
-        q.validUntil ? new Date(q.validUntil).toLocaleDateString('en-KE') : '',
-        new Date(q.createdAt).toLocaleDateString('en-KE'),
-      ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')),
+      ...quotations.map((q) =>
+        [
+          q.quoteNumber ?? '',
+          q.title ?? '',
+          q.client?.companyName ?? '',
+          q.status ?? '',
+          `R${q.revision ?? 0}`,
+          q.currency ?? '',
+          Number(q.totalAmount ?? 0).toFixed(2),
+          q.validUntil
+            ? new Date(q.validUntil).toLocaleDateString('en-KE')
+            : '',
+          new Date(q.createdAt).toLocaleDateString('en-KE'),
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
     ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `quotations-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `quotations-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 
@@ -555,7 +576,10 @@ export function AdminQuotationsList() {
               Create a commercial quotation with scope, line items and pricing.
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={(event) => void handleSubmit(onSubmit)(event)} noValidate>
+          <form
+            onSubmit={(event) => void handleSubmit(onSubmit)(event)}
+            noValidate
+          >
             <div className="grid gap-4 p-6">
               <div className="space-y-1.5">
                 <Label htmlFor="quote-title">Quotation title *</Label>
@@ -681,7 +705,10 @@ export function AdminQuotationsList() {
                   </Button>
                 </div>
                 {errors.lineItems?.message && (
-                  <p className="text-xs font-medium text-destructive" role="alert">
+                  <p
+                    className="text-xs font-medium text-destructive"
+                    role="alert"
+                  >
                     {errors.lineItems.message}
                   </p>
                 )}

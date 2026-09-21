@@ -66,7 +66,11 @@ export function AdminHeader() {
           type="button"
           onClick={toggleSidebarCollapsed}
           className="hidden md:flex items-center justify-center h-8 w-8 rounded-lg text-muted-foreground hover:bg-white/[0.06] hover:text-foreground transition-colors shrink-0"
-          title={sidebarCollapsed ? 'Expand sidebar (Ctrl+B)' : 'Collapse sidebar (Ctrl+B)'}
+          title={
+            sidebarCollapsed
+              ? 'Expand sidebar (Ctrl+B)'
+              : 'Collapse sidebar (Ctrl+B)'
+          }
         >
           {sidebarCollapsed ? (
             <PanelLeftOpen className="h-4 w-4" />

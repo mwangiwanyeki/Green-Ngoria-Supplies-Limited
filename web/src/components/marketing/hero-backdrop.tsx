@@ -50,7 +50,10 @@ export function HeroBackdrop() {
   const active = SLIDES[index];
 
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+    >
       {reduced ? (
         <Image
           src={SLIDES[0].src}

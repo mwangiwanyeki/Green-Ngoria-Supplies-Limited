@@ -76,7 +76,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'mining-plant-engineering',
     eyebrow: 'Process & Mechanical Engineering',
     title: 'Mining Plant Engineering & Process Design',
-    headline: 'Coordinated process, mechanical, electrical and structural design deliverables',
+    headline:
+      'Coordinated process, mechanical, electrical and structural design deliverables',
     description:
       'Turnkey engineering and process design for gold mineral processing facilities, Carbon-in-Pulp (CIP), Carbon-in-Leach (CIL), and gravity concentration circuits across East Africa.',
     intro:
@@ -94,10 +95,26 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: '3D Process & Mechanical CAD',
     },
     keyMetrics: [
-      { label: 'Engineering Disciplines', value: '4 Core Fields', detail: 'Process, Mechanical, Civil & Electrical' },
-      { label: 'Standard Framework', value: 'ISO 9001 / 14001', detail: 'Certified Quality & Environmental Design' },
-      { label: 'Circuit Specialization', value: 'CIP / CIL / Gravity', detail: 'Refractory & Free-Milling Gold Ores' },
-      { label: 'Statutory Approval', value: 'NEMA & Mining Act', detail: 'Full Regulatory Prequalification' },
+      {
+        label: 'Engineering Disciplines',
+        value: '4 Core Fields',
+        detail: 'Process, Mechanical, Civil & Electrical',
+      },
+      {
+        label: 'Standard Framework',
+        value: 'ISO 9001 / 14001',
+        detail: 'Certified Quality & Environmental Design',
+      },
+      {
+        label: 'Circuit Specialization',
+        value: 'CIP / CIL / Gravity',
+        detail: 'Refractory & Free-Milling Gold Ores',
+      },
+      {
+        label: 'Statutory Approval',
+        value: 'NEMA & Mining Act',
+        detail: 'Full Regulatory Prequalification',
+      },
     ],
     gallery: [
       {
@@ -150,17 +167,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Process Design Criteria (PDC)',
             standard: 'ISO 9001',
-            description: 'Defines ore throughput (tpd), mineral recovery targets, slurry densities, and retention times.',
+            description:
+              'Defines ore throughput (tpd), mineral recovery targets, slurry densities, and retention times.',
           },
           {
             name: 'Process Flow Diagrams (PFD)',
             standard: 'ISA-5.1',
-            description: 'Comprehensive mass, slurry volume, water balance, and reagent consumption flowsheet.',
+            description:
+              'Comprehensive mass, slurry volume, water balance, and reagent consumption flowsheet.',
           },
           {
             name: 'Piping & Instrumentation Diagrams (P&ID)',
             standard: 'ANSI/ISA',
-            description: 'Complete piping line lists, valve schedules, and instrumentation interlock loops.',
+            description:
+              'Complete piping line lists, valve schedules, and instrumentation interlock loops.',
           },
         ],
       },
@@ -170,17 +190,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Equipment General Arrangement (GA)',
             standard: 'BS 8888',
-            description: 'Detailed 3D models and orthogonal drawings for crushers, mills, screens, and tank farms.',
+            description:
+              'Detailed 3D models and orthogonal drawings for crushers, mills, screens, and tank farms.',
           },
           {
             name: 'Dynamic Foundation Engineering',
             standard: 'Eurocode 2 / ACI 318',
-            description: 'Structural concrete design absorbing vibrational harmonics from rotary ball mills.',
+            description:
+              'Structural concrete design absorbing vibrational harmonics from rotary ball mills.',
           },
           {
             name: 'Structural Steelwork & Pipe Racks',
             standard: 'BS 5950 / AISC',
-            description: 'Fabrication drawings for access walkways, stair towers, crane gantries, and pipe supports.',
+            description:
+              'Fabrication drawings for access walkways, stair towers, crane gantries, and pipe supports.',
           },
         ],
       },
@@ -190,17 +213,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Single Line Diagrams (SLD) & MCC Layouts',
             standard: 'IEC 60364',
-            description: 'Plant power distribution, motor protection, transformer sizing, and grounding grids.',
+            description:
+              'Plant power distribution, motor protection, transformer sizing, and grounding grids.',
           },
           {
             name: 'Functional Control Philosophy & PLC Logic',
             standard: 'IEC 61131',
-            description: 'Automated interlocks for slurry pump sequencing, emergency e-stops, and cyanide dosing.',
+            description:
+              'Automated interlocks for slurry pump sequencing, emergency e-stops, and cyanide dosing.',
           },
           {
             name: 'Environmental Impact & Containment Dossier',
             standard: 'NEMA / ISO 14001',
-            description: 'Spill bunding, cyanide destruction circuit design, and tailings containment specifications.',
+            description:
+              'Spill bunding, cyanide destruction circuit design, and tailings containment specifications.',
           },
         ],
       },
@@ -209,37 +235,75 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Phase 01',
         title: 'Design Basis & Metallurgical Review',
-        objective: 'Establish definitive ore characteristics, throughput requirements, and site constraints.',
-        deliverables: ['Design Basis Memorandum', 'Ore Sizing Curve', 'Process Flowsheet Selection'],
+        objective:
+          'Establish definitive ore characteristics, throughput requirements, and site constraints.',
+        deliverables: [
+          'Design Basis Memorandum',
+          'Ore Sizing Curve',
+          'Process Flowsheet Selection',
+        ],
         milestoneRecord: 'Signed Design Basis Agreement',
       },
       {
         phase: 'Phase 02',
         title: 'Front-End Engineering Design (FEED)',
-        objective: 'Develop complete PFDs, P&IDs, equipment sizing datasheets, and civil layout blueprints.',
-        deliverables: ['Approved P&IDs', '3D Plant GA Model', 'Mechanical Equipment Specifications'],
+        objective:
+          'Develop complete PFDs, P&IDs, equipment sizing datasheets, and civil layout blueprints.',
+        deliverables: [
+          'Approved P&IDs',
+          '3D Plant GA Model',
+          'Mechanical Equipment Specifications',
+        ],
         milestoneRecord: 'FEED Approval Gate & Transmittal',
       },
       {
         phase: 'Phase 03',
         title: 'Detailed Engineering & Fabrication Packages',
-        objective: 'Issue certified fabrication drawings, structural steel bills of quantities, and electrical schematics.',
-        deliverables: ['Issued for Construction (IFC) Drawings', 'Structural Steel Fabrication Packs', 'Cable Schedules'],
+        objective:
+          'Issue certified fabrication drawings, structural steel bills of quantities, and electrical schematics.',
+        deliverables: [
+          'Issued for Construction (IFC) Drawings',
+          'Structural Steel Fabrication Packs',
+          'Cable Schedules',
+        ],
         milestoneRecord: 'IFC Release Dossier',
       },
       {
         phase: 'Phase 04',
         title: 'Site Support & As-Built Verification',
-        objective: 'Provide on-site engineering supervision during erection and capture all as-built modifications.',
-        deliverables: ['Technical Query Responses', 'Site Instruction Records', 'Final As-Built Drawing Archive'],
+        objective:
+          'Provide on-site engineering supervision during erection and capture all as-built modifications.',
+        deliverables: [
+          'Technical Query Responses',
+          'Site Instruction Records',
+          'Final As-Built Drawing Archive',
+        ],
         milestoneRecord: 'Engineering Handover Certificate',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Plant Ore Throughput Capacity', standardValue: '50 – 2,500 tpd (customized per project)', engineeringNotes: 'Scalable modular CIL and gravity circuit layouts' },
-      { parameter: 'Target Grind Size (P80)', standardValue: '74 µm (80% passing 200 mesh)', engineeringNotes: 'Matched with ball mill power and cyclone classification' },
-      { parameter: 'Leach Residence Time', standardValue: '24 – 36 hours continuous agitation', engineeringNotes: 'Calculated from laboratory cyanide leaching kinetics' },
-      { parameter: 'Structural Steel Wind & Seismic Rating', standardValue: 'Zone 4 / 160 km/h wind load', engineeringNotes: 'Engineered for Rift Valley and East African terrain' },
+      {
+        parameter: 'Plant Ore Throughput Capacity',
+        standardValue: '50 – 2,500 tpd (customized per project)',
+        engineeringNotes: 'Scalable modular CIL and gravity circuit layouts',
+      },
+      {
+        parameter: 'Target Grind Size (P80)',
+        standardValue: '74 µm (80% passing 200 mesh)',
+        engineeringNotes:
+          'Matched with ball mill power and cyclone classification',
+      },
+      {
+        parameter: 'Leach Residence Time',
+        standardValue: '24 – 36 hours continuous agitation',
+        engineeringNotes:
+          'Calculated from laboratory cyanide leaching kinetics',
+      },
+      {
+        parameter: 'Structural Steel Wind & Seismic Rating',
+        standardValue: 'Zone 4 / 160 km/h wind load',
+        engineeringNotes: 'Engineered for Rift Valley and East African terrain',
+      },
     ],
     lifecycle: [
       'Design Basis',
@@ -252,22 +316,28 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     note: 'All engineering deliverables are produced under the supervision of registered professional engineers and comply with statutory NEMA, EPRA, and Mining Act requirements.',
     faqs: [
       {
-        question: 'What information is needed to begin engineering a new gold processing plant?',
+        question:
+          'What information is needed to begin engineering a new gold processing plant?',
         answer:
           'We require ore mineralogy reports, head grade assays, metallurgical leach test results (or bulk samples for testing), target daily throughput (tpd), water and power availability data, and site topographical surveys.',
       },
       {
-        question: 'Can Green Ngoria customize designs for refractory vs free-milling gold ores?',
+        question:
+          'Can Green Ngoria customize designs for refractory vs free-milling gold ores?',
         answer:
           'Yes. Free-milling ores utilize high-efficiency gravity concentrators and direct cyanidation, whereas refractory ores incorporate intensive fine grinding, chemical pre-oxidation, and tailored CIL carbon circuits.',
       },
       {
-        question: 'Are Green Ngoria engineering drawings accepted by regulatory bodies like NEMA?',
+        question:
+          'Are Green Ngoria engineering drawings accepted by regulatory bodies like NEMA?',
         answer:
           'Yes. Our engineering packages have successfully secured statutory NEMA approvals (including Ref: NEMA/PR/SYA/002) and local county building authorizations.',
       },
     ],
-    primaryCta: { label: 'Request Plant Assessment', href: '/technical-assessment' },
+    primaryCta: {
+      label: 'Request Plant Assessment',
+      href: '/technical-assessment',
+    },
     secondaryCta: { label: 'Contact Engineering Team', href: '/contact' },
   },
 
@@ -275,7 +345,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'mining-plant-construction',
     eyebrow: 'EPC & Site Delivery',
     title: 'Mining Plant Construction & Turnkey Erection',
-    headline: 'Safe, on-schedule site construction, heavy mechanical erection, and pre-commissioning',
+    headline:
+      'Safe, on-schedule site construction, heavy mechanical erection, and pre-commissioning',
     description:
       'Turnkey engineering, procurement, and construction (EPC) for mineral processing facilities. We execute heavy foundation casting, ball mill mounting, agitation tank farm erection, and high-voltage electrical commissioning.',
     intro:
@@ -293,10 +364,26 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: 'Heavy Mechanical Erection',
     },
     keyMetrics: [
-      { label: 'EHS Safety Record', value: 'Zero Lost Time', detail: 'Strict ISO 18001 / OHSAS Adherence' },
-      { label: 'Heavy Rigging Capacity', value: 'Up to 100 Tonnes', detail: 'Mobile Cranes & Precision Jacks' },
-      { label: 'Welding Standards', value: 'ASME IX Certified', detail: '100% NDT on Critical Slurry Lines' },
-      { label: 'Turnkey Delivery', value: 'EPC / EPCM', detail: 'Civil, Mechanical & Electrical' },
+      {
+        label: 'EHS Safety Record',
+        value: 'Zero Lost Time',
+        detail: 'Strict ISO 18001 / OHSAS Adherence',
+      },
+      {
+        label: 'Heavy Rigging Capacity',
+        value: 'Up to 100 Tonnes',
+        detail: 'Mobile Cranes & Precision Jacks',
+      },
+      {
+        label: 'Welding Standards',
+        value: 'ASME IX Certified',
+        detail: '100% NDT on Critical Slurry Lines',
+      },
+      {
+        label: 'Turnkey Delivery',
+        value: 'EPC / EPCM',
+        detail: 'Civil, Mechanical & Electrical',
+      },
     ],
     gallery: [
       {
@@ -349,17 +436,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Reinforced Dynamic Machine Plinths',
             standard: 'BS 8110 / ACI 318',
-            description: 'Mass concrete foundation casting with vibration dampeners for primary ball mills and crushers.',
+            description:
+              'Mass concrete foundation casting with vibration dampeners for primary ball mills and crushers.',
           },
           {
             name: 'Secondary Containment & Bund Walls',
             standard: 'ISO 14001 / NEMA',
-            description: 'Impermeable chemical-resistant containment bunds designed to hold 110% of tank volume.',
+            description:
+              'Impermeable chemical-resistant containment bunds designed to hold 110% of tank volume.',
           },
           {
             name: 'Plant Civil Buildings & Gold Room',
             standard: 'KPDA Security Specs',
-            description: 'Reinforced masonry construction for motor control centers, laboratory, and high-security gold room.',
+            description:
+              'Reinforced masonry construction for motor control centers, laboratory, and high-security gold room.',
           },
         ],
       },
@@ -369,17 +459,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Heavy Equipment Rigging & Erection',
             standard: 'OSHA / BS 7121',
-            description: 'Certified lift planning and dual-crane maneuvers for oversized mill shells and thickener tanks.',
+            description:
+              'Certified lift planning and dual-crane maneuvers for oversized mill shells and thickener tanks.',
           },
           {
             name: 'Shaft Laser Alignment & Balancing',
             standard: 'ISO 10816',
-            description: 'Sub-millimeter optical and laser alignment of motor-gearbox-trunnion drive trains.',
+            description:
+              'Sub-millimeter optical and laser alignment of motor-gearbox-trunnion drive trains.',
           },
           {
             name: 'Process Piping & Hydro-Testing',
             standard: 'ASME B31.3',
-            description: 'Full radiographic / ultrasonic NDT testing on pressurized slurry, air, and cyanide circuits.',
+            description:
+              'Full radiographic / ultrasonic NDT testing on pressurized slurry, air, and cyanide circuits.',
           },
         ],
       },
@@ -388,37 +481,74 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Phase 01',
         title: 'Mobilization & Site Establishment',
-        objective: 'Establish construction camp, security perimeters, batching plants, and temporary power.',
-        deliverables: ['Site Execution Plan', 'EHS Induction Records', 'Survey Control Monuments'],
+        objective:
+          'Establish construction camp, security perimeters, batching plants, and temporary power.',
+        deliverables: [
+          'Site Execution Plan',
+          'EHS Induction Records',
+          'Survey Control Monuments',
+        ],
         milestoneRecord: 'Site Mobilization Notice',
       },
       {
         phase: 'Phase 02',
         title: 'Civil & Foundation Construction',
-        objective: 'Excavate and cast reinforced concrete foundations for heavy mills, crushers, and CIL tank farm.',
-        deliverables: ['Concrete Cube Test Reports', 'Foundation Inspection Signoffs', 'Earthworks Compaction Logs'],
+        objective:
+          'Excavate and cast reinforced concrete foundations for heavy mills, crushers, and CIL tank farm.',
+        deliverables: [
+          'Concrete Cube Test Reports',
+          'Foundation Inspection Signoffs',
+          'Earthworks Compaction Logs',
+        ],
         milestoneRecord: 'Civil Completion Certificate',
       },
       {
         phase: 'Phase 03',
         title: 'Structural Steel & Mechanical Installation',
-        objective: 'Erect steel structures, place heavy process machinery, and weld tank shells and piping.',
-        deliverables: ['Mechanical Alignment Reports', 'Welding NDT Certificates', 'Torque Audit Logs'],
+        objective:
+          'Erect steel structures, place heavy process machinery, and weld tank shells and piping.',
+        deliverables: [
+          'Mechanical Alignment Reports',
+          'Welding NDT Certificates',
+          'Torque Audit Logs',
+        ],
         milestoneRecord: 'Mechanical Completion Certificate',
       },
       {
         phase: 'Phase 04',
         title: 'Cold Commissioning & Dry Run',
-        objective: 'Energize electrical systems, test motor rotation, verify sensor loops, and clear punch list items.',
-        deliverables: ['Motor Run Test Sheets', 'Loop Check Dossier', 'Pre-Commissioning Signoff'],
+        objective:
+          'Energize electrical systems, test motor rotation, verify sensor loops, and clear punch list items.',
+        deliverables: [
+          'Motor Run Test Sheets',
+          'Loop Check Dossier',
+          'Pre-Commissioning Signoff',
+        ],
         milestoneRecord: 'Ready for Wet Commissioning Gate',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Concrete Compressive Strength (Plinths)', standardValue: 'C35/45 with sulfate-resistant cement', engineeringNotes: 'Engineered for chemical resistance and dynamic loads' },
-      { parameter: 'Mill Shaft Alignment Tolerance', standardValue: '< 0.05 mm radial & axial runout', engineeringNotes: 'Verified with dual-axis laser measurement' },
-      { parameter: 'Tank Weld Quality Testing', standardValue: '100% Visual + 20% Dye Penetrant & Radiography', engineeringNotes: 'Zero leakage tolerance on cyanide slurry tanks' },
-      { parameter: 'Electrical Isolation Rating', standardValue: 'IP65 on all outdoor field motor isolators', engineeringNotes: 'Dust and water jet resistant for mine environments' },
+      {
+        parameter: 'Concrete Compressive Strength (Plinths)',
+        standardValue: 'C35/45 with sulfate-resistant cement',
+        engineeringNotes:
+          'Engineered for chemical resistance and dynamic loads',
+      },
+      {
+        parameter: 'Mill Shaft Alignment Tolerance',
+        standardValue: '< 0.05 mm radial & axial runout',
+        engineeringNotes: 'Verified with dual-axis laser measurement',
+      },
+      {
+        parameter: 'Tank Weld Quality Testing',
+        standardValue: '100% Visual + 20% Dye Penetrant & Radiography',
+        engineeringNotes: 'Zero leakage tolerance on cyanide slurry tanks',
+      },
+      {
+        parameter: 'Electrical Isolation Rating',
+        standardValue: 'IP65 on all outdoor field motor isolators',
+        engineeringNotes: 'Dust and water jet resistant for mine environments',
+      },
     ],
     lifecycle: [
       'Site Mobilization',
@@ -431,22 +561,28 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     note: 'All construction and mechanical erection activities are performed under strict EHS protocols with full daily site logging and certified quality inspection checkpoints.',
     faqs: [
       {
-        question: 'Does Green Ngoria manage its own construction workforce and heavy machinery?',
+        question:
+          'Does Green Ngoria manage its own construction workforce and heavy machinery?',
         answer:
           'Yes. We maintain qualified permanent staff for construction management, certified welding, electrical installation, and rigging, backed by company-owned logistics and partnering crane fleets.',
       },
       {
-        question: 'How does Green Ngoria ensure construction safety on remote mining sites?',
+        question:
+          'How does Green Ngoria ensure construction safety on remote mining sites?',
         answer:
           'We enforce a zero-harm EHS policy, mandatory daily toolbox talks, certified lift plans for all crane maneuvers, hot-work permits, and continuous environmental monitoring under ISO 14001.',
       },
       {
-        question: 'What is the typical timeframe for constructing a modular CIP/CIL gold plant?',
+        question:
+          'What is the typical timeframe for constructing a modular CIP/CIL gold plant?',
         answer:
           'Depending on throughput capacity (e.g. 100 – 500 tpd), construction and cold commissioning typically take between 4 to 8 months from civil foundation commencement.',
       },
     ],
-    primaryCta: { label: 'Plan a Plant Construction Project', href: '/contact' },
+    primaryCta: {
+      label: 'Plan a Plant Construction Project',
+      href: '/contact',
+    },
     secondaryCta: { label: 'Explore Equipment Catalogue', href: '/equipment' },
   },
 
@@ -454,7 +590,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'plant-optimization',
     eyebrow: 'Metallurgical Diagnostics',
     title: 'Plant Optimization & Metallurgical Recovery Audit',
-    headline: 'Eliminate process bottlenecks, reduce reagent waste, and maximize gold recovery yield',
+    headline:
+      'Eliminate process bottlenecks, reduce reagent waste, and maximize gold recovery yield',
     description:
       'Comprehensive on-site and laboratory diagnostic audits for operating gold mineral processing plants. We evaluate grinding efficiency, cyanide leach kinetics, carbon adsorption capacity, and tailings losses.',
     intro:
@@ -472,10 +609,26 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: 'Metallurgical Diagnostics',
     },
     keyMetrics: [
-      { label: 'Typical Recovery Boost', value: '+5% to +18%', detail: 'Verified on Field Audits' },
-      { label: 'Reagent Cost Reduction', value: '15% – 30%', detail: 'Cyanide & Lime Consumption' },
-      { label: 'Diagnostic Timeframe', value: '5 – 10 Days', detail: 'On-Site Sampling & Assay' },
-      { label: 'Deliverable', value: 'Actionable Audit Dossier', detail: 'Ranked Engineering Roadmap' },
+      {
+        label: 'Typical Recovery Boost',
+        value: '+5% to +18%',
+        detail: 'Verified on Field Audits',
+      },
+      {
+        label: 'Reagent Cost Reduction',
+        value: '15% – 30%',
+        detail: 'Cyanide & Lime Consumption',
+      },
+      {
+        label: 'Diagnostic Timeframe',
+        value: '5 – 10 Days',
+        detail: 'On-Site Sampling & Assay',
+      },
+      {
+        label: 'Deliverable',
+        value: 'Actionable Audit Dossier',
+        detail: 'Ranked Engineering Roadmap',
+      },
     ],
     gallery: [
       {
@@ -528,17 +681,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Grind Size Distribution (PSD / P80)',
             standard: 'ASTM E11',
-            description: 'Determines whether gold is under-liberated (too coarse) or over-ground into slime.',
+            description:
+              'Determines whether gold is under-liberated (too coarse) or over-ground into slime.',
           },
           {
             name: 'Diagnostic Cyanidation Leach Tests',
             standard: 'Metallurgical Standard',
-            description: 'Identifies refractory gold locked in sulfides, carbonaceous matter, or silicate matrix.',
+            description:
+              'Identifies refractory gold locked in sulfides, carbonaceous matter, or silicate matrix.',
           },
           {
             name: 'Carbon Activity & Fouling Profile',
             standard: 'ASTM D3838',
-            description: 'Measures carbon adsorption rate (R-value) and organic/calcium carbonate fouling levels.',
+            description:
+              'Measures carbon adsorption rate (R-value) and organic/calcium carbonate fouling levels.',
           },
         ],
       },
@@ -548,17 +704,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Circuit Bottleneck Identification Report',
             standard: 'Green Ngoria System 4',
-            description: 'Pinpoints specific equipment and process stages constraining plant throughput or recovery.',
+            description:
+              'Pinpoints specific equipment and process stages constraining plant throughput or recovery.',
           },
           {
             name: 'Reagent Optimization Schedule',
             standard: 'Cyanide Code Aligned',
-            description: 'Calculated stoichiometric dosing rates for NaCN, hydrated lime, lead nitrate, and flocculants.',
+            description:
+              'Calculated stoichiometric dosing rates for NaCN, hydrated lime, lead nitrate, and flocculants.',
           },
           {
             name: 'Prioritized Capital / Operational Roadmap',
             standard: 'Cost-Benefit Matrix',
-            description: 'Clear list of quick-win operational tweaks vs high-ROI equipment upgrades.',
+            description:
+              'Clear list of quick-win operational tweaks vs high-ROI equipment upgrades.',
           },
         ],
       },
@@ -567,37 +726,76 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Step 01',
         title: 'Baseline Assessment & Data Intake',
-        objective: 'Review historical production records, head grades, reagent logs, and plant flowsheets.',
-        deliverables: ['Baseline Data Audit Log', 'Sampling Point Map', 'Diagnostic Test Plan'],
+        objective:
+          'Review historical production records, head grades, reagent logs, and plant flowsheets.',
+        deliverables: [
+          'Baseline Data Audit Log',
+          'Sampling Point Map',
+          'Diagnostic Test Plan',
+        ],
         milestoneRecord: 'Audit Scoping Agreement',
       },
       {
         phase: 'Step 02',
         title: 'On-Site Slurry Sampling & Field Measurements',
-        objective: 'Conduct synchronized sampling across all circuit stages over full operating shifts.',
-        deliverables: ['Shift Slurry Sample Log', 'Slurry Density Measurements', 'DO & pH Profile Sheets'],
+        objective:
+          'Conduct synchronized sampling across all circuit stages over full operating shifts.',
+        deliverables: [
+          'Shift Slurry Sample Log',
+          'Slurry Density Measurements',
+          'DO & pH Profile Sheets',
+        ],
         milestoneRecord: 'Sampling Campaign Signoff',
       },
       {
         phase: 'Step 03',
         title: 'Laboratory Assays & Kinetics Modeling',
-        objective: 'Perform size fraction assays, diagnostic leaching, and carbon adsorption kinetic tests.',
-        deliverables: ['Metallurgical Assay Sheets', 'Leach Kinetic Curves', 'Tailings Loss Breakdown'],
+        objective:
+          'Perform size fraction assays, diagnostic leaching, and carbon adsorption kinetic tests.',
+        deliverables: [
+          'Metallurgical Assay Sheets',
+          'Leach Kinetic Curves',
+          'Tailings Loss Breakdown',
+        ],
         milestoneRecord: 'Laboratory Results Report',
       },
       {
         phase: 'Step 04',
         title: 'Engineering Report & Implementation Support',
-        objective: 'Deliver prioritized recommendations and assist plant operators in tuning circuit parameters.',
-        deliverables: ['Plant Optimization Master Report', 'Updated Operator SOPs', 'Verification Assay Log'],
+        objective:
+          'Deliver prioritized recommendations and assist plant operators in tuning circuit parameters.',
+        deliverables: [
+          'Plant Optimization Master Report',
+          'Updated Operator SOPs',
+          'Verification Assay Log',
+        ],
         milestoneRecord: 'Optimization Closeout Review',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Dissolved Oxygen (DO) in Leach Tanks', standardValue: '6.0 – 8.5 ppm continuous', engineeringNotes: 'Maintained via spargers or compressed air injection' },
-      { parameter: 'Slurry pH Buffer Level', standardValue: '10.2 – 10.8 with Hydrated Lime', engineeringNotes: 'Prevents toxic HCN gas formation and optimizes cyanide efficiency' },
-      { parameter: 'Carbon Concentration in CIL Tanks', standardValue: '10 – 20 g/L slurry volume', engineeringNotes: 'Staged counter-current movement to minimize solution losses' },
-      { parameter: 'Electrowinning Single-Pass Gold Deposition', standardValue: '> 90% solution gold stripped', engineeringNotes: 'Optimized voltage, flow rate, and cathode surface area' },
+      {
+        parameter: 'Dissolved Oxygen (DO) in Leach Tanks',
+        standardValue: '6.0 – 8.5 ppm continuous',
+        engineeringNotes: 'Maintained via spargers or compressed air injection',
+      },
+      {
+        parameter: 'Slurry pH Buffer Level',
+        standardValue: '10.2 – 10.8 with Hydrated Lime',
+        engineeringNotes:
+          'Prevents toxic HCN gas formation and optimizes cyanide efficiency',
+      },
+      {
+        parameter: 'Carbon Concentration in CIL Tanks',
+        standardValue: '10 – 20 g/L slurry volume',
+        engineeringNotes:
+          'Staged counter-current movement to minimize solution losses',
+      },
+      {
+        parameter: 'Electrowinning Single-Pass Gold Deposition',
+        standardValue: '> 90% solution gold stripped',
+        engineeringNotes:
+          'Optimized voltage, flow rate, and cathode surface area',
+      },
     ],
     lifecycle: [
       'Historical Baseline Review',
@@ -610,22 +808,28 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     note: 'Plant optimization recommendations are based on verified metallurgical testing and engineering analysis, subject to final client operational approval.',
     faqs: [
       {
-        question: 'How quickly can Green Ngoria perform an on-site plant optimization audit?',
+        question:
+          'How quickly can Green Ngoria perform an on-site plant optimization audit?',
         answer:
           'Our metallurgical audit team can mobilize within 3 to 7 business days. On-site sampling typically requires 3 to 5 days, followed by laboratory assays and delivery of the final optimization report within 10 to 14 days.',
       },
       {
-        question: 'Can optimization reduce our cyanide and reagent expenditure?',
+        question:
+          'Can optimization reduce our cyanide and reagent expenditure?',
         answer:
           'Yes. Most processing plants over-dose cyanide and lime due to lack of real-time kinetic control. Optimization typically cuts reagent costs by 15% to 30% while maintaining or increasing recovery.',
       },
       {
-        question: 'Does the audit include recommendations for re-processing old tailings?',
+        question:
+          'Does the audit include recommendations for re-processing old tailings?',
         answer:
           'Yes. We conduct diagnostic tailings assays to determine recoverable gold in existing tailings dams and engineer economic regrind or CIL re-treatment flowsheets.',
       },
     ],
-    primaryCta: { label: 'Request Plant Optimization Audit', href: '/technical-assessment' },
+    primaryCta: {
+      label: 'Request Plant Optimization Audit',
+      href: '/technical-assessment',
+    },
     secondaryCta: { label: 'Discuss with a Metallurgist', href: '/contact' },
   },
 
@@ -633,7 +837,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'technical-assessment',
     eyebrow: 'System 4 Digital Intake',
     title: 'Technical Plant Assessment & Feasibility Intake',
-    headline: 'Transform operational plant challenges into a qualified engineering opportunity',
+    headline:
+      'Transform operational plant challenges into a qualified engineering opportunity',
     description:
       'Structured technical assessment process for mining sites, new project feasibility, and processing plant expansion across East and Central Africa.',
     intro:
@@ -651,10 +856,26 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: 'Technical Assessment',
     },
     keyMetrics: [
-      { label: 'Assessment Stages', value: '10 Data Dimensions', detail: 'From Geology to Power & Utilities' },
-      { label: 'Engineering Review', value: 'Within 48 Hours', detail: 'Qualified Engineer Evaluation' },
-      { label: 'Output Deliverable', value: 'Scope & Cost Estimate', detail: 'Preliminary Engineering Proposal' },
-      { label: 'Follow-Up Route', value: 'Site Visit & RFQ', detail: 'Seamless Digital Workflow' },
+      {
+        label: 'Assessment Stages',
+        value: '10 Data Dimensions',
+        detail: 'From Geology to Power & Utilities',
+      },
+      {
+        label: 'Engineering Review',
+        value: 'Within 48 Hours',
+        detail: 'Qualified Engineer Evaluation',
+      },
+      {
+        label: 'Output Deliverable',
+        value: 'Scope & Cost Estimate',
+        detail: 'Preliminary Engineering Proposal',
+      },
+      {
+        label: 'Follow-Up Route',
+        value: 'Site Visit & RFQ',
+        detail: 'Seamless Digital Workflow',
+      },
     ],
     gallery: [
       {
@@ -698,19 +919,23 @@ export const capabilityPages: Record<string, PublicPageContent> = {
         items: [
           {
             name: 'Site & Concession Profile',
-            description: 'Geographical coordinates, concession licensing status, and access road infrastructure.',
+            description:
+              'Geographical coordinates, concession licensing status, and access road infrastructure.',
           },
           {
             name: 'Ore Metallurgy & Assay History',
-            description: 'Head grade (g/t Au), free-gold percentage, sulfide content, and clay/viscosity characteristics.',
+            description:
+              'Head grade (g/t Au), free-gold percentage, sulfide content, and clay/viscosity characteristics.',
           },
           {
             name: 'Process Circuit Requirements',
-            description: 'Crushing stage selection, closed-circuit milling, CIL tank sizing, and elution capacity.',
+            description:
+              'Crushing stage selection, closed-circuit milling, CIL tank sizing, and elution capacity.',
           },
           {
             name: 'Utilities & Power Infrastructure',
-            description: 'Power grid availability (kVA), backup generator requirements, and process water supply (m³/hr).',
+            description:
+              'Power grid availability (kVA), backup generator requirements, and process water supply (m³/hr).',
           },
         ],
       },
@@ -719,36 +944,68 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Stage 01',
         title: 'Digital Intake Submission',
-        objective: 'Client completes online technical assessment questionnaire and uploads supporting documentation.',
-        deliverables: ['Completed Assessment Record', 'Unique Tracking Reference', 'Uploaded File Archive'],
+        objective:
+          'Client completes online technical assessment questionnaire and uploads supporting documentation.',
+        deliverables: [
+          'Completed Assessment Record',
+          'Unique Tracking Reference',
+          'Uploaded File Archive',
+        ],
         milestoneRecord: 'Digital Submission Confirmation',
       },
       {
         phase: 'Stage 02',
         title: 'Engineering Review & Qualification',
-        objective: 'Senior metallurgical and mechanical engineers evaluate technical viability and data completeness.',
-        deliverables: ['Internal Engineering Review Sheet', 'Data Clarification Requests (if any)'],
+        objective:
+          'Senior metallurgical and mechanical engineers evaluate technical viability and data completeness.',
+        deliverables: [
+          'Internal Engineering Review Sheet',
+          'Data Clarification Requests (if any)',
+        ],
         milestoneRecord: 'Technical Qualification Gate',
       },
       {
         phase: 'Stage 03',
         title: 'Preliminary Proposal & Scope of Work',
-        objective: 'Develop preliminary plant flowsheet, equipment bill of materials, and budget cost estimates.',
-        deliverables: ['Preliminary Scope of Work', 'Equipment Budgetary Estimate', 'Site Visit Protocol'],
+        objective:
+          'Develop preliminary plant flowsheet, equipment bill of materials, and budget cost estimates.',
+        deliverables: [
+          'Preliminary Scope of Work',
+          'Equipment Budgetary Estimate',
+          'Site Visit Protocol',
+        ],
         milestoneRecord: 'Engineering Proposal Transmittal',
       },
       {
         phase: 'Stage 04',
         title: 'Site Reconnaissance & Contract Scoping',
-        objective: 'Engineers visit the site for topographical inspection, utility confirmation, and contract execution.',
-        deliverables: ['Site Inspection Report', 'Final Commercial Proposal', 'EPC Contract Draft'],
+        objective:
+          'Engineers visit the site for topographical inspection, utility confirmation, and contract execution.',
+        deliverables: [
+          'Site Inspection Report',
+          'Final Commercial Proposal',
+          'EPC Contract Draft',
+        ],
         milestoneRecord: 'Project Award Gate',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Review Turnaround Time', standardValue: '24 to 48 Hours', engineeringNotes: 'Evaluated by registered engineering staff' },
-      { parameter: 'Supported Ore Types', standardValue: 'Free-milling, alluvial, quartz vein, and oxide/sulfide ores', engineeringNotes: 'Gold, silver, and associated mineral deposits' },
-      { parameter: 'Geographic Scope', standardValue: 'Kenya, Tanzania, Uganda, Rwanda, Burundi', engineeringNotes: 'East and Central African mining jurisdictions' },
+      {
+        parameter: 'Review Turnaround Time',
+        standardValue: '24 to 48 Hours',
+        engineeringNotes: 'Evaluated by registered engineering staff',
+      },
+      {
+        parameter: 'Supported Ore Types',
+        standardValue:
+          'Free-milling, alluvial, quartz vein, and oxide/sulfide ores',
+        engineeringNotes: 'Gold, silver, and associated mineral deposits',
+      },
+      {
+        parameter: 'Geographic Scope',
+        standardValue: 'Kenya, Tanzania, Uganda, Rwanda, Burundi',
+        engineeringNotes: 'East and Central African mining jurisdictions',
+      },
     ],
     lifecycle: [
       'Project & Site Context',
@@ -761,22 +1018,28 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     note: 'Submitting a technical assessment initiates professional engineering review. It does not constitute certified engineering advice until validated by a formal engagement.',
     faqs: [
       {
-        question: 'Is there a fee for submitting a technical plant assessment online?',
+        question:
+          'Is there a fee for submitting a technical plant assessment online?',
         answer:
           'No. The initial digital intake, data evaluation, and preliminary scope review are provided complimentary as part of our client qualification process.',
       },
       {
-        question: 'What if we do not have complete metallurgical assay records?',
+        question:
+          'What if we do not have complete metallurgical assay records?',
         answer:
           'You can provide estimated grades and descriptions of the deposit. Our team can arrange independent metallurgical sampling and assay testing to establish certified design parameters.',
       },
       {
-        question: 'Is client geological and operational data kept confidential?',
+        question:
+          'Is client geological and operational data kept confidential?',
         answer:
           'Absolutely. All assessment submissions, assay data, concession boundaries, and proprietary details are protected under our corporate non-disclosure and security policies.',
       },
     ],
-    primaryCta: { label: 'Start Technical Plant Assessment', href: '/technical-assessment' },
+    primaryCta: {
+      label: 'Start Technical Plant Assessment',
+      href: '/technical-assessment',
+    },
     secondaryCta: { label: 'Submit Line-Item RFQ', href: '/request-rfq' },
   },
 
@@ -784,7 +1047,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'equipment',
     eyebrow: 'Plant Machinery Catalogue',
     title: 'Mining Equipment Supply & Sourcing',
-    headline: 'Certified mineral processing machinery, heavy grinding mills, crushers, and gravity concentrators',
+    headline:
+      'Certified mineral processing machinery, heavy grinding mills, crushers, and gravity concentrators',
     description:
       'Heavy-duty gold mining and mineral processing machinery sourced, engineered, and installed across East Africa. From jaw crushers and ball mills to CIL agitators, elution columns, and smelting furnaces.',
     intro:
@@ -802,10 +1066,26 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: 'Certified Plant Machinery',
     },
     keyMetrics: [
-      { label: 'Machinery Categories', value: '6 Core Families', detail: 'Crushing to Doré Bullion Smelting' },
-      { label: 'Motors & Drives', value: 'High Efficiency', detail: 'WEG / ABB Premium Motors' },
-      { label: 'Bearings & Gearing', value: 'Heavy Duty Spec', detail: 'SKF / Timken & Alloy Girth Gears' },
-      { label: 'Warranty & Support', value: '12-Month Guarantee', detail: 'On-Site Commissioning Included' },
+      {
+        label: 'Machinery Categories',
+        value: '6 Core Families',
+        detail: 'Crushing to Doré Bullion Smelting',
+      },
+      {
+        label: 'Motors & Drives',
+        value: 'High Efficiency',
+        detail: 'WEG / ABB Premium Motors',
+      },
+      {
+        label: 'Bearings & Gearing',
+        value: 'Heavy Duty Spec',
+        detail: 'SKF / Timken & Alloy Girth Gears',
+      },
+      {
+        label: 'Warranty & Support',
+        value: '12-Month Guarantee',
+        detail: 'On-Site Commissioning Included',
+      },
     ],
     gallery: [
       {
@@ -858,17 +1138,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Heavy-Duty Jaw Crushers',
             standard: 'PE / PEX Series',
-            description: 'Deep-chamber design with manganese jaw plates for Run-of-Mine ore primary reduction to < 40 mm.',
+            description:
+              'Deep-chamber design with manganese jaw plates for Run-of-Mine ore primary reduction to < 40 mm.',
           },
           {
             name: 'Secondary Cone & Impact Crushers',
             standard: 'Hydraulic / Spring',
-            description: 'Precision secondary reduction delivering fine mill-feed (< 12 mm) with maximum cubical shape.',
+            description:
+              'Precision secondary reduction delivering fine mill-feed (< 12 mm) with maximum cubical shape.',
           },
           {
             name: 'Vibrating Grizzly & Sizing Screens',
             standard: 'Polyurethane / Wire Mesh',
-            description: 'Multi-deck classification separating oversize ore for closed-circuit re-crushing.',
+            description:
+              'Multi-deck classification separating oversize ore for closed-circuit re-crushing.',
           },
         ],
       },
@@ -878,12 +1161,14 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Continuous Wet Grinding Ball Mills',
             standard: 'Grate / Overflow Discharge',
-            description: 'Heavy steel shell with rubber/chrome liners reducing ore to 80% passing 74 µm (200 mesh).',
+            description:
+              'Heavy steel shell with rubber/chrome liners reducing ore to 80% passing 74 µm (200 mesh).',
           },
           {
             name: 'Hydrocyclone Classification Clusters',
             standard: 'Polyurethane Lined',
-            description: 'Radial manifold clusters ensuring sharp separation between fine overflow and coarse underflow.',
+            description:
+              'Radial manifold clusters ensuring sharp separation between fine overflow and coarse underflow.',
           },
         ],
       },
@@ -893,17 +1178,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'CIL / CIP Agitator Mechanism Units',
             standard: 'Dual Hydrofoil Impellers',
-            description: 'High-torque gearboxes maintaining uniform slurry suspension with minimal carbon attrition.',
+            description:
+              'High-torque gearboxes maintaining uniform slurry suspension with minimal carbon attrition.',
           },
           {
             name: 'Zadra / Anglo Elution & Electrowinning Packages',
             standard: 'ASME Section VIII',
-            description: 'High-pressure, high-temperature desorption units stripping gold from loaded carbon in 8–12 hours.',
+            description:
+              'High-pressure, high-temperature desorption units stripping gold from loaded carbon in 8–12 hours.',
           },
           {
             name: 'Electric Induction Gold Smelting Furnaces',
             standard: 'IGBT Inverter Tech',
-            description: 'Rapid smelting of gold sludge cathodes into 95%+ pure doré bullion bars at 1,200°C.',
+            description:
+              'Rapid smelting of gold sludge cathodes into 95%+ pure doré bullion bars at 1,200°C.',
           },
         ],
       },
@@ -912,37 +1200,71 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Step 01',
         title: 'Duty Requirement & Flowsheet Sizing',
-        objective: 'Calculate exact power, throughput, reduction ratio, and slurry residence time required.',
-        deliverables: ['Equipment Sizing Worksheet', 'Power Consumption Estimate'],
+        objective:
+          'Calculate exact power, throughput, reduction ratio, and slurry residence time required.',
+        deliverables: [
+          'Equipment Sizing Worksheet',
+          'Power Consumption Estimate',
+        ],
         milestoneRecord: 'Technical Specification Signoff',
       },
       {
         phase: 'Step 02',
         title: 'Procurement, Sourcing & Factory Inspection',
-        objective: 'Manufacture and test equipment under certified ISO quality control with factory witness testing.',
-        deliverables: ['Factory Acceptance Test (FAT) Report', 'Material Test Certificates'],
+        objective:
+          'Manufacture and test equipment under certified ISO quality control with factory witness testing.',
+        deliverables: [
+          'Factory Acceptance Test (FAT) Report',
+          'Material Test Certificates',
+        ],
         milestoneRecord: 'Pre-Shipment Inspection Release',
       },
       {
         phase: 'Step 03',
         title: 'Logistics, Port Clearance & Site Delivery',
-        objective: 'Coordinate maritime shipping, customs clearance, and heavy overland transport to mine site.',
-        deliverables: ['Bill of Lading Archive', 'Site Receipt Inspection Report'],
+        objective:
+          'Coordinate maritime shipping, customs clearance, and heavy overland transport to mine site.',
+        deliverables: [
+          'Bill of Lading Archive',
+          'Site Receipt Inspection Report',
+        ],
         milestoneRecord: 'Site Delivery Record',
       },
       {
         phase: 'Step 04',
         title: 'Civil Mounting, Alignment & Cold/Hot Run',
-        objective: 'Bolt onto dynamic foundations, perform laser shaft alignment, and conduct 72-hour load testing.',
-        deliverables: ['Laser Alignment Log', '72-Hour Load Run Certificate', 'Operator Manuals & Spares List'],
+        objective:
+          'Bolt onto dynamic foundations, perform laser shaft alignment, and conduct 72-hour load testing.',
+        deliverables: [
+          'Laser Alignment Log',
+          '72-Hour Load Run Certificate',
+          'Operator Manuals & Spares List',
+        ],
         milestoneRecord: 'Final Equipment Commissioning Certificate',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Jaw Crusher Capacity Range', standardValue: '10 – 350 tonnes per hour (tph)', engineeringNotes: 'Feed sizes from 200 mm to 800 mm ROM' },
-      { parameter: 'Ball Mill Dimensions & Power', standardValue: 'Ø1.5m x 3.0m up to Ø3.2m x 6.5m (45 kW – 800 kW)', engineeringNotes: 'Girth gear driven with auxiliary inching drive' },
-      { parameter: 'Slurry Pump Wetted Parts Alloy', standardValue: 'High-Chrome (27% Cr, 60–65 HRC) or Natural Rubber', engineeringNotes: 'Resists extreme slurry abrasion and chemical corrosion' },
-      { parameter: 'Gold Smelting Induction Furnace Power', standardValue: '15 kW – 50 kW (10 kg – 50 kg crucible capacity)', engineeringNotes: 'Smelts cathode sludge to bullion in 20–30 minutes' },
+      {
+        parameter: 'Jaw Crusher Capacity Range',
+        standardValue: '10 – 350 tonnes per hour (tph)',
+        engineeringNotes: 'Feed sizes from 200 mm to 800 mm ROM',
+      },
+      {
+        parameter: 'Ball Mill Dimensions & Power',
+        standardValue: 'Ø1.5m x 3.0m up to Ø3.2m x 6.5m (45 kW – 800 kW)',
+        engineeringNotes: 'Girth gear driven with auxiliary inching drive',
+      },
+      {
+        parameter: 'Slurry Pump Wetted Parts Alloy',
+        standardValue: 'High-Chrome (27% Cr, 60–65 HRC) or Natural Rubber',
+        engineeringNotes:
+          'Resists extreme slurry abrasion and chemical corrosion',
+      },
+      {
+        parameter: 'Gold Smelting Induction Furnace Power',
+        standardValue: '15 kW – 50 kW (10 kg – 50 kg crucible capacity)',
+        engineeringNotes: 'Smelts cathode sludge to bullion in 20–30 minutes',
+      },
     ],
     lifecycle: [
       'Duty Sizing & Selection',
@@ -955,7 +1277,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     note: 'All equipment quotes include technical datasheets, power curves, foundation blueprints, and manufacturer warranty terms.',
     faqs: [
       {
-        question: 'Can Green Ngoria supply complete plant packages on structural steel skids?',
+        question:
+          'Can Green Ngoria supply complete plant packages on structural steel skids?',
         answer:
           'Yes. We build modular, skid-mounted gold processing plants (crushing, milling, and gravity/CIL modules) that allow rapid on-site erection with minimal civil foundation works.',
       },
@@ -970,7 +1293,10 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           'Use our digital RFQ builder at /request-rfq, specify your required equipment categories, target daily capacity, and project location, and our engineers will issue a line-item quotation.',
       },
     ],
-    primaryCta: { label: 'Request Equipment Quotation (RFQ)', href: '/request-rfq' },
+    primaryCta: {
+      label: 'Request Equipment Quotation (RFQ)',
+      href: '/request-rfq',
+    },
     secondaryCta: { label: 'Browse Spare Parts', href: '/spares' },
   },
 
@@ -978,7 +1304,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'spares',
     eyebrow: 'Asset Reliability & Wear Parts',
     title: 'Mining Spare Parts & Wear Consumables',
-    headline: 'High-chromium wear parts, manganese liners, slurry pump spares, and certified consumables',
+    headline:
+      'High-chromium wear parts, manganese liners, slurry pump spares, and certified consumables',
     description:
       'Keep your gold processing plant running at peak availability. We supply genuine, traceable spare parts for crushers, ball mills, slurry pumps, hydrocyclones, and CIL carbon circuits across East Africa.',
     intro:
@@ -996,10 +1323,26 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: 'Wear Consumables Archive',
     },
     keyMetrics: [
-      { label: 'Alloy Hardness Rating', value: 'Up to 65 HRC', detail: 'High-Chromium White Iron' },
-      { label: 'Manganese Toughness', value: 'Mn18Cr2 / Mn22Cr2', detail: 'Work-Hardening Crusher Plates' },
-      { label: 'Dispatch Lead Time', value: '24 – 48 Hours', detail: 'Ex-Warehouse for In-Stock Spares' },
-      { label: 'Asset Traceability', value: 'System 9 Mapped', detail: 'Direct Equipment Linkage' },
+      {
+        label: 'Alloy Hardness Rating',
+        value: 'Up to 65 HRC',
+        detail: 'High-Chromium White Iron',
+      },
+      {
+        label: 'Manganese Toughness',
+        value: 'Mn18Cr2 / Mn22Cr2',
+        detail: 'Work-Hardening Crusher Plates',
+      },
+      {
+        label: 'Dispatch Lead Time',
+        value: '24 – 48 Hours',
+        detail: 'Ex-Warehouse for In-Stock Spares',
+      },
+      {
+        label: 'Asset Traceability',
+        value: 'System 9 Mapped',
+        detail: 'Direct Equipment Linkage',
+      },
     ],
     gallery: [
       {
@@ -1044,17 +1387,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'Manganese Crusher Liners',
             standard: 'Mn18Cr2 / Mn22Cr2 (ASTM A128)',
-            description: 'Work-hardening steel alloy delivering up to 40% longer wear life on hard quartz gold ore.',
+            description:
+              'Work-hardening steel alloy delivering up to 40% longer wear life on hard quartz gold ore.',
           },
           {
             name: 'Forged Alloy Steel Grinding Media',
             standard: '60–65 HRC (ASTM A681)',
-            description: 'High-impact, low-breakage forged steel balls engineered for uniform grind and low consumption (g/t).',
+            description:
+              'High-impact, low-breakage forged steel balls engineered for uniform grind and low consumption (g/t).',
           },
           {
             name: 'Composite & Rubber Mill Liners',
             standard: 'Natural Rubber / Alloy Insert',
-            description: 'Lighter weight liners that protect the mill shell while cutting replacement downtime by half.',
+            description:
+              'Lighter weight liners that protect the mill shell while cutting replacement downtime by half.',
           },
         ],
       },
@@ -1064,17 +1410,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
           {
             name: 'High-Chrome Slurry Pump Wet Ends',
             standard: 'A05 High-Chrome (27% Cr)',
-            description: 'Extreme abrasion-resistant impellers and casings compatible with Warman-style slurry pumps.',
+            description:
+              'Extreme abrasion-resistant impellers and casings compatible with Warman-style slurry pumps.',
           },
           {
             name: 'Polyurethane Hydrocyclone Spares',
             standard: 'Shore 85A Polyurethane',
-            description: 'Wear-resistant vortex finders and spigots maintaining sharp classification cut points.',
+            description:
+              'Wear-resistant vortex finders and spigots maintaining sharp classification cut points.',
           },
           {
             name: 'Coconut Shell Activated Carbon',
             standard: '6x12 Mesh / CTC 60',
-            description: 'Premium gold-adsorbing activated carbon with high hardness and low attrition resistance.',
+            description:
+              'Premium gold-adsorbing activated carbon with high hardness and low attrition resistance.',
           },
         ],
       },
@@ -1083,37 +1432,65 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Step 01',
         title: 'Part Identification & Asset Match',
-        objective: 'Identify exact manufacturer model, part reference number, and equipment duty conditions.',
-        deliverables: ['Spare Part Compatibility Sheet', 'Technical Drawing Reference'],
+        objective:
+          'Identify exact manufacturer model, part reference number, and equipment duty conditions.',
+        deliverables: [
+          'Spare Part Compatibility Sheet',
+          'Technical Drawing Reference',
+        ],
         milestoneRecord: 'Part Specification Match',
       },
       {
         phase: 'Step 02',
         title: 'Availability & Quotation',
-        objective: 'Confirm inventory stock availability or production lead time and issue priced quotation.',
+        objective:
+          'Confirm inventory stock availability or production lead time and issue priced quotation.',
         deliverables: ['Formal Spares Quotation', 'Lead Time Schedule'],
         milestoneRecord: 'Purchase Order Issuance',
       },
       {
         phase: 'Step 03',
         title: 'Quality Verification & Dispatch',
-        objective: 'Perform dimensional checks, hardness testing, and package for heavy overland transport.',
+        objective:
+          'Perform dimensional checks, hardness testing, and package for heavy overland transport.',
         deliverables: ['Inspection & Hardness Cert', 'Waybill & Delivery Note'],
         milestoneRecord: 'Dispatch Confirmation',
       },
       {
         phase: 'Step 04',
         title: 'On-Site Installation & Asset Log Update',
-        objective: 'Assist site maintenance team with installation and record wear part serial into System 9 asset register.',
-        deliverables: ['Maintenance Installation Record', 'Next Scheduled Changeout Date'],
+        objective:
+          'Assist site maintenance team with installation and record wear part serial into System 9 asset register.',
+        deliverables: [
+          'Maintenance Installation Record',
+          'Next Scheduled Changeout Date',
+        ],
         milestoneRecord: 'Asset Service Record Update',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Grinding Ball Consumption Rate', standardValue: '0.4 – 0.9 kg/tonne of ore processed', engineeringNotes: 'Dependent on ore Bond Work Index and mill speed' },
-      { parameter: 'High-Chrome Impeller Lifespan', standardValue: '1,200 – 2,500 continuous operating hours', engineeringNotes: 'Varies with slurry solid percentage and particle size' },
-      { parameter: 'Activated Carbon Attrition Loss', standardValue: '< 1.0% per elution stripping cycle', engineeringNotes: 'High-hardness coconut shell formulation' },
-      { parameter: 'Wedge-Wire Carbon Screen Slot', standardValue: '0.65 mm / 0.80 mm precision aperture', engineeringNotes: 'Stainless steel 316L prevents carbon loss into tails' },
+      {
+        parameter: 'Grinding Ball Consumption Rate',
+        standardValue: '0.4 – 0.9 kg/tonne of ore processed',
+        engineeringNotes: 'Dependent on ore Bond Work Index and mill speed',
+      },
+      {
+        parameter: 'High-Chrome Impeller Lifespan',
+        standardValue: '1,200 – 2,500 continuous operating hours',
+        engineeringNotes:
+          'Varies with slurry solid percentage and particle size',
+      },
+      {
+        parameter: 'Activated Carbon Attrition Loss',
+        standardValue: '< 1.0% per elution stripping cycle',
+        engineeringNotes: 'High-hardness coconut shell formulation',
+      },
+      {
+        parameter: 'Wedge-Wire Carbon Screen Slot',
+        standardValue: '0.65 mm / 0.80 mm precision aperture',
+        engineeringNotes:
+          'Stainless steel 316L prevents carbon loss into tails',
+      },
     ],
     lifecycle: [
       'Asset Identification',
@@ -1126,17 +1503,20 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     note: 'All spare parts undergo dimensional check and hardness testing prior to delivery. Critical spares can be held on consignment for contract operations.',
     faqs: [
       {
-        question: 'Are Green Ngoria spare parts compatible with major international equipment brands?',
+        question:
+          'Are Green Ngoria spare parts compatible with major international equipment brands?',
         answer:
           'Yes. We supply direct-fit, precision-manufactured wear parts for Warman, Metso, Sandvik, FLSmidth, and Chinese-manufactured mining equipment.',
       },
       {
-        question: 'Do you offer emergency spare parts delivery for plant breakdowns?',
+        question:
+          'Do you offer emergency spare parts delivery for plant breakdowns?',
         answer:
           'Yes. For critical in-stock spares (impellers, pump seals, contactors, carbon screens), we arrange direct hot-shot road delivery across Kenya within 24 hours.',
       },
       {
-        question: 'Can you supply custom-cast crusher plates for obsolete or custom machinery?',
+        question:
+          'Can you supply custom-cast crusher plates for obsolete or custom machinery?',
         answer:
           'Yes. Our engineering department can take 3D laser scans or physical patterns of your existing worn liners and manufacture custom manganese or alloy castings.',
       },
@@ -1149,7 +1529,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'mining',
     eyebrow: 'Mining Operations & Resources',
     title: 'Active Gold & Gemstone Mining Concessions',
-    headline: 'Producing mining assets connected to turnkey engineering and processing plant delivery',
+    headline:
+      'Producing mining assets connected to turnkey engineering and processing plant delivery',
     description:
       'Gold and gemstone mining operations across Kenya (Bondo, Oyugis, Lolgorian, Taita Taveta) and Tanzania, supported by dedicated in-house civil, mechanical, electrical, and mineral processing divisions.',
     intro:
@@ -1167,10 +1548,26 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: 'Active Gold Production',
     },
     keyMetrics: [
-      { label: 'Mining Sites', value: '5 Operating Areas', detail: 'Bondo, Oyugis, Lolgorian, Taita & Tanzania' },
-      { label: 'Processing Plant', value: 'NEMA Approved', detail: 'Permit Ref: NEMA/PR/SYA/002' },
-      { label: 'Commodities', value: 'Gold & Gemstones', detail: 'Doré Bullion, Tanzanite, Tsavorite & Ruby' },
-      { label: 'Licensing Status', value: 'Stamp Duty Paid', detail: 'Full Statutory Compliance' },
+      {
+        label: 'Mining Sites',
+        value: '5 Operating Areas',
+        detail: 'Bondo, Oyugis, Lolgorian, Taita & Tanzania',
+      },
+      {
+        label: 'Processing Plant',
+        value: 'NEMA Approved',
+        detail: 'Permit Ref: NEMA/PR/SYA/002',
+      },
+      {
+        label: 'Commodities',
+        value: 'Gold & Gemstones',
+        detail: 'Doré Bullion, Tanzanite, Tsavorite & Ruby',
+      },
+      {
+        label: 'Licensing Status',
+        value: 'Stamp Duty Paid',
+        detail: 'Full Statutory Compliance',
+      },
     ],
     gallery: [
       {
@@ -1238,23 +1635,28 @@ export const capabilityPages: Record<string, PublicPageContent> = {
         items: [
           {
             name: 'Bondo Processing Plant & Mine (Siaya County)',
-            description: 'Central NEMA-approved small-scale CIP/CIL processing facility and vein mining at Nyangoma.',
+            description:
+              'Central NEMA-approved small-scale CIP/CIL processing facility and vein mining at Nyangoma.',
           },
           {
             name: 'Oyugis Gold Concession (Homa Bay County)',
-            description: 'High-grade quartz vein extraction, primary crushing, and gravity concentration sluices.',
+            description:
+              'High-grade quartz vein extraction, primary crushing, and gravity concentration sluices.',
           },
           {
             name: 'Lolgorian Mine Site (Narok County)',
-            description: 'Underground shaft headframe and ore cart haulage in the high-grade Trans-Mara gold corridor.',
+            description:
+              'Underground shaft headframe and ore cart haulage in the high-grade Trans-Mara gold corridor.',
           },
           {
             name: 'Taita Taveta Mineral Concession',
-            description: 'Mozambique belt precious gemstone and gold extraction producing rough specimens and doré.',
+            description:
+              'Mozambique belt precious gemstone and gold extraction producing rough specimens and doré.',
           },
           {
             name: 'Tanzanian Mineral Assets',
-            description: 'Original foundation mining site and company-owned gemstone mine producing Tanzanite and colored stones.',
+            description:
+              'Original foundation mining site and company-owned gemstone mine producing Tanzanite and colored stones.',
           },
         ],
       },
@@ -1263,29 +1665,49 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Stage 01',
         title: 'Prospecting & Geological Mapping',
-        objective: 'Conduct trenching, geological mapping, and geochemical sampling across concession area.',
+        objective:
+          'Conduct trenching, geological mapping, and geochemical sampling across concession area.',
         deliverables: ['Geological Map', 'Surface Assay Log'],
         milestoneRecord: 'Target Identification',
       },
       {
         phase: 'Stage 02',
         title: 'Mine Development & Shaft Sinking',
-        objective: 'Excavate access declines, sink shafts, and establish timbering shoring and ventilation.',
+        objective:
+          'Excavate access declines, sink shafts, and establish timbering shoring and ventilation.',
         deliverables: ['Mine Plan Blueprint', 'Shaft Structural Signoff'],
         milestoneRecord: 'Ore Body Intersect',
       },
       {
         phase: 'Stage 03',
         title: 'Ore Extraction & Processing',
-        objective: 'Extract gold ore, transport to processing plant, crush, mill, and recover doré bullion.',
-        deliverables: ['Daily Production Log', 'Mill Feed Assay', 'Smelt Bullion Record'],
+        objective:
+          'Extract gold ore, transport to processing plant, crush, mill, and recover doré bullion.',
+        deliverables: [
+          'Daily Production Log',
+          'Mill Feed Assay',
+          'Smelt Bullion Record',
+        ],
         milestoneRecord: 'Commercial Production',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Target Ore Commodities', standardValue: 'Gold (Au), Tanzanite, Tsavorite, Blue Sapphire, Ruby', engineeringNotes: 'Precious metals and high-value colored gemstones' },
-      { parameter: 'Processing Plant Permit', standardValue: 'NEMA/PR/SYA/002 (County Director of Environment, Siaya)', engineeringNotes: 'Full EIA environmental audit approval' },
-      { parameter: 'Environmental Policy', standardValue: 'Zero untreated chemical discharge', engineeringNotes: 'Lined tailings storage and cyanide detoxification' },
+      {
+        parameter: 'Target Ore Commodities',
+        standardValue: 'Gold (Au), Tanzanite, Tsavorite, Blue Sapphire, Ruby',
+        engineeringNotes: 'Precious metals and high-value colored gemstones',
+      },
+      {
+        parameter: 'Processing Plant Permit',
+        standardValue:
+          'NEMA/PR/SYA/002 (County Director of Environment, Siaya)',
+        engineeringNotes: 'Full EIA environmental audit approval',
+      },
+      {
+        parameter: 'Environmental Policy',
+        standardValue: 'Zero untreated chemical discharge',
+        engineeringNotes: 'Lined tailings storage and cyanide detoxification',
+      },
     ],
     lifecycle: [
       'Opportunity Identification',
@@ -1298,17 +1720,22 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     note: 'Geological resources and production metrics are verified through certified laboratory assays. Green Ngoria operates strictly within statutory mining licences.',
     faqs: [
       {
-        question: 'Does Green Ngoria partner with international mining investors?',
+        question:
+          'Does Green Ngoria partner with international mining investors?',
         answer:
           'Yes. We engage with qualified mining investors and joint-venture partners on concession development, plant expansion, and regional mineral exploration.',
       },
       {
-        question: 'Where can buyers verify Green Ngoria’s gemstone and gold provenance?',
+        question:
+          'Where can buyers verify Green Ngoria’s gemstone and gold provenance?',
         answer:
           'All mineral output is documented with statutory royalties, mining licences, and official assay documentation through the Ministry of Mining.',
       },
     ],
-    primaryCta: { label: 'Explore Gold Processing Plant', href: '/gold-processing' },
+    primaryCta: {
+      label: 'Explore Gold Processing Plant',
+      href: '/gold-processing',
+    },
     secondaryCta: { label: 'Discuss Mining Partnership', href: '/contact' },
   },
 
@@ -1316,7 +1743,8 @@ export const capabilityPages: Record<string, PublicPageContent> = {
     slug: 'insights',
     eyebrow: 'Technical Knowledge Base',
     title: 'Mining Plant Engineering & Metallurgical Insights',
-    headline: 'Engineering articles, flowsheet explainers, and operational best practices',
+    headline:
+      'Engineering articles, flowsheet explainers, and operational best practices',
     description:
       'Authoritative technical publications covering gold processing plant design, CIP/CIL systems, equipment selection, EHS management, and plant optimization in East Africa.',
     intro:
@@ -1333,24 +1761,42 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       badge: 'Technical Archive',
     },
     keyMetrics: [
-      { label: 'Publication Focus', value: 'Mineral Processing', detail: 'Gold Metallurgy & Plant EPC' },
-      { label: 'Review Standard', value: 'Peer-Reviewed', detail: 'Qualified Engineer Authored' },
-      { label: 'Coverage', value: 'East Africa', detail: 'Kenya, Tanzania & Regional Mines' },
-      { label: 'Access', value: 'Open Engineering Resource', detail: 'Free Technical Library' },
+      {
+        label: 'Publication Focus',
+        value: 'Mineral Processing',
+        detail: 'Gold Metallurgy & Plant EPC',
+      },
+      {
+        label: 'Review Standard',
+        value: 'Peer-Reviewed',
+        detail: 'Qualified Engineer Authored',
+      },
+      {
+        label: 'Coverage',
+        value: 'East Africa',
+        detail: 'Kenya, Tanzania & Regional Mines',
+      },
+      {
+        label: 'Access',
+        value: 'Open Engineering Resource',
+        detail: 'Free Technical Library',
+      },
     ],
     gallery: [
       {
         src: '/images/engineering/plant-engineering-3d-cad.webp',
         alt: '3D CAD process flow schematic explainer',
         title: 'CIP vs CIL Circuit Selection',
-        description: 'Comparative technical guide on when to select Carbon-in-Pulp vs Carbon-in-Leach for gold recovery.',
+        description:
+          'Comparative technical guide on when to select Carbon-in-Pulp vs Carbon-in-Leach for gold recovery.',
         tag: 'Process Flow',
       },
       {
         src: '/images/engineering/plant-optimization-kinetics-lab.webp',
         alt: 'Metallurgical laboratory testing and titration article',
         title: 'Cyanide Leaching Kinetics Guide',
-        description: 'Optimizing dissolved oxygen, pH buffer, and residence times to maximize gold dissolution.',
+        description:
+          'Optimizing dissolved oxygen, pH buffer, and residence times to maximize gold dissolution.',
         tag: 'Metallurgy',
       },
     ],
@@ -1368,15 +1814,18 @@ export const capabilityPages: Record<string, PublicPageContent> = {
         items: [
           {
             name: 'Metallurgical Process Design',
-            description: 'Detailed analysis of gold extraction, flotation, and gravity separation.',
+            description:
+              'Detailed analysis of gold extraction, flotation, and gravity separation.',
           },
           {
             name: 'Equipment Maintenance & Asset Care',
-            description: 'Best practices for extending slurry pump, crusher, and mill life.',
+            description:
+              'Best practices for extending slurry pump, crusher, and mill life.',
           },
           {
             name: 'Environmental, Health & Safety (EHS)',
-            description: 'Tailings management, cyanide neutralization, and safety leadership on mine sites.',
+            description:
+              'Tailings management, cyanide neutralization, and safety leadership on mine sites.',
           },
         ],
       },
@@ -1385,28 +1834,39 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       {
         phase: 'Step 01',
         title: 'Topic Scoping & Field Data Collection',
-        objective: 'Identify critical operational challenges from real plant telemetry and field experience.',
+        objective:
+          'Identify critical operational challenges from real plant telemetry and field experience.',
         deliverables: ['Draft Outline', 'Empirical Data Sets'],
         milestoneRecord: 'Editorial Approval',
       },
       {
         phase: 'Step 02',
         title: 'Technical Review & Verification',
-        objective: 'Review calculations, flowsheets, and safety guidelines with qualified engineering leads.',
+        objective:
+          'Review calculations, flowsheets, and safety guidelines with qualified engineering leads.',
         deliverables: ['Peer-Reviewed Draft', 'Compliance Verification'],
         milestoneRecord: 'Engineering Signoff',
       },
       {
         phase: 'Step 03',
         title: 'Digital Publication & Distribution',
-        objective: 'Publish open-access technical paper for industry operators and clients.',
+        objective:
+          'Publish open-access technical paper for industry operators and clients.',
         deliverables: ['Published Article', 'Downloadable Technical Sheet'],
         milestoneRecord: 'Publication Issue',
       },
     ],
     technicalSpecs: [
-      { parameter: 'Editorial Standards', standardValue: 'Authored by qualified engineers', engineeringNotes: 'Based on actual operating plant records' },
-      { parameter: 'Citation Policy', standardValue: 'Referenced from ISO, ASTM, and ASME engineering codes', engineeringNotes: 'Peer-reviewed technical content' },
+      {
+        parameter: 'Editorial Standards',
+        standardValue: 'Authored by qualified engineers',
+        engineeringNotes: 'Based on actual operating plant records',
+      },
+      {
+        parameter: 'Citation Policy',
+        standardValue: 'Referenced from ISO, ASTM, and ASME engineering codes',
+        engineeringNotes: 'Peer-reviewed technical content',
+      },
     ],
     lifecycle: [
       'Topic Scoping',
@@ -1425,6 +1885,9 @@ export const capabilityPages: Record<string, PublicPageContent> = {
       },
     ],
     primaryCta: { label: 'Request Technical Discussion', href: '/contact' },
-    secondaryCta: { label: 'Explore Gold Processing Plant', href: '/gold-processing' },
+    secondaryCta: {
+      label: 'Explore Gold Processing Plant',
+      href: '/gold-processing',
+    },
   },
 };

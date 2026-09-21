@@ -111,13 +111,41 @@ const goldOperationsGallery = [
 ];
 
 const plantSpecs = [
-  { parameter: 'NEMA Environmental Permit', standardValue: 'Ref: NEMA/PR/SYA/002', engineeringNotes: 'Issued by County Director of Environment, Siaya' },
-  { parameter: 'Primary Milling Circuit', standardValue: 'Continuous Wet Ball Mill on reinforced plinth', engineeringNotes: 'Closed-circuit with hydrocyclone classification' },
-  { parameter: 'Target Grind Particle Size (P80)', standardValue: '74 µm (80% passing 200 mesh)', engineeringNotes: 'Ensures maximum gold liberation from quartz host rock' },
-  { parameter: 'Leaching & Adsorption System', standardValue: 'Carbon-in-Leach (CIL) / CIP Agitation Tanks', engineeringNotes: 'Multi-stage continuous counter-current carbon movement' },
-  { parameter: 'Gravity Concentration Efficiency', standardValue: 'Single-pass Knelson / Sluice recovery', engineeringNotes: 'Captures coarse free gold prior to cyanidation' },
-  { parameter: 'Doré Smelting Induction Furnace', standardValue: 'High-frequency electric induction smelt', engineeringNotes: 'Produces 90%–96% pure gold doré bullion bars' },
-  { parameter: 'Tailings & Environmental Management', standardValue: 'Zero untreated effluent discharge', engineeringNotes: 'HDPE-lined tailings storage with cyanide neutralization' },
+  {
+    parameter: 'NEMA Environmental Permit',
+    standardValue: 'Ref: NEMA/PR/SYA/002',
+    engineeringNotes: 'Issued by County Director of Environment, Siaya',
+  },
+  {
+    parameter: 'Primary Milling Circuit',
+    standardValue: 'Continuous Wet Ball Mill on reinforced plinth',
+    engineeringNotes: 'Closed-circuit with hydrocyclone classification',
+  },
+  {
+    parameter: 'Target Grind Particle Size (P80)',
+    standardValue: '74 µm (80% passing 200 mesh)',
+    engineeringNotes: 'Ensures maximum gold liberation from quartz host rock',
+  },
+  {
+    parameter: 'Leaching & Adsorption System',
+    standardValue: 'Carbon-in-Leach (CIL) / CIP Agitation Tanks',
+    engineeringNotes: 'Multi-stage continuous counter-current carbon movement',
+  },
+  {
+    parameter: 'Gravity Concentration Efficiency',
+    standardValue: 'Single-pass Knelson / Sluice recovery',
+    engineeringNotes: 'Captures coarse free gold prior to cyanidation',
+  },
+  {
+    parameter: 'Doré Smelting Induction Furnace',
+    standardValue: 'High-frequency electric induction smelt',
+    engineeringNotes: 'Produces 90%–96% pure gold doré bullion bars',
+  },
+  {
+    parameter: 'Tailings & Environmental Management',
+    standardValue: 'Zero untreated effluent discharge',
+    engineeringNotes: 'HDPE-lined tailings storage with cyanide neutralization',
+  },
 ];
 
 export default function GoldProcessingPage() {
@@ -130,16 +158,25 @@ export default function GoldProcessingPage() {
           'Green Ngoria operates active gold mining concessions in Bondo, Oyugis, Lolgorian, and Taita Taveta in Kenya, alongside established mining assets in Tanzania.',
           'At the centre of our Kenyan mineral processing operations is a small-scale gold processing plant at Nyangoma, Bondo Sub-County, fully approved by the National Environment Management Authority (NEMA/PR/SYA/002).',
         ]}
-        primaryAction={{ label: 'Discuss mining partnership', href: '/contact' }}
+        primaryAction={{
+          label: 'Discuss mining partnership',
+          href: '/contact',
+        }}
         secondaryAction={{
           label: 'Explore equipment catalogue',
           href: '/equipment',
         }}
         facts={[
           { term: 'Processing Facility', value: 'Bondo CIP/CIL Gold Plant' },
-          { term: 'Operating Sites', value: 'Bondo · Oyugis · Lolgorian · Taita' },
+          {
+            term: 'Operating Sites',
+            value: 'Bondo · Oyugis · Lolgorian · Taita',
+          },
           { term: 'Approval Reference', value: 'NEMA/PR/SYA/002' },
-          { term: 'Statutory Status', value: 'Stamp Duty Paid & County Permitted' },
+          {
+            term: 'Statutory Status',
+            value: 'Stamp Duty Paid & County Permitted',
+          },
         ]}
       />
 
@@ -166,7 +203,8 @@ export default function GoldProcessingPage() {
                     Bondo Gold Processing Facility — Plot Nyangoma/1352
                   </h2>
                   <p className="mt-1 line-clamp-2 text-xs leading-5 text-white/80 sm:text-sm">
-                    Complete closed-circuit crushing, ball milling, centrifugal gravity concentration, and CIL carbon agitation tank farm.
+                    Complete closed-circuit crushing, ball milling, centrifugal
+                    gravity concentration, and CIL carbon agitation tank farm.
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -194,16 +232,21 @@ export default function GoldProcessingPage() {
             </h2>
             <div className="measure mt-6 space-y-5 text-base leading-8 text-muted-foreground">
               <p>
-                {plant.description} The site is located on Plot L.R. No. Nyangoma/1352 in
-                Bondo Sub-County, Siaya County.
+                {plant.description} The site is located on Plot L.R. No.
+                Nyangoma/1352 in Bondo Sub-County, Siaya County.
               </p>
               <p>
-                Production at the plant is directed by qualified resident metallurgists and mining engineers. Work on the site is carried out under the Green
-                Ngoria Environment, Health and Safety (EHS) policy, which gives
-                environmental protection and workforce safety priority in every operation.
+                Production at the plant is directed by qualified resident
+                metallurgists and mining engineers. Work on the site is carried
+                out under the Green Ngoria Environment, Health and Safety (EHS)
+                policy, which gives environmental protection and workforce
+                safety priority in every operation.
               </p>
               <p>
-                Environmental performance is an operational prerequisite: our processing philosophy incorporates lined containment bunds, strict cyanide detoxification circuits, and zero hazardous discharge into surrounding waterways.
+                Environmental performance is an operational prerequisite: our
+                processing philosophy incorporates lined containment bunds,
+                strict cyanide detoxification circuits, and zero hazardous
+                discharge into surrounding waterways.
               </p>
             </div>
           </Reveal>
@@ -332,14 +375,23 @@ export default function GoldProcessingPage() {
             <table className="w-full text-left text-sm">
               <thead className="border-b border-hairline bg-secondary/50 text-xs font-bold uppercase tracking-wider text-muted-foreground">
                 <tr>
-                  <th scope="col" className="px-6 py-4">Circuit Stage / Parameter</th>
-                  <th scope="col" className="px-6 py-4">Standard Design Criteria</th>
-                  <th scope="col" className="px-6 py-4">Operational &amp; Engineering Notes</th>
+                  <th scope="col" className="px-6 py-4">
+                    Circuit Stage / Parameter
+                  </th>
+                  <th scope="col" className="px-6 py-4">
+                    Standard Design Criteria
+                  </th>
+                  <th scope="col" className="px-6 py-4">
+                    Operational &amp; Engineering Notes
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-hairline">
                 {plantSpecs.map((spec) => (
-                  <tr key={spec.parameter} className="transition-colors hover:bg-accent/40">
+                  <tr
+                    key={spec.parameter}
+                    className="transition-colors hover:bg-accent/40"
+                  >
                     <td className="px-6 py-4 font-semibold text-foreground">
                       {spec.parameter}
                     </td>
@@ -369,10 +421,15 @@ export default function GoldProcessingPage() {
             </h2>
             <div className="measure mt-6 space-y-5 text-base leading-8 text-muted-foreground">
               <p>
-                Green Ngoria maintains permanent in-house mechanical and electrical engineering departments to design, erect, and maintain heavy mining equipment.
+                Green Ngoria maintains permanent in-house mechanical and
+                electrical engineering departments to design, erect, and
+                maintain heavy mining equipment.
               </p>
               <p>
-                Our engineering teams manage heavy crane rigging, precision shaft laser alignment, motor control centers (MCC), and emergency spare parts replacement to guarantee high plant availability and minimum downtime.
+                Our engineering teams manage heavy crane rigging, precision
+                shaft laser alignment, motor control centers (MCC), and
+                emergency spare parts replacement to guarantee high plant
+                availability and minimum downtime.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -413,17 +470,20 @@ export default function GoldProcessingPage() {
         <div className="mx-auto mt-10 max-w-4xl space-y-4">
           {[
             {
-              question: 'Where are Green Ngoria’s primary gold mining and extraction sites located?',
+              question:
+                'Where are Green Ngoria’s primary gold mining and extraction sites located?',
               answer:
                 'Our primary gold mining operations are situated in Bondo (Siaya County), Oyugis (Homa Bay County), Lolgorian (Narok County / Trans-Mara), and Taita Taveta in Kenya, alongside mineral concessions in Tanzania.',
             },
             {
-              question: 'What is the processing capacity of the Bondo gold plant?',
+              question:
+                'What is the processing capacity of the Bondo gold plant?',
               answer:
                 'The Bondo plant is configured for modular expansion, featuring closed-circuit ball milling, Knelson gravity separation, and continuous CIL agitation leaching with automated gold room electrowinning and bullion smelting.',
             },
             {
-              question: 'Does Green Ngoria accept custom ore feed or contract milling for third-party mining operators?',
+              question:
+                'Does Green Ngoria accept custom ore feed or contract milling for third-party mining operators?',
               answer:
                 'Yes. We offer toll-milling and contract mineral processing arrangements for qualified artisanal and small-scale miners with verified head grades and licensing provenance.',
             },
@@ -448,7 +508,10 @@ export default function GoldProcessingPage() {
       <CtaBanner
         title="Partner with Green Ngoria in Gold Mining & Processing"
         body="For joint-venture mining opportunities, concession development, equipment supply, or toll milling enquiries, contact our managing director's office in Nairobi."
-        primary={{ label: 'Contact Managing Director Office', href: '/contact' }}
+        primary={{
+          label: 'Contact Managing Director Office',
+          href: '/contact',
+        }}
         secondary={{
           label: 'Request Plant Assessment',
           href: '/technical-assessment',

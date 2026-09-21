@@ -64,7 +64,9 @@ export function useCreateCustomer() {
     mutationFn: (p: CreateCustomerPayload) =>
       post(`${BASE(orgId!)}`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/customers'] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/customers'],
+      });
     },
   });
 }
@@ -76,7 +78,9 @@ export function useUpdateCustomer(customerId: string) {
     mutationFn: (p: Partial<CreateCustomerPayload>) =>
       patch(`${BASE(orgId!)}/${customerId}`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/customers'] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/customers'],
+      });
     },
   });
 }
@@ -85,10 +89,20 @@ export function useDeleteCustomer() {
   const { orgId, branchId } = useCtx();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ customerId, delBranchId }: { customerId: string; delBranchId: string }) =>
-      del(`${BASE(orgId!)}/${customerId}?branchId=${delBranchId}`).then((r) => r.data),
+    mutationFn: ({
+      customerId,
+      delBranchId,
+    }: {
+      customerId: string;
+      delBranchId: string;
+    }) =>
+      del(`${BASE(orgId!)}/${customerId}?branchId=${delBranchId}`).then(
+        (r) => r.data,
+      ),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/customers'] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/customers'],
+      });
     },
   });
 }

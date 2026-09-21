@@ -66,13 +66,15 @@ export function AdminProfile() {
       />
       <ProfileSummary profile={data} />
       {/* If the login flow steered the user here (e.g. mandatory MFA
-        * enrolment for a privileged role), the URL carries `#mfa`. Default the
-        * Tabs to the Security tab so the user lands directly on the setup UI. */}
-      <Tabs defaultValue={
-        typeof window !== 'undefined' && window.location.hash === '#mfa'
-          ? 'security'
-          : 'profile'
-      }>
+       * enrolment for a privileged role), the URL carries `#mfa`. Default the
+       * Tabs to the Security tab so the user lands directly on the setup UI. */}
+      <Tabs
+        defaultValue={
+          typeof window !== 'undefined' && window.location.hash === '#mfa'
+            ? 'security'
+            : 'profile'
+        }
+      >
         <TabsList>
           <TabsTrigger value="profile">
             <UserRound className="mr-2 h-4 w-4" />
@@ -301,7 +303,6 @@ function ProfileForm({ profile }: { profile: MyProfile }) {
     </Card>
   );
 }
-
 
 // ─── Change password form ────────────────────────────────────────────────────
 

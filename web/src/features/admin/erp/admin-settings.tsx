@@ -219,7 +219,12 @@ function CompanyProfileForm({ orgId }: { orgId: string }) {
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(error)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(error)}
+        retry={() => void refetch()}
+      />
+    );
 
   const bind = (k: keyof SystemSettingsView['companyProfile']) => ({
     value: (v[k] as string) ?? '',
@@ -286,7 +291,10 @@ function CompanyProfileForm({ orgId }: { orgId: string }) {
                 rows={3}
                 value={(v.complianceSummary as string) ?? ''}
                 onChange={(e) =>
-                  setV((prev) => ({ ...prev, complianceSummary: e.target.value }))
+                  setV((prev) => ({
+                    ...prev,
+                    complianceSummary: e.target.value,
+                  }))
                 }
                 placeholder="e.g. ISO 9001:2015, ISO 14001:2015, OHSAS 18001 certified"
               />
@@ -311,7 +319,12 @@ function FinanceForm({ orgId }: { orgId: string }) {
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(error)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(error)}
+        retry={() => void refetch()}
+      />
+    );
 
   return (
     <Card>
@@ -342,17 +355,23 @@ function FinanceForm({ orgId }: { orgId: string }) {
               <select
                 className="h-10 w-full rounded-md border border-border bg-background px-2 text-sm"
                 value={v.primaryCurrency ?? 'KES'}
-                onChange={(e) => setV((p) => ({ ...p, primaryCurrency: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, primaryCurrency: e.target.value }))
+                }
               >
                 {CURRENCIES.map((c) => (
-                  <option key={c} value={c}>{c}</option>
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
                 ))}
               </select>
             </FieldRow>
             <FieldRow label="Currency symbol">
               <Input
                 value={v.currencySymbol ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, currencySymbol: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, currencySymbol: e.target.value }))
+                }
               />
             </FieldRow>
             <FieldRow label="VAT rate (%)">
@@ -362,7 +381,9 @@ function FinanceForm({ orgId }: { orgId: string }) {
                 min={0}
                 max={100}
                 value={String(v.vatRatePct ?? 0)}
-                onChange={(e) => setV((p) => ({ ...p, vatRatePct: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, vatRatePct: Number(e.target.value) }))
+                }
               />
             </FieldRow>
             <FieldRow label="Withholding tax (%)">
@@ -372,52 +393,74 @@ function FinanceForm({ orgId }: { orgId: string }) {
                 min={0}
                 max={100}
                 value={String(v.withholdingTaxPct ?? 0)}
-                onChange={(e) => setV((p) => ({ ...p, withholdingTaxPct: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setV((p) => ({
+                    ...p,
+                    withholdingTaxPct: Number(e.target.value),
+                  }))
+                }
               />
             </FieldRow>
             <FieldRow label="Default payment terms">
               <Input
                 placeholder="e.g. Net 30"
                 value={v.defaultPaymentTerms ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, defaultPaymentTerms: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, defaultPaymentTerms: e.target.value }))
+                }
               />
             </FieldRow>
             <FieldRow label="M-PESA paybill">
               <Input
                 value={v.mpesaPaybill ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, mpesaPaybill: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, mpesaPaybill: e.target.value }))
+                }
               />
             </FieldRow>
             <FieldRow label="Bank name">
               <Input
                 value={v.bankName ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, bankName: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, bankName: e.target.value }))
+                }
               />
             </FieldRow>
             <FieldRow label="Bank branch">
               <Input
                 value={v.bankBranch ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, bankBranch: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, bankBranch: e.target.value }))
+                }
               />
             </FieldRow>
             <FieldRow label="Account number">
               <Input
                 value={v.bankAccountNumber ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, bankAccountNumber: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, bankAccountNumber: e.target.value }))
+                }
               />
             </FieldRow>
             <FieldRow label="SWIFT code">
               <Input
                 value={v.swiftCode ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, swiftCode: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, swiftCode: e.target.value }))
+                }
               />
             </FieldRow>
-            <FieldRow label="eTIMS receipt disclaimer" className="sm:col-span-3">
+            <FieldRow
+              label="eTIMS receipt disclaimer"
+              className="sm:col-span-3"
+            >
               <Textarea
                 rows={2}
                 placeholder="Statutory footer printed on VAT receipts…"
                 value={v.etimsDisclaimer ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, etimsDisclaimer: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, etimsDisclaimer: e.target.value }))
+                }
               />
             </FieldRow>
           </div>
@@ -442,19 +485,64 @@ function NotificationsForm({ orgId }: { orgId: string }) {
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(error)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(error)}
+        retry={() => void refetch()}
+      />
+    );
 
   const toggle = (k: keyof SystemSettingsView['notifications']) =>
     setV((p) => ({ ...p, [k]: !p[k] }));
 
-  const channels: Array<{ key: keyof SystemSettingsView['notifications']; label: string; hint: string; medium: 'Email' | 'SMS' | 'In-App' }> = [
-    { key: 'emailRfqSubmissions', label: 'RFQ submissions', hint: 'A client submits a new request for quotation.', medium: 'Email' },
-    { key: 'emailQuotationApprovals', label: 'Quotation approvals', hint: 'A quotation is approved or declined.', medium: 'Email' },
-    { key: 'emailPlantAssessments', label: 'Plant assessments', hint: 'A new plant assessment is submitted.', medium: 'Email' },
-    { key: 'emailHseIncidents', label: 'HSE incidents', hint: 'Any HSE incident is logged on site.', medium: 'Email' },
-    { key: 'emailLowInventoryAlerts', label: 'Low inventory alerts', hint: 'Stock drops to or below reorder level.', medium: 'Email' },
-    { key: 'smsEmergencySafetyAlarms', label: 'Emergency safety alarms', hint: 'HSE incident of severity ≥ HIGH.', medium: 'SMS' },
-    { key: 'inAppWorkOrderUpdates', label: 'Work order updates', hint: 'Maintenance work order transitions state.', medium: 'In-App' },
+  const channels: Array<{
+    key: keyof SystemSettingsView['notifications'];
+    label: string;
+    hint: string;
+    medium: 'Email' | 'SMS' | 'In-App';
+  }> = [
+    {
+      key: 'emailRfqSubmissions',
+      label: 'RFQ submissions',
+      hint: 'A client submits a new request for quotation.',
+      medium: 'Email',
+    },
+    {
+      key: 'emailQuotationApprovals',
+      label: 'Quotation approvals',
+      hint: 'A quotation is approved or declined.',
+      medium: 'Email',
+    },
+    {
+      key: 'emailPlantAssessments',
+      label: 'Plant assessments',
+      hint: 'A new plant assessment is submitted.',
+      medium: 'Email',
+    },
+    {
+      key: 'emailHseIncidents',
+      label: 'HSE incidents',
+      hint: 'Any HSE incident is logged on site.',
+      medium: 'Email',
+    },
+    {
+      key: 'emailLowInventoryAlerts',
+      label: 'Low inventory alerts',
+      hint: 'Stock drops to or below reorder level.',
+      medium: 'Email',
+    },
+    {
+      key: 'smsEmergencySafetyAlarms',
+      label: 'Emergency safety alarms',
+      hint: 'HSE incident of severity ≥ HIGH.',
+      medium: 'SMS',
+    },
+    {
+      key: 'inAppWorkOrderUpdates',
+      label: 'Work order updates',
+      hint: 'Maintenance work order transitions state.',
+      medium: 'In-App',
+    },
   ];
 
   return (
@@ -480,13 +568,20 @@ function NotificationsForm({ orgId }: { orgId: string }) {
           >
             <ul className="divide-y divide-hairline overflow-hidden rounded-xl border border-hairline">
               {channels.map((row) => (
-                <li key={row.key} className="flex items-center justify-between gap-3 bg-card p-4">
+                <li
+                  key={row.key}
+                  className="flex items-center justify-between gap-3 bg-card p-4"
+                >
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-medium">{row.label}</span>
-                      <Badge variant="outline" className="text-[10px]">{row.medium}</Badge>
+                      <Badge variant="outline" className="text-[10px]">
+                        {row.medium}
+                      </Badge>
                     </div>
-                    <p className="mt-0.5 text-xs text-muted-foreground">{row.hint}</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                      {row.hint}
+                    </p>
                   </div>
                   <label className="inline-flex cursor-pointer items-center gap-2">
                     <input
@@ -508,7 +603,12 @@ function NotificationsForm({ orgId }: { orgId: string }) {
                 type="email"
                 placeholder="alerts@greenngoria.com"
                 value={v.dispatchEmailRecipient ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, dispatchEmailRecipient: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({
+                    ...p,
+                    dispatchEmailRecipient: e.target.value,
+                  }))
+                }
               />
             </FieldRow>
 
@@ -532,7 +632,9 @@ function TestAlertCard({
   void orgId;
   const [channel, setChannel] = useState<'EMAIL' | 'SMS' | 'IN_APP'>('EMAIL');
   const [recipient, setRecipient] = useState('');
-  const [message, setMessage] = useState('This is a Green Ngoria diagnostic test alert.');
+  const [message, setMessage] = useState(
+    'This is a Green Ngoria diagnostic test alert.',
+  );
   return (
     <Card>
       <CardHeader>
@@ -556,7 +658,13 @@ function TestAlertCard({
           </FieldRow>
           <FieldRow label="Recipient" className="sm:col-span-2">
             <Input
-              placeholder={channel === 'EMAIL' ? 'someone@example.com' : channel === 'SMS' ? '+254 7…' : 'userId or email'}
+              placeholder={
+                channel === 'EMAIL'
+                  ? 'someone@example.com'
+                  : channel === 'SMS'
+                    ? '+254 7…'
+                    : 'userId or email'
+              }
               value={recipient}
               onChange={(e) => setRecipient(e.target.value)}
             />
@@ -579,8 +687,10 @@ function TestAlertCard({
               sendTest.mutate(
                 { channel, recipient, message },
                 {
-                  onSuccess: (r) => toast.success(r.message ?? 'Alert dispatched'),
-                  onError: (err) => toast.error(getApiErrorMessage(err, 'Dispatch failed')),
+                  onSuccess: (r) =>
+                    toast.success(r.message ?? 'Alert dispatched'),
+                  onError: (err) =>
+                    toast.error(getApiErrorMessage(err, 'Dispatch failed')),
                 },
               );
             }}
@@ -605,7 +715,12 @@ function SecurityForm({ orgId }: { orgId: string }) {
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(error)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(error)}
+        retry={() => void refetch()}
+      />
+    );
 
   return (
     <Card>
@@ -637,12 +752,17 @@ function SecurityForm({ orgId }: { orgId: string }) {
             <input
               type="checkbox"
               checked={!!v.autoLogoutEnabled}
-              onChange={(e) => setV((p) => ({ ...p, autoLogoutEnabled: e.target.checked }))}
+              onChange={(e) =>
+                setV((p) => ({ ...p, autoLogoutEnabled: e.target.checked }))
+              }
               className="mt-1 h-4 w-4"
             />
             <div>
               <div className="text-sm font-semibold">Auto-logout when idle</div>
-              <p className="text-xs text-muted-foreground">Ends the session if there is no mouse, keyboard or touch activity.</p>
+              <p className="text-xs text-muted-foreground">
+                Ends the session if there is no mouse, keyboard or touch
+                activity.
+              </p>
             </div>
           </label>
 
@@ -650,12 +770,22 @@ function SecurityForm({ orgId }: { orgId: string }) {
             <input
               type="checkbox"
               checked={!!v.enforceMfaForExecutives}
-              onChange={(e) => setV((p) => ({ ...p, enforceMfaForExecutives: e.target.checked }))}
+              onChange={(e) =>
+                setV((p) => ({
+                  ...p,
+                  enforceMfaForExecutives: e.target.checked,
+                }))
+              }
               className="mt-1 h-4 w-4"
             />
             <div>
-              <div className="text-sm font-semibold">Enforce MFA for privileged roles</div>
-              <p className="text-xs text-muted-foreground">Executives, engineers and finance officers land on MFA setup at first login until they enrol.</p>
+              <div className="text-sm font-semibold">
+                Enforce MFA for privileged roles
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Executives, engineers and finance officers land on MFA setup at
+                first login until they enrol.
+              </p>
             </div>
           </label>
 
@@ -686,7 +816,12 @@ function SecurityForm({ orgId }: { orgId: string }) {
                 min={1}
                 max={480}
                 value={String(v.idleTimeoutMinutes ?? 120)}
-                onChange={(e) => setV((p) => ({ ...p, idleTimeoutMinutes: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setV((p) => ({
+                    ...p,
+                    idleTimeoutMinutes: Number(e.target.value),
+                  }))
+                }
               />
             </FieldRow>
             <FieldRow label="Warning countdown (s)" hint="10–300">
@@ -695,7 +830,12 @@ function SecurityForm({ orgId }: { orgId: string }) {
                 min={10}
                 max={300}
                 value={String(v.warningCountdownSeconds ?? 60)}
-                onChange={(e) => setV((p) => ({ ...p, warningCountdownSeconds: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setV((p) => ({
+                    ...p,
+                    warningCountdownSeconds: Number(e.target.value),
+                  }))
+                }
               />
             </FieldRow>
             <FieldRow label="Min password length" hint="8–128">
@@ -704,7 +844,12 @@ function SecurityForm({ orgId }: { orgId: string }) {
                 min={8}
                 max={128}
                 value={String(v.minPasswordLength ?? 12)}
-                onChange={(e) => setV((p) => ({ ...p, minPasswordLength: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setV((p) => ({
+                    ...p,
+                    minPasswordLength: Number(e.target.value),
+                  }))
+                }
               />
             </FieldRow>
             <FieldRow label="Password expiry (days)" hint="0 = never">
@@ -712,14 +857,25 @@ function SecurityForm({ orgId }: { orgId: string }) {
                 type="number"
                 min={0}
                 value={String(v.passwordExpiryDays ?? 0)}
-                onChange={(e) => setV((p) => ({ ...p, passwordExpiryDays: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setV((p) => ({
+                    ...p,
+                    passwordExpiryDays: Number(e.target.value),
+                  }))
+                }
               />
             </FieldRow>
-            <FieldRow label="IP allowlist" hint="Comma-separated CIDRs; blank = any" className="sm:col-span-2">
+            <FieldRow
+              label="IP allowlist"
+              hint="Comma-separated CIDRs; blank = any"
+              className="sm:col-span-2"
+            >
               <Input
                 placeholder="192.168.1.0/24, 10.0.0.0/8"
                 value={v.ipAllowlist ?? ''}
-                onChange={(e) => setV((p) => ({ ...p, ipAllowlist: e.target.value }))}
+                onChange={(e) =>
+                  setV((p) => ({ ...p, ipAllowlist: e.target.value }))
+                }
               />
             </FieldRow>
           </div>
@@ -745,7 +901,12 @@ function ApiKeysPanel({ orgId }: { orgId: string }) {
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(error)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(error)}
+        retry={() => void refetch()}
+      />
+    );
 
   return (
     <Card>
@@ -776,22 +937,33 @@ function ApiKeysPanel({ orgId }: { orgId: string }) {
         ) : (
           <ul className="divide-y divide-hairline overflow-hidden rounded-xl border border-hairline">
             {keys.map((k) => (
-              <li key={k.id} className="flex items-center justify-between gap-3 bg-card p-4">
+              <li
+                key={k.id}
+                className="flex items-center justify-between gap-3 bg-card p-4"
+              >
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-sm">{k.name}</span>
-                    <Badge variant={k.status === 'ACTIVE' ? 'success' : 'destructive'}>
+                    <Badge
+                      variant={
+                        k.status === 'ACTIVE' ? 'success' : 'destructive'
+                      }
+                    >
                       {k.status}
                     </Badge>
                   </div>
                   <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                    <code className="rounded bg-muted px-1.5 py-0.5 font-mono">{k.keyPrefix}…</code>
+                    <code className="rounded bg-muted px-1.5 py-0.5 font-mono">
+                      {k.keyPrefix}…
+                    </code>
                     <span>·</span>
                     <span>Created {formatRelativeDate(k.createdAt)}</span>
                     {k.lastUsedAt && (
                       <>
                         <span>·</span>
-                        <span>Last used {formatRelativeDate(k.lastUsedAt)}</span>
+                        <span>
+                          Last used {formatRelativeDate(k.lastUsedAt)}
+                        </span>
                       </>
                     )}
                     {k.expiresAt && (
@@ -804,7 +976,13 @@ function ApiKeysPanel({ orgId }: { orgId: string }) {
                   {k.scopes?.length > 0 && (
                     <div className="mt-1.5 flex flex-wrap gap-1">
                       {k.scopes.map((s) => (
-                        <Badge key={s} variant="outline" className="text-[10px]">{s}</Badge>
+                        <Badge
+                          key={s}
+                          variant="outline"
+                          className="text-[10px]"
+                        >
+                          {s}
+                        </Badge>
                       ))}
                     </div>
                   )}
@@ -841,7 +1019,12 @@ function ApiKeysPanel({ orgId }: { orgId: string }) {
         }}
       />
 
-      {freshToken && <RevealTokenDialog apiKey={freshToken} onClose={() => setFreshToken(null)} />}
+      {freshToken && (
+        <RevealTokenDialog
+          apiKey={freshToken}
+          onClose={() => setFreshToken(null)}
+        />
+      )}
 
       <ConfirmDialog
         open={!!revokeTarget}
@@ -858,7 +1041,8 @@ function ApiKeysPanel({ orgId }: { orgId: string }) {
               toast.success('Key revoked');
               setRevokeTarget(null);
             },
-            onError: (err) => toast.error(getApiErrorMessage(err, 'Revoke failed')),
+            onError: (err) =>
+              toast.error(getApiErrorMessage(err, 'Revoke failed')),
           });
         }}
       />
@@ -875,7 +1059,11 @@ function CreateApiKeyDialog({
   open: boolean;
   onOpenChange: (o: boolean) => void;
   pending: boolean;
-  onCreate: (v: { name: string; scopes: string[]; expiresInDays?: number }) => void;
+  onCreate: (v: {
+    name: string;
+    scopes: string[];
+    expiresInDays?: number;
+  }) => void;
 }) {
   const [name, setName] = useState('');
   const [scopes, setScopes] = useState<string[]>([]);
@@ -890,18 +1078,27 @@ function CreateApiKeyDialog({
   }, [open]);
 
   const toggle = (s: string) =>
-    setScopes((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]));
+    setScopes((prev) =>
+      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
+    );
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create API key</DialogTitle>
-          <DialogDescription>Pick scopes and (optionally) an expiry. The full token is shown once.</DialogDescription>
+          <DialogDescription>
+            Pick scopes and (optionally) an expiry. The full token is shown
+            once.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <FieldRow label="Key name">
-            <Input placeholder="e.g. Zapier integration" value={name} onChange={(e) => setName(e.target.value)} />
+            <Input
+              placeholder="e.g. Zapier integration"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </FieldRow>
           <FieldRow label="Scopes" hint="Pick the smallest set that will work.">
             <div className="flex flex-wrap gap-2">
@@ -927,12 +1124,20 @@ function CreateApiKeyDialog({
               type="number"
               min={1}
               value={expiresInDays === '' ? '' : String(expiresInDays)}
-              onChange={(e) => setExpiresInDays(e.target.value === '' ? '' : Number(e.target.value))}
+              onChange={(e) =>
+                setExpiresInDays(
+                  e.target.value === '' ? '' : Number(e.target.value),
+                )
+              }
             />
           </FieldRow>
         </div>
         <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={pending}>
+          <Button
+            variant="ghost"
+            onClick={() => onOpenChange(false)}
+            disabled={pending}
+          >
             Cancel
           </Button>
           <Button
@@ -955,11 +1160,19 @@ function CreateApiKeyDialog({
   );
 }
 
-function RevealTokenDialog({ apiKey, onClose }: { apiKey: ApiKeyView; onClose: () => void }) {
+function RevealTokenDialog({
+  apiKey,
+  onClose,
+}: {
+  apiKey: ApiKeyView;
+  onClose: () => void;
+}) {
   const [shown, setShown] = useState(false);
   const [copied, setCopied] = useState(false);
   const value = apiKey.token ?? '';
-  const masked = value ? `${value.slice(0, 8)}${'•'.repeat(Math.max(0, value.length - 12))}${value.slice(-4)}` : '';
+  const masked = value
+    ? `${value.slice(0, 8)}${'•'.repeat(Math.max(0, value.length - 12))}${value.slice(-4)}`
+    : '';
 
   return (
     <Dialog open onOpenChange={(o) => !o && onClose()}>
@@ -975,12 +1188,28 @@ function RevealTokenDialog({ apiKey, onClose }: { apiKey: ApiKeyView; onClose: (
           {shown ? value : masked || value}
         </div>
         <DialogFooter>
-          <Button variant="ghost" leftIcon={shown ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />} onClick={() => setShown((s) => !s)}>
+          <Button
+            variant="ghost"
+            leftIcon={
+              shown ? (
+                <EyeOff className="h-4 w-4" />
+              ) : (
+                <Eye className="h-4 w-4" />
+              )
+            }
+            onClick={() => setShown((s) => !s)}
+          >
             {shown ? 'Hide' : 'Reveal'}
           </Button>
           <Button
             variant="outline"
-            leftIcon={copied ? <CheckCircle2 className="h-4 w-4 text-brand-500" /> : <Copy className="h-4 w-4" />}
+            leftIcon={
+              copied ? (
+                <CheckCircle2 className="h-4 w-4 text-brand-500" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )
+            }
             onClick={async () => {
               try {
                 await navigator.clipboard.writeText(value);
@@ -993,7 +1222,9 @@ function RevealTokenDialog({ apiKey, onClose }: { apiKey: ApiKeyView; onClose: (
           >
             {copied ? 'Copied' : 'Copy'}
           </Button>
-          <Button variant="brand" onClick={onClose}>Done</Button>
+          <Button variant="brand" onClick={onClose}>
+            Done
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -1014,7 +1245,12 @@ function WebhooksPanel({ orgId }: { orgId: string }) {
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(error)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(error)}
+        retry={() => void refetch()}
+      />
+    );
 
   return (
     <Card>
@@ -1044,7 +1280,10 @@ function WebhooksPanel({ orgId }: { orgId: string }) {
         ) : (
           <ul className="divide-y divide-hairline overflow-hidden rounded-xl border border-hairline">
             {hooks.map((h) => (
-              <li key={h.id} className="flex items-center justify-between gap-3 bg-card p-4">
+              <li
+                key={h.id}
+                className="flex items-center justify-between gap-3 bg-card p-4"
+              >
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold">{h.name}</span>
@@ -1053,17 +1292,31 @@ function WebhooksPanel({ orgId }: { orgId: string }) {
                     </Badge>
                     {h.lastStatus && (
                       <Badge
-                        variant={h.lastStatus === 'SUCCESS' ? 'success' : h.lastStatus === 'FAILED' ? 'destructive' : 'warning'}
+                        variant={
+                          h.lastStatus === 'SUCCESS'
+                            ? 'success'
+                            : h.lastStatus === 'FAILED'
+                              ? 'destructive'
+                              : 'warning'
+                        }
                       >
                         last: {h.lastStatus.toLowerCase()}
                       </Badge>
                     )}
                   </div>
-                  <div className="mt-0.5 text-xs text-muted-foreground truncate font-mono">{h.url}</div>
+                  <div className="mt-0.5 text-xs text-muted-foreground truncate font-mono">
+                    {h.url}
+                  </div>
                   {h.events?.length > 0 && (
                     <div className="mt-1.5 flex flex-wrap gap-1">
                       {h.events.map((e) => (
-                        <Badge key={e} variant="outline" className="text-[10px]">{e}</Badge>
+                        <Badge
+                          key={e}
+                          variant="outline"
+                          className="text-[10px]"
+                        >
+                          {e}
+                        </Badge>
                       ))}
                     </div>
                   )}
@@ -1081,8 +1334,11 @@ function WebhooksPanel({ orgId }: { orgId: string }) {
                           onSuccess: (r) =>
                             r.delivered
                               ? toast.success(`Delivered (HTTP ${r.status})`)
-                              : toast.error(`Failed (${r.status}) — ${r.message}`),
-                          onError: (err) => toast.error(getApiErrorMessage(err, 'Test failed')),
+                              : toast.error(
+                                  `Failed (${r.status}) — ${r.message}`,
+                                ),
+                          onError: (err) =>
+                            toast.error(getApiErrorMessage(err, 'Test failed')),
                         },
                       );
                     }}
@@ -1117,7 +1373,8 @@ function WebhooksPanel({ orgId }: { orgId: string }) {
                 r.delivered
                   ? toast.success(`OK (HTTP ${r.status})`)
                   : toast.error(`Failed (${r.status}) — ${r.message}`),
-              onError: (err) => toast.error(getApiErrorMessage(err, 'Test failed')),
+              onError: (err) =>
+                toast.error(getApiErrorMessage(err, 'Test failed')),
             },
           )
         }
@@ -1147,7 +1404,8 @@ function WebhooksPanel({ orgId }: { orgId: string }) {
               toast.success('Webhook deleted');
               setDeleteTarget(null);
             },
-            onError: (err) => toast.error(getApiErrorMessage(err, 'Delete failed')),
+            onError: (err) =>
+              toast.error(getApiErrorMessage(err, 'Delete failed')),
           });
         }}
       />
@@ -1168,7 +1426,12 @@ function CreateWebhookDialog({
   pending: boolean;
   testPending: boolean;
   onTest: (url: string) => void;
-  onCreate: (v: { name: string; url: string; events: string[]; secret?: string }) => void;
+  onCreate: (v: {
+    name: string;
+    url: string;
+    events: string[];
+    secret?: string;
+  }) => void;
 }) {
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
@@ -1193,7 +1456,9 @@ function CreateWebhookDialog({
   }, [open]);
 
   const toggle = (e: string) =>
-    setEvents((prev) => (prev.includes(e) ? prev.filter((x) => x !== e) : [...prev, e]));
+    setEvents((prev) =>
+      prev.includes(e) ? prev.filter((x) => x !== e) : [...prev, e],
+    );
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -1207,7 +1472,11 @@ function CreateWebhookDialog({
         </DialogHeader>
         <div className="space-y-4">
           <FieldRow label="Name">
-            <Input placeholder="e.g. Prod Slack notifier" value={name} onChange={(e) => setName(e.target.value)} />
+            <Input
+              placeholder="e.g. Prod Slack notifier"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </FieldRow>
           <FieldRow label="URL">
             <div className="flex gap-2">
@@ -1227,8 +1496,15 @@ function CreateWebhookDialog({
               </Button>
             </div>
           </FieldRow>
-          <FieldRow label="Signing secret (optional)" hint="Leave blank to auto-generate.">
-            <Input value={secret} onChange={(e) => setSecret(e.target.value)} placeholder="whsec_…" />
+          <FieldRow
+            label="Signing secret (optional)"
+            hint="Leave blank to auto-generate."
+          >
+            <Input
+              value={secret}
+              onChange={(e) => setSecret(e.target.value)}
+              placeholder="whsec_…"
+            />
           </FieldRow>
           <FieldRow label="Events" hint="Pick at least one.">
             <div className="flex flex-wrap gap-2">
@@ -1251,14 +1527,20 @@ function CreateWebhookDialog({
           </FieldRow>
         </div>
         <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={pending}>
+          <Button
+            variant="ghost"
+            onClick={() => onOpenChange(false)}
+            disabled={pending}
+          >
             Cancel
           </Button>
           <Button
             variant="brand"
             loading={pending}
             disabled={!name || !urlValid || events.length === 0}
-            onClick={() => onCreate({ name, url, events, secret: secret || undefined })}
+            onClick={() =>
+              onCreate({ name, url, events, secret: secret || undefined })
+            }
           >
             Add webhook
           </Button>
@@ -1271,13 +1553,19 @@ function CreateWebhookDialog({
 // ── Diagnostics ─────────────────────────────────────────────────────────────
 
 function DiagnosticsPanel({ orgId }: { orgId: string }) {
-  const { data, isLoading, isError, error, refetch } = useSystemDiagnostics(orgId);
+  const { data, isLoading, isError, error, refetch } =
+    useSystemDiagnostics(orgId);
   const purge = usePurgeCache(orgId);
   const [confirmingPurge, setConfirmingPurge] = useState(false);
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(error)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(error)}
+        retry={() => void refetch()}
+      />
+    );
   if (!data) return null;
 
   const uptime = formatUptime(data.uptimeSeconds);
@@ -1288,7 +1576,10 @@ function DiagnosticsPanel({ orgId }: { orgId: string }) {
         <CardHeader className="flex flex-row items-start justify-between gap-4">
           <div>
             <CardTitle>System health</CardTitle>
-            <CardDescription>Live diagnostics for the API server, database, cache and storage. Auto-refreshes every 30s.</CardDescription>
+            <CardDescription>
+              Live diagnostics for the API server, database, cache and storage.
+              Auto-refreshes every 30s.
+            </CardDescription>
           </div>
           <Button
             variant="ghost"
@@ -1330,11 +1621,17 @@ function DiagnosticsPanel({ orgId }: { orgId: string }) {
       <Card>
         <CardHeader>
           <CardTitle>Data volume</CardTitle>
-          <CardDescription>Row counts across the largest tables — a quick smoke test that migrations landed.</CardDescription>
+          <CardDescription>
+            Row counts across the largest tables — a quick smoke test that
+            migrations landed.
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-4">
           <StatBlock label="Users" value={data.counts.totalUsers} />
-          <StatBlock label="Active projects" value={data.counts.activeProjects} />
+          <StatBlock
+            label="Active projects"
+            value={data.counts.activeProjects}
+          />
           <StatBlock label="CRM leads" value={data.counts.crmLeads} />
           <StatBlock label="Audit records" value={data.counts.auditRecords} />
         </CardContent>
@@ -1343,7 +1640,9 @@ function DiagnosticsPanel({ orgId }: { orgId: string }) {
       <Card>
         <CardHeader>
           <CardTitle>Maintenance</CardTitle>
-          <CardDescription>Operational actions — use with care in production.</CardDescription>
+          <CardDescription>
+            Operational actions — use with care in production.
+          </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap items-center gap-3">
           <Button
@@ -1355,7 +1654,8 @@ function DiagnosticsPanel({ orgId }: { orgId: string }) {
             Purge Redis cache
           </Button>
           <p className="text-xs text-muted-foreground">
-            Flushes all cache tags. The next request for each resource repopulates from Postgres.
+            Flushes all cache tags. The next request for each resource
+            repopulates from Postgres.
           </p>
         </CardContent>
       </Card>
@@ -1403,10 +1703,16 @@ function HealthCard({
         <span
           className={cn(
             'inline-flex h-6 w-6 items-center justify-center rounded-full',
-            good ? 'bg-success/15 text-success' : 'bg-destructive/15 text-destructive',
+            good
+              ? 'bg-success/15 text-success'
+              : 'bg-destructive/15 text-destructive',
           )}
         >
-          {good ? <CheckCircle2 className="h-3.5 w-3.5" /> : <AlertTriangle className="h-3.5 w-3.5" />}
+          {good ? (
+            <CheckCircle2 className="h-3.5 w-3.5" />
+          ) : (
+            <AlertTriangle className="h-3.5 w-3.5" />
+          )}
         </span>
         {label}
         <span className="ml-auto">{icon}</span>
@@ -1420,8 +1726,12 @@ function HealthCard({
 function StatBlock({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-lg border border-hairline bg-surface-elevated p-3 text-center">
-      <div className="font-mono text-2xl font-bold text-foreground">{value.toLocaleString()}</div>
-      <div className="mt-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">{label}</div>
+      <div className="font-mono text-2xl font-bold text-foreground">
+        {value.toLocaleString()}
+      </div>
+      <div className="mt-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">
+        {label}
+      </div>
     </div>
   );
 }
@@ -1458,10 +1768,17 @@ function FieldRow({
 function SaveBar({ saving, label }: { saving: boolean; label: string }) {
   return (
     <div className="flex items-center gap-3 pt-2">
-      <Button type="submit" variant="brand" loading={saving} leftIcon={<Save className="h-4 w-4" />}>
+      <Button
+        type="submit"
+        variant="brand"
+        loading={saving}
+        leftIcon={<Save className="h-4 w-4" />}
+      >
         {label}
       </Button>
-      <span className="text-xs text-muted-foreground">Changes persist to the database and take effect immediately.</span>
+      <span className="text-xs text-muted-foreground">
+        Changes persist to the database and take effect immediately.
+      </span>
     </div>
   );
 }

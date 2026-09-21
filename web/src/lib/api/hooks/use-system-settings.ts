@@ -132,9 +132,12 @@ export interface SystemDiagnosticsView {
 
 export const SETTINGS_QK = {
   all: (orgId: string) => ['organizations', orgId, 'system-settings'] as const,
-  apiKeys: (orgId: string) => ['organizations', orgId, 'system-settings', 'api-keys'] as const,
-  webhooks: (orgId: string) => ['organizations', orgId, 'system-settings', 'webhooks'] as const,
-  diagnostics: (orgId: string) => ['organizations', orgId, 'system-settings', 'diagnostics'] as const,
+  apiKeys: (orgId: string) =>
+    ['organizations', orgId, 'system-settings', 'api-keys'] as const,
+  webhooks: (orgId: string) =>
+    ['organizations', orgId, 'system-settings', 'webhooks'] as const,
+  diagnostics: (orgId: string) =>
+    ['organizations', orgId, 'system-settings', 'diagnostics'] as const,
 };
 
 // ─── Settings CRUD ─────────────────────────────────────────────────────────
@@ -173,9 +176,9 @@ export function useApiKeys(orgId: string) {
   return useQuery({
     queryKey: SETTINGS_QK.apiKeys(orgId),
     queryFn: () =>
-      get<ApiKeyView[]>(`/organizations/${orgId}/system-settings/api-keys`).then(
-        (r) => r.data,
-      ),
+      get<ApiKeyView[]>(
+        `/organizations/${orgId}/system-settings/api-keys`,
+      ).then((r) => r.data),
     enabled: !!orgId,
   });
 }
@@ -183,10 +186,15 @@ export function useApiKeys(orgId: string) {
 export function useCreateApiKey(orgId: string) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { name: string; scopes: string[]; expiresInDays?: number }) =>
-      post<ApiKeyView>(`/organizations/${orgId}/system-settings/api-keys`, data).then(
-        (r) => r.data,
-      ),
+    mutationFn: (data: {
+      name: string;
+      scopes: string[];
+      expiresInDays?: number;
+    }) =>
+      post<ApiKeyView>(
+        `/organizations/${orgId}/system-settings/api-keys`,
+        data,
+      ).then((r) => r.data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: SETTINGS_QK.apiKeys(orgId) });
     },
@@ -212,9 +220,9 @@ export function useWebhooks(orgId: string) {
   return useQuery({
     queryKey: SETTINGS_QK.webhooks(orgId),
     queryFn: () =>
-      get<WebhookView[]>(`/organizations/${orgId}/system-settings/webhooks`).then(
-        (r) => r.data,
-      ),
+      get<WebhookView[]>(
+        `/organizations/${orgId}/system-settings/webhooks`,
+      ).then((r) => r.data),
     enabled: !!orgId,
   });
 }
@@ -222,10 +230,16 @@ export function useWebhooks(orgId: string) {
 export function useCreateWebhook(orgId: string) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { name: string; url: string; events: string[]; secret?: string }) =>
-      post<WebhookView>(`/organizations/${orgId}/system-settings/webhooks`, data).then(
-        (r) => r.data,
-      ),
+    mutationFn: (data: {
+      name: string;
+      url: string;
+      events: string[];
+      secret?: string;
+    }) =>
+      post<WebhookView>(
+        `/organizations/${orgId}/system-settings/webhooks`,
+        data,
+      ).then((r) => r.data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: SETTINGS_QK.webhooks(orgId) });
     },
@@ -248,10 +262,14 @@ export function useDeleteWebhook(orgId: string) {
 export function useTestWebhook(orgId: string) {
   return useMutation({
     mutationFn: (data: { url: string; event: string }) =>
-      post<{ status: number; delivered: boolean; message: string; payload: any }>(
-        `/organizations/${orgId}/system-settings/webhooks/test`,
-        data,
-      ).then((r) => r.data),
+      post<{
+        status: number;
+        delivered: boolean;
+        message: string;
+        payload: any;
+      }>(`/organizations/${orgId}/system-settings/webhooks/test`, data).then(
+        (r) => r.data,
+      ),
   });
 }
 
@@ -271,7 +289,11 @@ export function useSystemDiagnostics(orgId: string) {
 
 export function useSendTestAlert(orgId: string) {
   return useMutation({
-    mutationFn: (data: { channel: 'EMAIL' | 'IN_APP' | 'SMS'; recipient: string; message?: string }) =>
+    mutationFn: (data: {
+      channel: 'EMAIL' | 'IN_APP' | 'SMS';
+      recipient: string;
+      message?: string;
+    }) =>
       post<{ success: boolean; message: string; dispatchedAt: string }>(
         `/organizations/${orgId}/system-settings/test-alert`,
         data,

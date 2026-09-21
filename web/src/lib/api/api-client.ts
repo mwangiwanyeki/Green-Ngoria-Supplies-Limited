@@ -82,7 +82,10 @@ httpClient.interceptors.response.use(
     // ── Network error (backend unreachable / ECONNREFUSED) ─────────────────
     // Axios sets error.code = 'ERR_NETWORK' and error.message = 'Network Error'
     // when the server is not reachable. Surface a clear message.
-    if (!error.response && (error.code === 'ERR_NETWORK' || error.message === 'Network Error')) {
+    if (
+      !error.response &&
+      (error.code === 'ERR_NETWORK' || error.message === 'Network Error')
+    ) {
       return Promise.reject(
         new ApiError(
           0,

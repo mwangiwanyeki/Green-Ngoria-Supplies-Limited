@@ -31,12 +31,12 @@ export const company = {
     fileName: 'green-ngoria-supplies-company-profile.pdf',
     downloadName: 'Green-Ngoria-Supplies-Corporate-Profile.pdf',
     googleDriveUrl:
-      'https://drive.google.com/file/d/1PM0qHk5UVgun3DMbcFgsv27zj2vXJfeD/view?usp=sharing',
+      'https://drive.google.com/file/d/1XMzyeOJpcE51KvhuB-aqhD-o6_TEORv1/view?usp=sharing',
     googleDrivePreviewUrl:
-      'https://drive.google.com/file/d/1PM0qHk5UVgun3DMbcFgsv27zj2vXJfeD/preview',
+      'https://drive.google.com/file/d/1XMzyeOJpcE51KvhuB-aqhD-o6_TEORv1/preview',
     coverImage: '/images/company-profile-cover.webp',
     pages: 32,
-    fileSize: '15.2 MB',
+    fileSize: '14.8 MB',
     format: 'PDF Document',
     edition: 'Official Corporate Edition',
   },
@@ -180,33 +180,33 @@ export const company = {
   leadership: [
     {
       name: 'Davis Mragha Ngoo',
-      role: 'Chairperson · Director',
+      role: 'Managing Director',
       image: '/images/leadership/davis-mragha-ngoo.webp',
       email: 'davisngoo@greenngoria.com',
       phone: '+254722115133',
       shares: '500 ordinary shares (50%)',
       responsibilities:
-        'Responsible for strategy and for overseeing the group\'s business, setting governance standards and fostering the effectiveness of the board and of individual directors. His message to clients — "Making your vision become a reality" — frames how Green Ngoria approaches every engagement.',
+        'Responsible as Managing Director for corporate strategy, executive leadership, and group operations, setting governance standards and driving overall business growth across East and Central Africa. His message to clients — "Making your vision become a reality" — frames how Green Ngoria approaches every engagement.',
     },
     {
       name: 'Kenneth Madete Namboga',
-      role: 'Managing Director',
+      role: 'Director',
       image: '/images/leadership/kenneth-madete-namboga.webp',
       email: 'kennethmadete@greenngoria.com',
       phone: '+256 772 419 871',
       shares: '250 ordinary shares (25%)',
       responsibilities:
-        'Accountable for company operations and for giving strategic guidance and direction to the board, ensuring the company achieves its mission and objectives across mining, construction and supplies.',
+        'Serves as Director on the board of Green Ngoria Supplies Limited, providing strategic counsel, regional operational insight, and executive support across mining, plant engineering, and corporate projects.',
     },
     {
       name: 'Raymond Nyange Ngoo',
-      role: 'Legal Officer · Director',
+      role: 'Director and Company Attorney',
       image: '/images/leadership/raymond-nyange-ngoo.webp',
       email: 'raymondngoo@greenngoria.com',
       phone: '+254710401406',
       shares: '250 ordinary shares (25%)',
       responsibilities:
-        "Provides legal expertise across the organisation's structures and activities, advising management on the legal and regulatory framework and monitoring corporate governance compliance.",
+        "Provides legal expertise across the organisation's structures and activities, advising management on the legal and regulatory framework, statutory licensing, and monitoring corporate governance compliance.",
     },
     {
       name: 'Chrispine Ryan Ngoo',
@@ -231,53 +231,101 @@ export const company = {
 
   certifications: [
     {
-      name: 'ISO 9001:2015',
-      scope: 'Quality management systems',
+      name: "Mineral Dealer's (Processing) Licence",
+      scope: 'Gold Buying, Processing & Export Rights',
+      ref: 'MDL/P: DPL/2025/2843',
+      authority: 'Ministry of Mining, Republic of Kenya',
+      date: 'Valid through 31 Dec 2026',
       description:
-        'The quality management standard behind how work is planned, checked and handed over.',
+        'Sovereign processing license issued under the Mining Act No. 12 of 2016 granting full rights to purchase, process, and export gold at Land L.R. No. Siaya/Nyangoma/1380, Bondo, Siaya County.',
     },
     {
-      name: 'ISO 14001:2015',
-      scope: 'Environmental management systems',
+      name: 'NEMA Environmental Impact Assessment Licence',
+      scope: 'Artisanal Gold Ore Mining Approval',
+      ref: 'NEMA/ENVIS/CPR/LIC-5448',
+      authority: 'National Environment Management Authority (NEMA)',
+      date: 'Issued 25 August 2026',
       description:
-        'The environmental management standard supporting our commitment to environmental sustainability.',
+        'Statutory environmental license issued under EMCA Cap 387 approving artisanal gold ore mining at Plot Siaya/Masala/3170, Rarieda Sub-County, Siaya County.',
     },
     {
-      name: 'OHSAS 18001:2007',
-      scope: 'Occupational health and safety',
+      name: 'Certificate of Incorporation',
+      scope: 'Private Limited Corporation (Cap. 486)',
+      ref: 'CPR/2011/57284',
+      authority: 'Registrar of Companies, Republic of Kenya',
+      date: 'Incorporated 27 September 2011',
       description:
-        'The occupational health and safety standard underpinning our health and safety policy.',
+        'Incorporated under the Companies Act as Green Ngoria Supplies Limited, an established Kenyan corporate entity with nominal capital of KES 100,000.',
+    },
+    {
+      name: 'KRA PIN & Tax Obligation Certificate',
+      scope: 'Active Corporate Income Tax Obligation',
+      ref: 'P051642021R',
+      authority: 'Kenya Revenue Authority (KRA)',
+      date: 'Active from 16 Dec 2016',
+      description:
+        'Registered taxpayer with active corporate income tax obligations under North of Nairobi Tax Station, compliant with domestic revenue statutes.',
+    },
+    {
+      name: 'BRS Official Company Search (CR12)',
+      scope: 'Corporate Governance & Shareholding',
+      ref: 'OSPVT-9WIQJLRD',
+      authority: 'Business Registration Service (Companies Act 2015)',
+      date: 'Registry Record as at 04 August 2026',
+      description:
+        'Official Registrar confirmation of company directorship, registered office at Rehema House, and beneficial shareholding distribution.',
     },
   ],
 
   compliance: [
     {
-      name: 'Business Registration Service certificate',
+      name: "Ministry of Mining — Mineral Dealer's (Processing) Licence",
+      authority: 'Ministry of Mining, Republic of Kenya',
+      ref: 'MDL/P: DPL/2025/2843 (Stamp: MDPL/PM/2026/2843)',
       detail:
-        'Registered under the Companies Act 2015 as Green Ngoria Supplies Limited, company number CPR/2011/57284, incorporated 27 September 2011.',
+        'Issued under Mining Act No. 12 of 2016 and Mining Regulations 2017. Valid through 31 December 2026. Grants statutory rights to buy, sell, process, and export gold at Land L.R. No. Siaya/Nyangoma/1380, Bondo Sub-County, Siaya County. Signed by Cabinet Secretary Hassan Ali Joho and Secretary Mines Thomas Mutwiwa.',
+      file: '/documents/certifications/mineral-dealers-processing-licence.pdf',
     },
     {
-      name: 'KRA PIN certificate',
+      name: 'NEMA Environmental Impact Assessment (EIA) License',
+      authority: 'National Environment Management Authority (NEMA)',
+      ref: 'NEMA/ENVIS/CPR/LIC-5448 (Application Ref: NEMA/ENVIS/CPR/12074)',
       detail:
-        'PIN P051642021R. Income Tax – Company obligation active from 16 December 2016.',
+        'Comprehensive Project Report license issued 25 August 2026 under EMCA Cap 387 for Proposed Artisanal Gold Ore Mining at Plot No. Siaya/Masala/3170, Rarieda Sub-County, Siaya County (GPS: -0.0211220 S, 34.286321 E). Valid for 24 months under full EMP, waste and water quality compliance.',
+      file: '/documents/certifications/nema-environmental-impact-assessment-license.pdf',
     },
     {
-      name: 'KRA Tax Compliance Certificate',
+      name: 'Certificate of Incorporation',
+      authority: 'Registrar of Companies, Republic of Kenya',
+      ref: 'CPR/2011/57284',
       detail:
-        'Tax compliance maintained with the Kenya Revenue Authority and available on request during prequalification.',
+        'Duly incorporated on 27 September 2011 under the Companies Act (Cap. 486) as Green Ngoria Supplies Limited, a limited liability company registered in Nairobi.',
+      file: '/documents/certifications/certificate-of-incorporation.pdf',
     },
     {
-      name: 'Single Business Permit',
-      detail: 'Issued by the County Government of Siaya.',
-    },
-    {
-      name: 'Mining licences — stamp duty paid',
-      detail: 'Stamp duty on mining licences paid on 29 October 2019.',
-    },
-    {
-      name: 'NEMA approval — gold processing plant',
+      name: 'Kenya Revenue Authority PIN Certificate',
+      authority: 'Kenya Revenue Authority (KRA)',
+      ref: 'PIN: P051642021R',
       detail:
-        'Reference NEMA/PR/SYA/002, dated 24 July 2019, from the Office of the County Director of Environment, Siaya County: approval of the proposed small-scale gold processing plant on Plot L.R. No. Nyangoma/1352, Bondo Sub-County, Siaya County.',
+        'Registered taxpayer certificate dated 11 April 2017. Income Tax – Company obligation active from 16 December 2016 administered through North of Nairobi Tax Station.',
+      file: '/documents/certifications/kra-pin-certificate.pdf',
+    },
+    {
+      name: 'Business Registration Service (BRS) CR12 Official Search',
+      authority: 'Business Registration Service (Companies Act 2015)',
+      ref: 'Company No: CPR/2011/57284 | Ref: OSPVT-9WIQJLRD',
+      detail:
+        'Official registry record as at 04 August 2026 confirming registered office at Rehema House, Standard Street, and official shareholding: Davis Mragha Ngoo (500 shares / 50%), Raymond Nyange Ngoo (250 shares / 25%), and Kenneth Madete Namboga (250 shares / 25%).',
+      file: '/documents/certifications/business-registration-cr12.pdf',
+    },
+    {
+      name: 'Statutory Mining Fee & Stamp Duty Confirmations',
+      authority:
+        'State Department for Mining & Ardhisasa National Land Information System',
+      ref: 'Invoice #UBM11GZZ & Ardhisasa Serial 9XXV630EH9',
+      detail:
+        'Full statutory licence fee of KES 500,050.00 settled with State Department for Mining (settled 23 Jan 2026, stamped by Madini Accounts Office) with verified stamp duty endorsement from Collector of Stamp Duties.',
+      file: '/documents/certifications/mineral-dealers-processing-licence.pdf',
     },
   ],
 

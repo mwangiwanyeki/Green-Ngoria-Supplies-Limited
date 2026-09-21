@@ -8,37 +8,71 @@ import { useErpList, useErpResource } from './use-erp';
 // ─── Enums (mirror Prisma exactly — uppercase) ────────────────────────────────
 
 export const STAFF_STATUSES = [
-  'ACTIVE', 'ON_LEAVE', 'SUSPENDED', 'TERMINATED', 'PROBATION',
+  'ACTIVE',
+  'ON_LEAVE',
+  'SUSPENDED',
+  'TERMINATED',
+  'PROBATION',
 ] as const;
 export type StaffStatus = (typeof STAFF_STATUSES)[number];
 
 export const EMPLOYMENT_TYPES = [
-  'PERMANENT', 'CONTRACT', 'CASUAL', 'INTERN', 'CONSULTANT',
+  'PERMANENT',
+  'CONTRACT',
+  'CASUAL',
+  'INTERN',
+  'CONSULTANT',
 ] as const;
 export type EmploymentType = (typeof EMPLOYMENT_TYPES)[number];
 
 export const PAYMENT_TERMS = [
-  'MONTHLY', 'BIWEEKLY', 'WEEKLY', 'DAILY', 'PER_TASK',
+  'MONTHLY',
+  'BIWEEKLY',
+  'WEEKLY',
+  'DAILY',
+  'PER_TASK',
 ] as const;
 export type StaffPaymentTerms = (typeof PAYMENT_TERMS)[number];
 
 export const LEAVE_TYPES = [
-  'ANNUAL', 'SICK', 'MATERNITY', 'PATERNITY', 'COMPASSIONATE',
-  'UNPAID', 'STUDY', 'OTHER',
+  'ANNUAL',
+  'SICK',
+  'MATERNITY',
+  'PATERNITY',
+  'COMPASSIONATE',
+  'UNPAID',
+  'STUDY',
+  'OTHER',
 ] as const;
 export type LeaveType = (typeof LEAVE_TYPES)[number];
 
 export const LEAVE_STATUSES = [
-  'PENDING', 'APPROVED', 'DENIED', 'CANCELLED', 'OVERDUE',
+  'PENDING',
+  'APPROVED',
+  'DENIED',
+  'CANCELLED',
+  'OVERDUE',
 ] as const;
 export type LeaveStatus = (typeof LEAVE_STATUSES)[number];
 
 export const PAYROLL_STATUSES = [
-  'DRAFT', 'PENDING_APPROVAL', 'APPROVED', 'PAID', 'CANCELLED',
+  'DRAFT',
+  'PENDING_APPROVAL',
+  'APPROVED',
+  'PAID',
+  'CANCELLED',
 ] as const;
 export type PayrollRunStatus = (typeof PAYROLL_STATUSES)[number];
 
-export const HR_CURRENCIES = ['USD', 'KES', 'TZS', 'UGX', 'RWF', 'EUR', 'GBP'] as const;
+export const HR_CURRENCIES = [
+  'USD',
+  'KES',
+  'TZS',
+  'UGX',
+  'RWF',
+  'EUR',
+  'GBP',
+] as const;
 export type HrCurrency = (typeof HR_CURRENCIES)[number];
 
 // ─── Types ────────────────────────────────────────────────────────────────────

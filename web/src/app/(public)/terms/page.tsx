@@ -97,8 +97,8 @@ export default function TermsPage() {
               Questions about these terms
             </h2>
             <p className="mt-3 text-sm leading-7 text-muted-foreground">
-              Legal and contractual questions are handled by our legal officer.
-              Write to{' '}
+              Legal and contractual questions are handled by our Director and
+              Company Attorney. Write to{' '}
               <a
                 href={`mailto:${company.contact.emails[0].value}`}
                 className="font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"

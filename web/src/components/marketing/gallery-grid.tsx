@@ -67,7 +67,11 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
             All
           </FilterChip>
           {categories.map((c) => (
-            <FilterChip key={c} active={filter === c} onClick={() => setFilter(c)}>
+            <FilterChip
+              key={c}
+              active={filter === c}
+              onClick={() => setFilter(c)}
+            >
               {c}
             </FilterChip>
           ))}

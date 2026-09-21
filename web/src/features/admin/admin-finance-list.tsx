@@ -41,7 +41,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { PageHeader, EmptyState, ErrorState } from '@/components/ui/page-header';
+import {
+  PageHeader,
+  EmptyState,
+  ErrorState,
+} from '@/components/ui/page-header';
 import { PageSkeleton } from '@/components/ui/skeleton';
 import {
   KpiRow,
@@ -80,7 +84,10 @@ type Tab = 'invoices' | 'payments';
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /** Format any currency amount with its ISO code */
-function formatAmount(value: string | number | null | undefined, currency: Currency): string {
+function formatAmount(
+  value: string | number | null | undefined,
+  currency: Currency,
+): string {
   const n = typeof value === 'string' ? Number(value) : (value ?? 0);
   if (!Number.isFinite(n)) return '—';
   if (currency === 'KES') return formatKsh(n);
@@ -102,14 +109,20 @@ function isOverdue(invoice: Invoice): boolean {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab }) {
+export function AdminFinanceList({
+  initialTab = 'invoices',
+}: {
+  initialTab?: Tab;
+}) {
   const [tab, setTab] = React.useState<Tab>(initialTab);
 
   // Invoices list state
   const [search, setSearch] = React.useState('');
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(15);
-  const [statusFilter, setStatusFilter] = React.useState<InvoiceStatus | ''>('');
+  const [statusFilter, setStatusFilter] = React.useState<InvoiceStatus | ''>(
+    '',
+  );
   const [showFilters, setShowFilters] = React.useState(false);
   const [dateFrom, setDateFrom] = React.useState('');
   const [dateTo, setDateTo] = React.useState('');
@@ -118,7 +131,9 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
   const [paySearch, setPaySearch] = React.useState('');
   const [payPage, setPayPage] = React.useState(1);
   const [payPerPage, setPayPerPage] = React.useState(15);
-  const [payStatusFilter, setPayStatusFilter] = React.useState<InvoiceStatus | ''>('');
+  const [payStatusFilter, setPayStatusFilter] = React.useState<
+    InvoiceStatus | ''
+  >('');
 
   // Dialogs
   const [detailId, setDetailId] = React.useState<string | null>(null);
@@ -254,10 +269,14 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
         <span
           className={cn(
             'block text-right tabular-nums text-sm font-medium',
-            Number(r.amountDue) > 0 ? 'text-warning-foreground' : 'text-muted-foreground',
+            Number(r.amountDue) > 0
+              ? 'text-warning-foreground'
+              : 'text-muted-foreground',
           )}
         >
-          {Number(r.amountDue) > 0 ? formatAmount(r.amountDue, r.currency) : '—'}
+          {Number(r.amountDue) > 0
+            ? formatAmount(r.amountDue, r.currency)
+            : '—'}
         </span>
       ),
     },
@@ -269,7 +288,9 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
           <span
             className={cn(
               'text-xs',
-              isOverdue(r) ? 'font-semibold text-destructive' : 'text-muted-foreground',
+              isOverdue(r)
+                ? 'font-semibold text-destructive'
+                : 'text-muted-foreground',
             )}
             title={formatDate(r.dueDate, 'dd MMM yyyy')}
           >
@@ -283,7 +304,10 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
       key: 'created',
       header: 'Created',
       cell: (r) => (
-        <span className="text-xs text-muted-foreground" title={formatDate(r.createdAt)}>
+        <span
+          className="text-xs text-muted-foreground"
+          title={formatDate(r.createdAt)}
+        >
           {formatRelativeDate(r.createdAt)}
         </span>
       ),
@@ -313,7 +337,9 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
               <Send className="h-3.5 w-3.5" />
             </Button>
           )}
-          {(r.status === 'ISSUED' || r.status === 'PARTIALLY_PAID' || r.status === 'OVERDUE') && (
+          {(r.status === 'ISSUED' ||
+            r.status === 'PARTIALLY_PAID' ||
+            r.status === 'OVERDUE') && (
             <Button
               size="sm"
               variant="ghost"
@@ -332,8 +358,24 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
   // ── Export ──
   function handleExport() {
     const rows = (invoicesQuery.data?.data as Invoice[] | undefined) ?? [];
-    if (rows.length === 0) { toast.error('No data to export'); return; }
-    const headers = ['Invoice #', 'Client', 'Status', 'Currency', 'Subtotal', 'Tax', 'Total', 'Paid', 'Balance', 'Due Date', 'Issued At', 'Created'];
+    if (rows.length === 0) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Invoice #',
+      'Client',
+      'Status',
+      'Currency',
+      'Subtotal',
+      'Tax',
+      'Total',
+      'Paid',
+      'Balance',
+      'Due Date',
+      'Issued At',
+      'Created',
+    ];
     const csv = [
       headers.join(','),
       ...rows.map((r) =>
@@ -358,15 +400,29 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `invoices-${format(new Date(), 'yyyyMMdd')}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `invoices-${format(new Date(), 'yyyyMMdd')}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   }
 
   function handleExportPayments() {
     const rows = (paymentsQuery.data?.data as Invoice[] | undefined) ?? [];
-    if (rows.length === 0) { toast.error('No data to export'); return; }
-    const headers = ['Invoice #', 'Client', 'Currency', 'Total', 'Paid', 'Balance', 'Status', 'Paid At'];
+    if (rows.length === 0) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Invoice #',
+      'Client',
+      'Currency',
+      'Total',
+      'Paid',
+      'Balance',
+      'Status',
+      'Paid At',
+    ];
     const csv = [
       headers.join(','),
       ...rows.map((r) =>
@@ -387,8 +443,10 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `payments-${format(new Date(), 'yyyyMMdd')}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `payments-${format(new Date(), 'yyyyMMdd')}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   }
 
@@ -398,8 +456,11 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
       key: 'number',
       header: 'Invoice #',
       cell: (r) => (
-        <button type="button" onClick={() => setDetailId(r.id)}
-          className="font-mono text-xs font-semibold text-brand-600 hover:underline dark:text-brand-400">
+        <button
+          type="button"
+          onClick={() => setDetailId(r.id)}
+          className="font-mono text-xs font-semibold text-brand-600 hover:underline dark:text-brand-400"
+        >
           {r.invoiceNumber}
         </button>
       ),
@@ -407,7 +468,11 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
     {
       key: 'client',
       header: 'Client',
-      cell: (r) => <span className="font-medium text-sm">{r.client?.companyName ?? '—'}</span>,
+      cell: (r) => (
+        <span className="font-medium text-sm">
+          {r.client?.companyName ?? '—'}
+        </span>
+      ),
     },
     {
       key: 'status',
@@ -417,7 +482,11 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
     {
       key: 'currency',
       header: 'CCY',
-      cell: (r) => <Badge variant="outline" className="font-mono text-xs">{r.currency}</Badge>,
+      cell: (r) => (
+        <Badge variant="outline" className="font-mono text-xs">
+          {r.currency}
+        </Badge>
+      ),
     },
     {
       key: 'total',
@@ -441,11 +510,17 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
       key: 'balance',
       header: <span className="block text-right">Balance</span>,
       cell: (r) => (
-        <span className={cn(
-          'block text-right tabular-nums text-sm',
-          Number(r.amountDue) > 0 ? 'font-medium text-warning-foreground' : 'text-muted-foreground',
-        )}>
-          {Number(r.amountDue) > 0 ? formatAmount(r.amountDue, r.currency) : 'Cleared'}
+        <span
+          className={cn(
+            'block text-right tabular-nums text-sm',
+            Number(r.amountDue) > 0
+              ? 'font-medium text-warning-foreground'
+              : 'text-muted-foreground',
+          )}
+        >
+          {Number(r.amountDue) > 0
+            ? formatAmount(r.amountDue, r.currency)
+            : 'Cleared'}
         </span>
       ),
     },
@@ -467,12 +542,24 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
       header: '',
       cell: (r) => (
         <div className="flex items-center justify-end gap-1">
-          <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={() => setDetailId(r.id)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0"
+            onClick={() => setDetailId(r.id)}
+          >
             <Eye className="h-3.5 w-3.5" />
           </Button>
-          {(r.status === 'ISSUED' || r.status === 'PARTIALLY_PAID' || r.status === 'OVERDUE') && (
-            <Button size="sm" variant="ghost" className="h-7 w-7 p-0 hover:text-success"
-              title="Record payment" onClick={() => setPayInvoice(r)}>
+          {(r.status === 'ISSUED' ||
+            r.status === 'PARTIALLY_PAID' ||
+            r.status === 'OVERDUE') && (
+            <Button
+              size="sm"
+              variant="ghost"
+              className="h-7 w-7 p-0 hover:text-success"
+              title="Record payment"
+              onClick={() => setPayInvoice(r)}
+            >
               <CreditCard className="h-3.5 w-3.5" />
             </Button>
           )}
@@ -483,7 +570,9 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
 
   const invoiceExtraFilters = (
     <div className="flex items-center gap-2">
-      <Button size="sm" variant={showFilters ? 'brand' : 'outline'}
+      <Button
+        size="sm"
+        variant={showFilters ? 'brand' : 'outline'}
         onClick={() => setShowFilters((p) => !p)}
         leftIcon={<Filter className="h-3.5 w-3.5" />}
       >
@@ -494,16 +583,24 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
           </span>
         )}
       </Button>
-      <Button size="sm" variant="outline"
-        leftIcon={<Download className="h-3.5 w-3.5" />} onClick={handleExport}>
+      <Button
+        size="sm"
+        variant="outline"
+        leftIcon={<Download className="h-3.5 w-3.5" />}
+        onClick={handleExport}
+      >
         Export
       </Button>
     </div>
   );
 
   const paymentExtraFilters = (
-    <Button size="sm" variant="outline"
-      leftIcon={<Download className="h-3.5 w-3.5" />} onClick={handleExportPayments}>
+    <Button
+      size="sm"
+      variant="outline"
+      leftIcon={<Download className="h-3.5 w-3.5" />}
+      onClick={handleExportPayments}
+    >
       Export
     </Button>
   );
@@ -515,7 +612,9 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
         title="Finance"
         description="Organization-scoped invoices, payments and financial position."
         actions={
-          <Button size="sm" variant="brand"
+          <Button
+            size="sm"
+            variant="brand"
             leftIcon={<Plus className="h-4 w-4" />}
             onClick={() => setShowCreate(true)}
           >
@@ -559,8 +658,14 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold">Filters</span>
                 {(statusFilter || dateFrom || dateTo) && (
-                  <button type="button"
-                    onClick={() => { setStatusFilter(''); setDateFrom(''); setDateTo(''); setPage(1); }}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setStatusFilter('');
+                      setDateFrom('');
+                      setDateTo('');
+                      setPage(1);
+                    }}
                     className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
                   >
                     <X className="h-3 w-3" /> Clear all
@@ -570,28 +675,49 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
               <div className="grid gap-4 sm:grid-cols-3">
                 <div className="space-y-1.5">
                   <Label className="text-xs">Status</Label>
-                  <Select value={statusFilter}
-                    onValueChange={(v) => { setStatusFilter(v === 'all' ? '' : v as InvoiceStatus); setPage(1); }}>
+                  <Select
+                    value={statusFilter}
+                    onValueChange={(v) => {
+                      setStatusFilter(v === 'all' ? '' : (v as InvoiceStatus));
+                      setPage(1);
+                    }}
+                  >
                     <SelectTrigger className="h-9 text-sm">
                       <SelectValue placeholder="All statuses" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All statuses</SelectItem>
                       {INVOICE_STATUSES.map((s) => (
-                        <SelectItem key={s} value={s}>{INVOICE_STATUS_LABELS[s]}</SelectItem>
+                        <SelectItem key={s} value={s}>
+                          {INVOICE_STATUS_LABELS[s]}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-1.5">
                   <Label className="text-xs">From date</Label>
-                  <Input type="date" value={dateFrom} className="h-9 text-sm"
-                    onChange={(e) => { setDateFrom(e.target.value); setPage(1); }} />
+                  <Input
+                    type="date"
+                    value={dateFrom}
+                    className="h-9 text-sm"
+                    onChange={(e) => {
+                      setDateFrom(e.target.value);
+                      setPage(1);
+                    }}
+                  />
                 </div>
                 <div className="space-y-1.5">
                   <Label className="text-xs">To date</Label>
-                  <Input type="date" value={dateTo} className="h-9 text-sm"
-                    onChange={(e) => { setDateTo(e.target.value); setPage(1); }} />
+                  <Input
+                    type="date"
+                    value={dateTo}
+                    className="h-9 text-sm"
+                    onChange={(e) => {
+                      setDateTo(e.target.value);
+                      setPage(1);
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -610,17 +736,23 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
             ]}
             filterValue={statusFilter || 'all'}
             onFilterChange={(k) => {
-              setStatusFilter(k === 'all' ? '' : k as InvoiceStatus);
+              setStatusFilter(k === 'all' ? '' : (k as InvoiceStatus));
               setPage(1);
             }}
             columns={invoiceColumns}
             query={invoicesQuery as never}
             search={search}
-            onSearchChange={(v) => { setSearch(v); setPage(1); }}
+            onSearchChange={(v) => {
+              setSearch(v);
+              setPage(1);
+            }}
             page={page}
             perPage={perPage}
             onPageChange={setPage}
-            onPerPageChange={(n) => { setPerPage(n); setPage(1); }}
+            onPerPageChange={(n) => {
+              setPerPage(n);
+              setPage(1);
+            }}
             emptyLabel="No invoices yet"
             rowKey={(r) => r.id}
             extraFilters={invoiceExtraFilters}
@@ -642,17 +774,23 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
           ]}
           filterValue={payStatusFilter || 'all'}
           onFilterChange={(k) => {
-            setPayStatusFilter(k === 'all' ? '' : k as InvoiceStatus);
+            setPayStatusFilter(k === 'all' ? '' : (k as InvoiceStatus));
             setPayPage(1);
           }}
           columns={paymentColumns}
           query={paymentsQuery as never}
           search={paySearch}
-          onSearchChange={(v) => { setPaySearch(v); setPayPage(1); }}
+          onSearchChange={(v) => {
+            setPaySearch(v);
+            setPayPage(1);
+          }}
           page={payPage}
           perPage={payPerPage}
           onPageChange={setPayPage}
-          onPerPageChange={(n) => { setPayPerPage(n); setPayPage(1); }}
+          onPerPageChange={(n) => {
+            setPayPerPage(n);
+            setPayPage(1);
+          }}
           emptyLabel="No payment records yet"
           rowKey={(r) => r.id}
           extraFilters={paymentExtraFilters}
@@ -663,8 +801,14 @@ export function AdminFinanceList({ initialTab = 'invoices' }: { initialTab?: Tab
       <InvoiceDetailDialog
         invoiceId={detailId}
         onClose={() => setDetailId(null)}
-        onIssue={(inv) => { setIssueTarget(inv); setDetailId(null); }}
-        onPay={(inv) => { setPayInvoice(inv); setDetailId(null); }}
+        onIssue={(inv) => {
+          setIssueTarget(inv);
+          setDetailId(null);
+        }}
+        onPay={(inv) => {
+          setPayInvoice(inv);
+          setDetailId(null);
+        }}
       />
 
       {issueTarget && (
@@ -711,15 +855,22 @@ function InvoiceDetailDialog({
   }
 
   const canIssue = invoice?.status === 'DRAFT';
-  const canPay = invoice?.status === 'ISSUED' || invoice?.status === 'PARTIALLY_PAID' || invoice?.status === 'OVERDUE';
+  const canPay =
+    invoice?.status === 'ISSUED' ||
+    invoice?.status === 'PARTIALLY_PAID' ||
+    invoice?.status === 'OVERDUE';
 
   return (
     <Dialog open={!!invoiceId} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         {isLoading ? (
-          <div className="p-6"><PageSkeleton /></div>
+          <div className="p-6">
+            <PageSkeleton />
+          </div>
         ) : isError || !invoice ? (
-          <div className="p-6 text-center text-sm text-muted-foreground">Could not load invoice.</div>
+          <div className="p-6 text-center text-sm text-muted-foreground">
+            Could not load invoice.
+          </div>
         ) : (
           <>
             <DialogHeader>
@@ -731,11 +882,19 @@ function InvoiceDetailDialog({
                   </DialogTitle>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Created {formatDate(invoice.createdAt, 'dd MMM yyyy')}
-                    {invoice.issuedAt && ` · Issued ${formatDate(invoice.issuedAt, 'dd MMM yyyy')}`}
-                    {invoice.paidAt && ` · Paid ${formatDate(invoice.paidAt, 'dd MMM yyyy')}`}
+                    {invoice.issuedAt &&
+                      ` · Issued ${formatDate(invoice.issuedAt, 'dd MMM yyyy')}`}
+                    {invoice.paidAt &&
+                      ` · Paid ${formatDate(invoice.paidAt, 'dd MMM yyyy')}`}
                   </p>
                 </div>
-                <StatusBadge status={isOverdue(invoice) && invoice.status !== 'OVERDUE' ? 'OVERDUE' : invoice.status} />
+                <StatusBadge
+                  status={
+                    isOverdue(invoice) && invoice.status !== 'OVERDUE'
+                      ? 'OVERDUE'
+                      : invoice.status
+                  }
+                />
               </div>
             </DialogHeader>
 
@@ -743,18 +902,35 @@ function InvoiceDetailDialog({
               {/* Client + currency */}
               <div className="grid grid-cols-2 gap-4 rounded-lg border border-border bg-muted/30 p-4 text-sm">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Client</p>
-                  <p className="mt-1 font-medium">{invoice.client?.companyName ?? '—'}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Client
+                  </p>
+                  <p className="mt-1 font-medium">
+                    {invoice.client?.companyName ?? '—'}
+                  </p>
                 </div>
                 <div className="space-y-2">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Currency</p>
-                    <Badge variant="outline" className="mt-1 font-mono text-xs">{invoice.currency}</Badge>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      Currency
+                    </p>
+                    <Badge variant="outline" className="mt-1 font-mono text-xs">
+                      {invoice.currency}
+                    </Badge>
                   </div>
                   {invoice.dueDate && (
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Due Date</p>
-                      <p className={cn('mt-1 text-sm', isOverdue(invoice) ? 'font-semibold text-destructive' : '')}>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Due Date
+                      </p>
+                      <p
+                        className={cn(
+                          'mt-1 text-sm',
+                          isOverdue(invoice)
+                            ? 'font-semibold text-destructive'
+                            : '',
+                        )}
+                      >
                         {formatDate(invoice.dueDate, 'dd MMM yyyy')}
                       </p>
                     </div>
@@ -764,24 +940,45 @@ function InvoiceDetailDialog({
 
               {/* Line items */}
               <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Line Items</p>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Line Items
+                </p>
                 <div className="rounded-lg border border-border overflow-hidden">
                   <table className="w-full text-sm">
                     <thead className="bg-muted/40 border-b border-border">
                       <tr>
-                        <th className="px-3 py-2.5 text-left text-xs font-semibold text-muted-foreground">Description</th>
-                        <th className="px-3 py-2.5 text-right text-xs font-semibold text-muted-foreground w-20">Qty</th>
-                        <th className="px-3 py-2.5 text-right text-xs font-semibold text-muted-foreground w-32">Unit Price</th>
-                        <th className="px-3 py-2.5 text-right text-xs font-semibold text-muted-foreground w-32">Total</th>
+                        <th className="px-3 py-2.5 text-left text-xs font-semibold text-muted-foreground">
+                          Description
+                        </th>
+                        <th className="px-3 py-2.5 text-right text-xs font-semibold text-muted-foreground w-20">
+                          Qty
+                        </th>
+                        <th className="px-3 py-2.5 text-right text-xs font-semibold text-muted-foreground w-32">
+                          Unit Price
+                        </th>
+                        <th className="px-3 py-2.5 text-right text-xs font-semibold text-muted-foreground w-32">
+                          Total
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {invoice.lineItems.map((line) => (
-                        <tr key={line.id} className="border-b border-border last:border-0">
-                          <td className="px-3 py-2.5 font-medium">{line.description}</td>
-                          <td className="px-3 py-2.5 text-right tabular-nums">{Number(line.quantity)}</td>
-                          <td className="px-3 py-2.5 text-right tabular-nums">{formatAmount(line.unitPrice, invoice.currency)}</td>
-                          <td className="px-3 py-2.5 text-right tabular-nums font-semibold">{formatAmount(line.lineTotal, invoice.currency)}</td>
+                        <tr
+                          key={line.id}
+                          className="border-b border-border last:border-0"
+                        >
+                          <td className="px-3 py-2.5 font-medium">
+                            {line.description}
+                          </td>
+                          <td className="px-3 py-2.5 text-right tabular-nums">
+                            {Number(line.quantity)}
+                          </td>
+                          <td className="px-3 py-2.5 text-right tabular-nums">
+                            {formatAmount(line.unitPrice, invoice.currency)}
+                          </td>
+                          <td className="px-3 py-2.5 text-right tabular-nums font-semibold">
+                            {formatAmount(line.lineTotal, invoice.currency)}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -791,38 +988,71 @@ function InvoiceDetailDialog({
 
               {/* Financial summary */}
               <div className="rounded-lg border border-border p-4 space-y-2.5 text-sm">
-                <FinRow label="Subtotal" value={formatAmount(invoice.subtotal, invoice.currency)} />
+                <FinRow
+                  label="Subtotal"
+                  value={formatAmount(invoice.subtotal, invoice.currency)}
+                />
                 {Number(invoice.taxRate) > 0 && (
-                  <FinRow label={`Tax (${Number(invoice.taxRate).toFixed(1)}%)`} value={formatAmount(invoice.taxAmount, invoice.currency)} />
+                  <FinRow
+                    label={`Tax (${Number(invoice.taxRate).toFixed(1)}%)`}
+                    value={formatAmount(invoice.taxAmount, invoice.currency)}
+                  />
                 )}
                 <div className="border-t border-border pt-2.5">
-                  <FinRow label="Invoice Total" value={formatAmount(invoice.totalAmount, invoice.currency)} bold />
+                  <FinRow
+                    label="Invoice Total"
+                    value={formatAmount(invoice.totalAmount, invoice.currency)}
+                    bold
+                  />
                 </div>
-                <FinRow label="Amount Paid" value={formatAmount(invoice.amountPaid, invoice.currency)} valueClass="text-success" />
+                <FinRow
+                  label="Amount Paid"
+                  value={formatAmount(invoice.amountPaid, invoice.currency)}
+                  valueClass="text-success"
+                />
                 {Number(invoice.amountDue) > 0 && (
-                  <FinRow label="Balance Due" value={formatAmount(invoice.amountDue, invoice.currency)} valueClass="text-warning-foreground font-semibold" />
+                  <FinRow
+                    label="Balance Due"
+                    value={formatAmount(invoice.amountDue, invoice.currency)}
+                    valueClass="text-warning-foreground font-semibold"
+                  />
                 )}
               </div>
 
               {/* Payment history */}
               {invoice.payments.length > 0 && (
                 <div>
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Payment History</p>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Payment History
+                  </p>
                   <div className="space-y-2">
                     {invoice.payments.map((p) => (
-                      <div key={p.id} className="flex items-center justify-between rounded-md border border-border px-3 py-2.5 text-sm">
+                      <div
+                        key={p.id}
+                        className="flex items-center justify-between rounded-md border border-border px-3 py-2.5 text-sm"
+                      >
                         <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="text-xs">{PAYMENT_METHOD_LABELS[p.method] ?? p.method}</Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {PAYMENT_METHOD_LABELS[p.method] ?? p.method}
+                          </Badge>
                           {p.transactionRef && (
-                            <span className="font-mono text-xs text-muted-foreground">{p.transactionRef}</span>
+                            <span className="font-mono text-xs text-muted-foreground">
+                              {p.transactionRef}
+                            </span>
                           )}
                           {p.bankName && (
-                            <span className="text-xs text-muted-foreground">{p.bankName}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {p.bankName}
+                            </span>
                           )}
                         </div>
                         <div className="text-right">
-                          <span className="font-semibold tabular-nums">{formatAmount(p.amount, p.currency)}</span>
-                          <span className="ml-2 text-xs text-muted-foreground">{formatDate(p.paymentDate, 'dd MMM yyyy')}</span>
+                          <span className="font-semibold tabular-nums">
+                            {formatAmount(p.amount, p.currency)}
+                          </span>
+                          <span className="ml-2 text-xs text-muted-foreground">
+                            {formatDate(p.paymentDate, 'dd MMM yyyy')}
+                          </span>
                         </div>
                       </div>
                     ))}
@@ -833,7 +1063,8 @@ function InvoiceDetailDialog({
               {/* Notes */}
               {invoice.notes && (
                 <div className="rounded-md border border-border bg-muted/30 px-3 py-2.5 text-sm text-muted-foreground">
-                  <span className="font-semibold text-foreground">Note: </span>{invoice.notes}
+                  <span className="font-semibold text-foreground">Note: </span>
+                  {invoice.notes}
                 </div>
               )}
 
@@ -842,25 +1073,39 @@ function InvoiceDetailDialog({
                 <div className="flex items-start gap-2 rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2.5 text-sm text-destructive">
                   <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                   <span>
-                    This invoice is <strong>overdue</strong>. Due date was {formatDate(invoice.dueDate!, 'dd MMM yyyy')}.
+                    This invoice is <strong>overdue</strong>. Due date was{' '}
+                    {formatDate(invoice.dueDate!, 'dd MMM yyyy')}.
                   </span>
                 </div>
               )}
             </div>
 
             <DialogFooter className="flex-wrap gap-2">
-              <Button variant="outline" size="sm" leftIcon={<Printer className="h-3.5 w-3.5" />} onClick={handlePrint}>
+              <Button
+                variant="outline"
+                size="sm"
+                leftIcon={<Printer className="h-3.5 w-3.5" />}
+                onClick={handlePrint}
+              >
                 Print
               </Button>
               {canIssue && (
-                <Button variant="brand" size="sm" leftIcon={<Send className="h-3.5 w-3.5" />}
-                  onClick={() => onIssue(invoice as unknown as Invoice)}>
+                <Button
+                  variant="brand"
+                  size="sm"
+                  leftIcon={<Send className="h-3.5 w-3.5" />}
+                  onClick={() => onIssue(invoice as unknown as Invoice)}
+                >
                   Issue to client
                 </Button>
               )}
               {canPay && (
-                <Button variant="brand" size="sm" leftIcon={<CreditCard className="h-3.5 w-3.5" />}
-                  onClick={() => onPay(invoice as unknown as Invoice)}>
+                <Button
+                  variant="brand"
+                  size="sm"
+                  leftIcon={<CreditCard className="h-3.5 w-3.5" />}
+                  onClick={() => onPay(invoice as unknown as Invoice)}
+                >
                   Record payment
                 </Button>
               )}
@@ -873,19 +1118,48 @@ function InvoiceDetailDialog({
 }
 
 function FinRow({
-  label, value, bold, valueClass,
-}: { label: string; value: string; bold?: boolean; valueClass?: string }) {
+  label,
+  value,
+  bold,
+  valueClass,
+}: {
+  label: string;
+  value: string;
+  bold?: boolean;
+  valueClass?: string;
+}) {
   return (
     <div className="flex items-center justify-between">
-      <span className={cn('text-muted-foreground', bold && 'font-semibold text-foreground')}>{label}</span>
-      <span className={cn('tabular-nums', bold && 'font-bold text-base', valueClass)}>{value}</span>
+      <span
+        className={cn(
+          'text-muted-foreground',
+          bold && 'font-semibold text-foreground',
+        )}
+      >
+        {label}
+      </span>
+      <span
+        className={cn(
+          'tabular-nums',
+          bold && 'font-bold text-base',
+          valueClass,
+        )}
+      >
+        {value}
+      </span>
     </div>
   );
 }
 
 // ─── Issue Invoice Dialog ─────────────────────────────────────────────────────
 
-function IssueInvoiceDialog({ invoice, onClose }: { invoice: Invoice; onClose: () => void }) {
+function IssueInvoiceDialog({
+  invoice,
+  onClose,
+}: {
+  invoice: Invoice;
+  onClose: () => void;
+}) {
   const issueMutation = useIssueInvoice();
 
   async function handleConfirm() {
@@ -907,23 +1181,42 @@ function IssueInvoiceDialog({ invoice, onClose }: { invoice: Invoice; onClose: (
             Issue invoice — {invoice.invoiceNumber}
           </DialogTitle>
           <DialogDescription>
-            The invoice status will change from <strong>Draft</strong> to <strong>Issued</strong>. This records when the invoice was sent to the client.
+            The invoice status will change from <strong>Draft</strong> to{' '}
+            <strong>Issued</strong>. This records when the invoice was sent to
+            the client.
           </DialogDescription>
         </DialogHeader>
 
         <div className="px-6 space-y-3 text-sm">
           <div className="rounded-md border border-border bg-muted/30 p-4 space-y-2">
             <FinRow label="Client" value={invoice.client?.companyName ?? '—'} />
-            <FinRow label="Invoice total" value={formatAmount(invoice.totalAmount, invoice.currency)} bold />
+            <FinRow
+              label="Invoice total"
+              value={formatAmount(invoice.totalAmount, invoice.currency)}
+              bold
+            />
             {invoice.dueDate && (
-              <FinRow label="Due date" value={formatDate(invoice.dueDate, 'dd MMM yyyy')} />
+              <FinRow
+                label="Due date"
+                value={formatDate(invoice.dueDate, 'dd MMM yyyy')}
+              />
             )}
           </div>
         </div>
 
         <DialogFooter>
-          <Button variant="outline" disabled={issueMutation.isPending} onClick={onClose}>Cancel</Button>
-          <Button variant="brand" loading={issueMutation.isPending} onClick={() => void handleConfirm()}>
+          <Button
+            variant="outline"
+            disabled={issueMutation.isPending}
+            onClick={onClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="brand"
+            loading={issueMutation.isPending}
+            onClick={() => void handleConfirm()}
+          >
             Confirm &amp; Issue
           </Button>
         </DialogFooter>
@@ -934,19 +1227,30 @@ function IssueInvoiceDialog({ invoice, onClose }: { invoice: Invoice; onClose: (
 
 // ─── Record Payment Dialog ────────────────────────────────────────────────────
 
-function RecordPaymentDialog({ invoice, onClose }: { invoice: Invoice; onClose: () => void }) {
+function RecordPaymentDialog({
+  invoice,
+  onClose,
+}: {
+  invoice: Invoice;
+  onClose: () => void;
+}) {
   const [amount, setAmount] = React.useState(Number(invoice.amountDue));
   const [currency, setCurrency] = React.useState<Currency>(invoice.currency);
   const [method, setMethod] = React.useState<PaymentMethod>('BANK_TRANSFER');
   const [transactionRef, setTransactionRef] = React.useState('');
   const [bankName, setBankName] = React.useState('');
-  const [paymentDate, setPaymentDate] = React.useState(format(new Date(), 'yyyy-MM-dd'));
+  const [paymentDate, setPaymentDate] = React.useState(
+    format(new Date(), 'yyyy-MM-dd'),
+  );
   const [notes, setNotes] = React.useState('');
   const recordPayment = useRecordPayment();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (amount <= 0) { toast.error('Amount must be greater than zero'); return; }
+    if (amount <= 0) {
+      toast.error('Amount must be greater than zero');
+      return;
+    }
     try {
       await recordPayment.mutateAsync({
         invoiceId: invoice.id,
@@ -979,25 +1283,46 @@ function RecordPaymentDialog({ invoice, onClose }: { invoice: Invoice; onClose: 
             Record payment — {invoice.invoiceNumber}
           </DialogTitle>
           <DialogDescription>
-            Record a payment received against this invoice. Balance due: <strong>{formatAmount(invoice.amountDue, invoice.currency)}</strong>
+            Record a payment received against this invoice. Balance due:{' '}
+            <strong>{formatAmount(invoice.amountDue, invoice.currency)}</strong>
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4 px-6 pb-2">
+        <form
+          onSubmit={(e) => void handleSubmit(e)}
+          className="space-y-4 px-6 pb-2"
+        >
           {/* Amount + currency */}
           <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
             <div className="space-y-1.5">
-              <Label className="text-sm">Amount <span className="text-destructive">*</span></Label>
-              <Input type="number" min={0.01} step={0.01} value={amount || ''}
+              <Label className="text-sm">
+                Amount <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                type="number"
+                min={0.01}
+                step={0.01}
+                value={amount || ''}
                 onChange={(e) => setAmount(Number(e.target.value))}
-                placeholder="0.00" className="h-9 text-sm" />
+                placeholder="0.00"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Currency</Label>
-              <Select value={currency} onValueChange={(v) => setCurrency(v as Currency)}>
-                <SelectTrigger className="h-9 w-24 text-sm"><SelectValue /></SelectTrigger>
+              <Select
+                value={currency}
+                onValueChange={(v) => setCurrency(v as Currency)}
+              >
+                <SelectTrigger className="h-9 w-24 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
-                  {CURRENCIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                  {CURRENCIES.map((c) => (
+                    <SelectItem key={c} value={c}>
+                      {c}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -1005,12 +1330,21 @@ function RecordPaymentDialog({ invoice, onClose }: { invoice: Invoice; onClose: 
 
           {/* Method */}
           <div className="space-y-1.5">
-            <Label className="text-sm">Payment method <span className="text-destructive">*</span></Label>
-            <Select value={method} onValueChange={(v) => setMethod(v as PaymentMethod)}>
-              <SelectTrigger className="h-9 text-sm"><SelectValue /></SelectTrigger>
+            <Label className="text-sm">
+              Payment method <span className="text-destructive">*</span>
+            </Label>
+            <Select
+              value={method}
+              onValueChange={(v) => setMethod(v as PaymentMethod)}
+            >
+              <SelectTrigger className="h-9 text-sm">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 {PAYMENT_METHODS.map((m) => (
-                  <SelectItem key={m} value={m}>{PAYMENT_METHOD_LABELS[m]}</SelectItem>
+                  <SelectItem key={m} value={m}>
+                    {PAYMENT_METHOD_LABELS[m]}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -1018,51 +1352,94 @@ function RecordPaymentDialog({ invoice, onClose }: { invoice: Invoice; onClose: 
 
           {/* Date */}
           <div className="space-y-1.5">
-            <Label className="text-sm">Payment date <span className="text-destructive">*</span></Label>
-            <Input type="date" value={paymentDate}
-              onChange={(e) => setPaymentDate(e.target.value)} className="h-9 text-sm" />
+            <Label className="text-sm">
+              Payment date <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              type="date"
+              value={paymentDate}
+              onChange={(e) => setPaymentDate(e.target.value)}
+              className="h-9 text-sm"
+            />
           </div>
 
           {/* Reference + bank */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label className="text-sm">Transaction ref</Label>
-              <Input value={transactionRef} onChange={(e) => setTransactionRef(e.target.value)}
-                placeholder="M-Pesa code, chq no…" className="h-9 text-sm" />
+              <Input
+                value={transactionRef}
+                onChange={(e) => setTransactionRef(e.target.value)}
+                placeholder="M-Pesa code, chq no…"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Bank name</Label>
-              <Input value={bankName} onChange={(e) => setBankName(e.target.value)}
-                placeholder="KCB, Equity…" className="h-9 text-sm" />
+              <Input
+                value={bankName}
+                onChange={(e) => setBankName(e.target.value)}
+                placeholder="KCB, Equity…"
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
           {/* Notes */}
           <div className="space-y-1.5">
             <Label className="text-sm">Notes</Label>
-            <textarea value={notes} onChange={(e) => setNotes(e.target.value)}
-              placeholder="Optional notes…" rows={2} maxLength={500}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none" />
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="Optional notes…"
+              rows={2}
+              maxLength={500}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none"
+            />
           </div>
 
           {/* Running balance */}
           {amount > 0 && (
             <div className="rounded-lg border border-border bg-muted/20 p-3 space-y-2 text-sm">
-              <FinRow label="Balance due" value={formatAmount(balanceDue, invoice.currency)} />
-              <FinRow label="This payment" value={formatAmount(amount, currency)} valueClass="text-success" />
+              <FinRow
+                label="Balance due"
+                value={formatAmount(balanceDue, invoice.currency)}
+              />
+              <FinRow
+                label="This payment"
+                value={formatAmount(amount, currency)}
+                valueClass="text-success"
+              />
               <div className="border-t border-border pt-2">
-                <FinRow label="Remaining after" value={formatAmount(afterPayment, invoice.currency)}
-                  bold valueClass={afterPayment <= 0 ? 'text-success' : 'text-warning-foreground'} />
+                <FinRow
+                  label="Remaining after"
+                  value={formatAmount(afterPayment, invoice.currency)}
+                  bold
+                  valueClass={
+                    afterPayment <= 0
+                      ? 'text-success'
+                      : 'text-warning-foreground'
+                  }
+                />
               </div>
             </div>
           )}
         </form>
 
         <DialogFooter>
-          <Button variant="outline" disabled={recordPayment.isPending} onClick={onClose}>Cancel</Button>
-          <Button variant="brand" loading={recordPayment.isPending}
+          <Button
+            variant="outline"
+            disabled={recordPayment.isPending}
+            onClick={onClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="brand"
+            loading={recordPayment.isPending}
             disabled={amount <= 0}
-            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}>
+            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}
+          >
             Record payment · {formatAmount(amount, currency)}
           </Button>
         </DialogFooter>
@@ -1080,7 +1457,13 @@ interface LineItemDraft {
   unitPrice: number;
 }
 
-function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+function CreateInvoiceDialog({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
   const orgId = useAuthStore((s) => s.user?.organizationId) ?? '';
   const [clientId, setClientId] = React.useState('');
   const [currency, setCurrency] = React.useState<Currency>('USD');
@@ -1092,7 +1475,9 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
   ]);
   const createInvoice = useCreateInvoice();
   const { data: clientsData } = useClients(orgId, { limit: 100 });
-  const clients = (clientsData?.data as { id: string; companyName: string }[] | undefined) ?? [];
+  const clients =
+    (clientsData?.data as { id: string; companyName: string }[] | undefined) ??
+    [];
 
   const subtotal = lines.reduce((s, l) => s + l.quantity * l.unitPrice, 0);
   const taxAmount = (subtotal * taxRate) / 100;
@@ -1116,8 +1501,13 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const validLines = lines.filter((l) => l.description.trim() && l.unitPrice > 0);
-    if (validLines.length === 0) { toast.error('Add at least one line item with a description and price'); return; }
+    const validLines = lines.filter(
+      (l) => l.description.trim() && l.unitPrice > 0,
+    );
+    if (validLines.length === 0) {
+      toast.error('Add at least one line item with a description and price');
+      return;
+    }
     try {
       const invoice = await createInvoice.mutateAsync({
         clientId: clientId || undefined,
@@ -1131,7 +1521,9 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
           unitPrice: l.unitPrice,
         })),
       });
-      toast.success(`Invoice created — ${(invoice as Invoice).invoiceNumber ?? ''}`);
+      toast.success(
+        `Invoice created — ${(invoice as Invoice).invoiceNumber ?? ''}`,
+      );
       onClose();
     } catch (err) {
       toast.error(getApiErrorMessage(err, 'Could not create invoice'));
@@ -1147,11 +1539,15 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
             New Invoice
           </DialogTitle>
           <DialogDescription>
-            Create a draft invoice. You can review it before issuing to the client.
+            Create a draft invoice. You can review it before issuing to the
+            client.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(e) => void handleSubmit(e)} className="space-y-5 px-6 pb-2">
+        <form
+          onSubmit={(e) => void handleSubmit(e)}
+          className="space-y-5 px-6 pb-2"
+        >
           {/* Client + currency */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
@@ -1163,17 +1559,30 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
                 <SelectContent>
                   <SelectItem value="">No client (internal)</SelectItem>
                   {clients.map((c) => (
-                    <SelectItem key={c.id} value={c.id}>{c.companyName}</SelectItem>
+                    <SelectItem key={c.id} value={c.id}>
+                      {c.companyName}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-sm">Currency <span className="text-destructive">*</span></Label>
-              <Select value={currency} onValueChange={(v) => setCurrency(v as Currency)}>
-                <SelectTrigger className="h-9 text-sm"><SelectValue /></SelectTrigger>
+              <Label className="text-sm">
+                Currency <span className="text-destructive">*</span>
+              </Label>
+              <Select
+                value={currency}
+                onValueChange={(v) => setCurrency(v as Currency)}
+              >
+                <SelectTrigger className="h-9 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
-                  {CURRENCIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                  {CURRENCIES.map((c) => (
+                    <SelectItem key={c} value={c}>
+                      {c}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -1183,22 +1592,40 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label className="text-sm">Tax rate (%)</Label>
-              <Input type="number" min={0} max={100} step={0.01} value={taxRate}
-                onChange={(e) => setTaxRate(Number(e.target.value))} className="h-9 text-sm" />
+              <Input
+                type="number"
+                min={0}
+                max={100}
+                step={0.01}
+                value={taxRate}
+                onChange={(e) => setTaxRate(Number(e.target.value))}
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Due date</Label>
-              <Input type="date" value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)} className="h-9 text-sm" />
+              <Input
+                type="date"
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
           {/* Line items */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label className="text-sm">Line items <span className="text-destructive">*</span></Label>
-              <Button type="button" size="sm" variant="outline"
-                leftIcon={<Plus className="h-3.5 w-3.5" />} onClick={addLine}>
+              <Label className="text-sm">
+                Line items <span className="text-destructive">*</span>
+              </Label>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                leftIcon={<Plus className="h-3.5 w-3.5" />}
+                onClick={addLine}
+              >
                 Add line
               </Button>
             </div>
@@ -1206,10 +1633,18 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
               <table className="w-full text-sm">
                 <thead className="bg-muted/40 border-b border-border">
                   <tr>
-                    <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Description</th>
-                    <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground w-20">Qty</th>
-                    <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground w-32">Unit Price</th>
-                    <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground w-28">Total</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">
+                      Description
+                    </th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground w-20">
+                      Qty
+                    </th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground w-32">
+                      Unit Price
+                    </th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-muted-foreground w-28">
+                      Total
+                    </th>
                     <th className="w-8" />
                   </tr>
                 </thead>
@@ -1217,29 +1652,61 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
                   {lines.map((line) => {
                     const lineTotal = line.quantity * line.unitPrice;
                     return (
-                      <tr key={line.id} className="border-b border-border last:border-0">
+                      <tr
+                        key={line.id}
+                        className="border-b border-border last:border-0"
+                      >
                         <td className="px-3 py-2">
-                          <Input value={line.description}
-                            onChange={(e) => updateLine(line.id, { description: e.target.value })}
-                            placeholder="Service description…" className="h-7 text-xs border-0 bg-transparent p-0 shadow-none focus:ring-0" />
+                          <Input
+                            value={line.description}
+                            onChange={(e) =>
+                              updateLine(line.id, {
+                                description: e.target.value,
+                              })
+                            }
+                            placeholder="Service description…"
+                            className="h-7 text-xs border-0 bg-transparent p-0 shadow-none focus:ring-0"
+                          />
                         </td>
                         <td className="px-3 py-2">
-                          <Input type="number" min={0.0001} step={0.01} value={line.quantity}
-                            onChange={(e) => updateLine(line.id, { quantity: Number(e.target.value) })}
-                            className="h-7 w-16 text-right text-xs ml-auto" />
+                          <Input
+                            type="number"
+                            min={0.0001}
+                            step={0.01}
+                            value={line.quantity}
+                            onChange={(e) =>
+                              updateLine(line.id, {
+                                quantity: Number(e.target.value),
+                              })
+                            }
+                            className="h-7 w-16 text-right text-xs ml-auto"
+                          />
                         </td>
                         <td className="px-3 py-2">
-                          <Input type="number" min={0} step={0.01} value={line.unitPrice || ''}
-                            onChange={(e) => updateLine(line.id, { unitPrice: Number(e.target.value) })}
-                            placeholder="0.00" className="h-7 w-24 text-right text-xs ml-auto" />
+                          <Input
+                            type="number"
+                            min={0}
+                            step={0.01}
+                            value={line.unitPrice || ''}
+                            onChange={(e) =>
+                              updateLine(line.id, {
+                                unitPrice: Number(e.target.value),
+                              })
+                            }
+                            placeholder="0.00"
+                            className="h-7 w-24 text-right text-xs ml-auto"
+                          />
                         </td>
                         <td className="px-3 py-2 text-right tabular-nums font-semibold text-xs">
                           {formatAmount(lineTotal, currency)}
                         </td>
                         <td className="px-3 py-2">
-                          <button type="button" onClick={() => removeLine(line.id)}
+                          <button
+                            type="button"
+                            onClick={() => removeLine(line.id)}
                             disabled={lines.length === 1}
-                            className="text-muted-foreground hover:text-destructive disabled:opacity-30">
+                            className="text-muted-foreground hover:text-destructive disabled:opacity-30"
+                          >
                             <X className="h-3.5 w-3.5" />
                           </button>
                         </td>
@@ -1255,27 +1722,47 @@ function CreateInvoiceDialog({ open, onClose }: { open: boolean; onClose: () => 
           <div className="rounded-lg border border-border bg-muted/20 p-4 space-y-2 text-sm">
             <FinRow label="Subtotal" value={formatAmount(subtotal, currency)} />
             {taxRate > 0 && (
-              <FinRow label={`Tax (${taxRate}%)`} value={formatAmount(taxAmount, currency)} />
+              <FinRow
+                label={`Tax (${taxRate}%)`}
+                value={formatAmount(taxAmount, currency)}
+              />
             )}
             <div className="border-t border-border pt-2">
-              <FinRow label="Invoice Total" value={formatAmount(total, currency)} bold />
+              <FinRow
+                label="Invoice Total"
+                value={formatAmount(total, currency)}
+                bold
+              />
             </div>
           </div>
 
           {/* Notes */}
           <div className="space-y-1.5">
             <Label className="text-sm">Notes (optional)</Label>
-            <textarea value={notes} onChange={(e) => setNotes(e.target.value)}
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
               placeholder="Payment terms, bank details, or internal notes…"
-              rows={2} maxLength={1000}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none" />
+              rows={2}
+              maxLength={1000}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none"
+            />
           </div>
         </form>
 
         <DialogFooter className="flex-wrap gap-2">
-          <Button variant="outline" disabled={createInvoice.isPending} onClick={onClose}>Cancel</Button>
-          <Button variant="brand" loading={createInvoice.isPending}
-            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}>
+          <Button
+            variant="outline"
+            disabled={createInvoice.isPending}
+            onClick={onClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="brand"
+            loading={createInvoice.isPending}
+            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}
+          >
             Create draft · {formatAmount(total, currency)}
           </Button>
         </DialogFooter>

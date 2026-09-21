@@ -53,8 +53,7 @@ export function useChangeMemberRole(orgId: string) {
       patch(`/organizations/${orgId}/members/${userId}/role`, { role }).then(
         (r) => r.data,
       ),
-    onSuccess: () =>
-      qc.invalidateQueries({ queryKey: QK.orgs.members(orgId) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: QK.orgs.members(orgId) }),
   });
 }
 

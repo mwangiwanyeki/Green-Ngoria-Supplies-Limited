@@ -100,18 +100,24 @@ const LIFECYCLE_STAGES = [
 
 /** Mirror of the server-side STATUS_TRANSITIONS map — drives the stage select. */
 const PROJECT_TRANSITIONS: Record<string, string[]> = {
-  AWARDED:       ['PLANNING', 'ON_HOLD', 'CANCELLED'],
-  PLANNING:      ['ENGINEERING', 'ON_HOLD', 'CANCELLED'],
-  ENGINEERING:   ['PROCUREMENT', 'PLANNING', 'ON_HOLD'],
-  PROCUREMENT:   ['CONSTRUCTION', 'ENGINEERING', 'ON_HOLD'],
-  CONSTRUCTION:  ['INSTALLATION', 'PROCUREMENT', 'ON_HOLD'],
-  INSTALLATION:  ['COMMISSIONING', 'CONSTRUCTION', 'ON_HOLD'],
+  AWARDED: ['PLANNING', 'ON_HOLD', 'CANCELLED'],
+  PLANNING: ['ENGINEERING', 'ON_HOLD', 'CANCELLED'],
+  ENGINEERING: ['PROCUREMENT', 'PLANNING', 'ON_HOLD'],
+  PROCUREMENT: ['CONSTRUCTION', 'ENGINEERING', 'ON_HOLD'],
+  CONSTRUCTION: ['INSTALLATION', 'PROCUREMENT', 'ON_HOLD'],
+  INSTALLATION: ['COMMISSIONING', 'CONSTRUCTION', 'ON_HOLD'],
   COMMISSIONING: ['HANDOVER', 'INSTALLATION', 'ON_HOLD'],
-  HANDOVER:      ['SUPPORT', 'COMMISSIONING'],
-  SUPPORT:       ['COMPLETED', 'ON_HOLD'],
-  COMPLETED:     [],
-  ON_HOLD:       ['PLANNING', 'ENGINEERING', 'PROCUREMENT', 'CONSTRUCTION', 'CANCELLED'],
-  CANCELLED:     [],
+  HANDOVER: ['SUPPORT', 'COMMISSIONING'],
+  SUPPORT: ['COMPLETED', 'ON_HOLD'],
+  COMPLETED: [],
+  ON_HOLD: [
+    'PLANNING',
+    'ENGINEERING',
+    'PROCUREMENT',
+    'CONSTRUCTION',
+    'CANCELLED',
+  ],
+  CANCELLED: [],
 };
 
 /** Matches `ProjectType` in prisma/schema.prisma. */
@@ -358,7 +364,11 @@ function buildColumns(handlers: RowHandlers): ColumnDef<Project>[] {
         const value = row.original.budget ?? row.original.budgetAmount;
         return value ? (
           <span className="font-semibold text-teal-600 dark:text-teal-400 tabular-nums">
-            {formatCurrency(Number(value), row.original.currency || 'USD', true)}
+            {formatCurrency(
+              Number(value),
+              row.original.currency || 'USD',
+              true,
+            )}
           </span>
         ) : (
           '—'
@@ -432,33 +442,62 @@ export function AdminProjectsList() {
   };
 
   const handleExport = () => {
-    if (!projects.length) { toast.error('No data to export'); return; }
-    const headers = ['Project #', 'Name', 'Client', 'Type', 'Status', 'Location', 'Country', 'Mineral', 'Contract Value', 'Budget', 'Currency', 'Start Date', 'Target End', 'Manager', 'Created'];
+    if (!projects.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Project #',
+      'Name',
+      'Client',
+      'Type',
+      'Status',
+      'Location',
+      'Country',
+      'Mineral',
+      'Contract Value',
+      'Budget',
+      'Currency',
+      'Start Date',
+      'Target End',
+      'Manager',
+      'Created',
+    ];
     const csv = [
       headers.join(','),
-      ...projects.map((p) => [
-        p.projectNumber,
-        p.name,
-        p.client?.companyName ?? '',
-        p.type ?? '',
-        p.status,
-        p.location ?? '',
-        p.country ?? '',
-        p.mineralType ?? '',
-        p.contractValue != null ? Number(p.contractValue).toFixed(2) : '',
-        (p.budgetAmount ?? p.budget) != null ? Number(p.budgetAmount ?? p.budget).toFixed(2) : '',
-        p.currency,
-        p.startDate ? new Date(p.startDate).toLocaleDateString('en-KE') : '',
-        p.targetEndDate ? new Date(p.targetEndDate).toLocaleDateString('en-KE') : '',
-        p.manager ? `${p.manager.firstName} ${p.manager.lastName}` : '',
-        new Date(p.createdAt).toLocaleDateString('en-KE'),
-      ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')),
+      ...projects.map((p) =>
+        [
+          p.projectNumber,
+          p.name,
+          p.client?.companyName ?? '',
+          p.type ?? '',
+          p.status,
+          p.location ?? '',
+          p.country ?? '',
+          p.mineralType ?? '',
+          p.contractValue != null ? Number(p.contractValue).toFixed(2) : '',
+          (p.budgetAmount ?? p.budget) != null
+            ? Number(p.budgetAmount ?? p.budget).toFixed(2)
+            : '',
+          p.currency,
+          p.startDate ? new Date(p.startDate).toLocaleDateString('en-KE') : '',
+          p.targetEndDate
+            ? new Date(p.targetEndDate).toLocaleDateString('en-KE')
+            : '',
+          p.manager ? `${p.manager.firstName} ${p.manager.lastName}` : '',
+          new Date(p.createdAt).toLocaleDateString('en-KE'),
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
     ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `projects-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `projects-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 
@@ -501,9 +540,12 @@ export function AdminProjectsList() {
       setEditing(null);
       reset(EMPTY_PROJECT);
     } catch (error) {
-      toast.error(editing ? 'Could not update project' : 'Could not create project', {
-        description: getApiErrorMessage(error),
-      });
+      toast.error(
+        editing ? 'Could not update project' : 'Could not create project',
+        {
+          description: getApiErrorMessage(error),
+        },
+      );
     }
   };
 
@@ -692,7 +734,10 @@ export function AdminProjectsList() {
                 : 'Start a new mining plant delivery project from an awarded contract.'}
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={(event) => void handleSubmit(onSubmit)(event)} noValidate>
+          <form
+            onSubmit={(event) => void handleSubmit(onSubmit)(event)}
+            noValidate
+          >
             <div className="grid gap-4 p-6">
               <div className="space-y-1.5">
                 <Label htmlFor="project-name">Project name *</Label>
@@ -890,7 +935,13 @@ export function AdminProjectsList() {
                 onChange={(event) => setNextStage(event.target.value)}
               >
                 <option value="">Select stage…</option>
-                {(PROJECT_TRANSITIONS[advancing?.status ?? ''] ?? [...LIFECYCLE_STAGES, 'ON_HOLD', 'CANCELLED']).map((stage) => (
+                {(
+                  PROJECT_TRANSITIONS[advancing?.status ?? ''] ?? [
+                    ...LIFECYCLE_STAGES,
+                    'ON_HOLD',
+                    'CANCELLED',
+                  ]
+                ).map((stage) => (
                   <option key={stage} value={stage}>
                     {stage.replace(/_/g, ' ')}
                   </option>

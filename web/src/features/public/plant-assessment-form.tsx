@@ -34,10 +34,22 @@ const schema = z.object({
   contactEmail: z.string().email('Valid contact email is required'),
   contactPhone: z.string().min(6, 'Valid contact phone number is required'),
   projectName: z.string().optional(),
-  miningLocation: z.string().min(2, 'Mining location or concession area is required'),
+  miningLocation: z
+    .string()
+    .min(2, 'Mining location or concession area is required'),
 
   // Ore & Mineral context
-  mineralType: z.enum(['GOLD', 'SILVER', 'GEMSTONE', 'COPPER', 'IRON_ORE', 'BASE_METALS', 'OTHER']).default('GOLD'),
+  mineralType: z
+    .enum([
+      'GOLD',
+      'SILVER',
+      'GEMSTONE',
+      'COPPER',
+      'IRON_ORE',
+      'BASE_METALS',
+      'OTHER',
+    ])
+    .default('GOLD'),
   estimatedTph: z.coerce.number().min(0.1, 'Estimated throughput required'),
   oreGrade: z.coerce.number().optional(),
   oreMineralogy: z.string().optional(),
@@ -110,7 +122,12 @@ export function PlantAssessmentForm() {
   const handleNextStep = (e: React.MouseEvent) => {
     e.preventDefault();
     if (step === 1) {
-      if (!formValues.clientName || !formValues.contactEmail || !formValues.contactPhone || !formValues.miningLocation) {
+      if (
+        !formValues.clientName ||
+        !formValues.contactEmail ||
+        !formValues.contactPhone ||
+        !formValues.miningLocation
+      ) {
         toast.error('Please complete all required contact & location fields');
         return;
       }
@@ -140,12 +157,24 @@ export function PlantAssessmentForm() {
         oreDescription: data.oreDescription,
         hasExistingPlant: data.hasExistingPlant,
         existingPlantDesc: data.existingPlantDesc,
-        existingCapacity: data.existingCapacity ? Number(data.existingCapacity) : undefined,
-        crushingData: data.crushingType ? { type: data.crushingType } : undefined,
-        grindingData: data.grindingType ? { type: data.grindingType } : undefined,
-        leachingData: data.leachingType ? { type: data.leachingType } : undefined,
-        currentRecovery: data.currentRecovery ? Number(data.currentRecovery) : undefined,
-        targetRecovery: data.targetRecovery ? Number(data.targetRecovery) : undefined,
+        existingCapacity: data.existingCapacity
+          ? Number(data.existingCapacity)
+          : undefined,
+        crushingData: data.crushingType
+          ? { type: data.crushingType }
+          : undefined,
+        grindingData: data.grindingType
+          ? { type: data.grindingType }
+          : undefined,
+        leachingData: data.leachingType
+          ? { type: data.leachingType }
+          : undefined,
+        currentRecovery: data.currentRecovery
+          ? Number(data.currentRecovery)
+          : undefined,
+        targetRecovery: data.targetRecovery
+          ? Number(data.targetRecovery)
+          : undefined,
         operationalProblems: data.operationalProblems,
         environmentalConstraints: data.environmentalConstraints,
         hseConstraints: data.hseConstraints,
@@ -154,12 +183,14 @@ export function PlantAssessmentForm() {
         company_website: data.company_website,
       };
 
-      const res = await post<{ reference: string; id: string; submittedAt: string }>(
-        '/public/plant-assessment',
-        payload,
-      );
+      const res = await post<{
+        reference: string;
+        id: string;
+        submittedAt: string;
+      }>('/public/plant-assessment', payload);
 
-      const ref = res?.data?.reference || `TPA-${new Date().getFullYear()}-0001`;
+      const ref =
+        res?.data?.reference || `TPA-${new Date().getFullYear()}-0001`;
       const id = res?.data?.id || '';
       const submittedAt = res?.data?.submittedAt || new Date().toISOString();
 
@@ -175,7 +206,9 @@ export function PlantAssessmentForm() {
       });
     } catch (err: any) {
       toast.error('Submission encountered an error', {
-        description: err?.message || 'Please verify your details and try again or contact engineering directly.',
+        description:
+          err?.message ||
+          'Please verify your details and try again or contact engineering directly.',
       });
     }
   };
@@ -211,32 +244,55 @@ export function PlantAssessmentForm() {
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-xl border border-hairline bg-surface-sunken p-4">
-            <span className="text-xs text-muted-foreground">Client / Concession</span>
-            <p className="mt-1 font-semibold text-foreground">{submissionResult.data.clientName}</p>
-            <p className="text-xs text-muted-foreground">{submissionResult.data.miningLocation}</p>
-          </div>
-          <div className="rounded-xl border border-hairline bg-surface-sunken p-4">
-            <span className="text-xs text-muted-foreground">Target Commodity & Rate</span>
+            <span className="text-xs text-muted-foreground">
+              Client / Concession
+            </span>
             <p className="mt-1 font-semibold text-foreground">
-              {submissionResult.data.mineralType} · {submissionResult.data.estimatedTph} TPH
+              {submissionResult.data.clientName}
             </p>
             <p className="text-xs text-muted-foreground">
-              Grade: {submissionResult.data.oreGrade ? `${submissionResult.data.oreGrade} g/t` : 'TBD'}
+              {submissionResult.data.miningLocation}
             </p>
           </div>
           <div className="rounded-xl border border-hairline bg-surface-sunken p-4">
-            <span className="text-xs text-muted-foreground">Recovery Objective</span>
+            <span className="text-xs text-muted-foreground">
+              Target Commodity & Rate
+            </span>
+            <p className="mt-1 font-semibold text-foreground">
+              {submissionResult.data.mineralType} ·{' '}
+              {submissionResult.data.estimatedTph} TPH
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Grade:{' '}
+              {submissionResult.data.oreGrade
+                ? `${submissionResult.data.oreGrade} g/t`
+                : 'TBD'}
+            </p>
+          </div>
+          <div className="rounded-xl border border-hairline bg-surface-sunken p-4">
+            <span className="text-xs text-muted-foreground">
+              Recovery Objective
+            </span>
             <p className="mt-1 font-semibold text-foreground">
               Target: {submissionResult.data.targetRecovery || 90}%
             </p>
             <p className="text-xs text-muted-foreground">
-              Current: {submissionResult.data.currentRecovery ? `${submissionResult.data.currentRecovery}%` : 'N/A'}
+              Current:{' '}
+              {submissionResult.data.currentRecovery
+                ? `${submissionResult.data.currentRecovery}%`
+                : 'N/A'}
             </p>
           </div>
           <div className="rounded-xl border border-hairline bg-surface-sunken p-4">
-            <span className="text-xs text-muted-foreground">Review Turnaround</span>
-            <p className="mt-1 font-semibold text-brand-700 dark:text-brand-400">24 – 48 Hours</p>
-            <p className="text-xs text-muted-foreground">Engineering Desk Review</p>
+            <span className="text-xs text-muted-foreground">
+              Review Turnaround
+            </span>
+            <p className="mt-1 font-semibold text-brand-700 dark:text-brand-400">
+              24 – 48 Hours
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Engineering Desk Review
+            </p>
           </div>
         </div>
 
@@ -251,7 +307,10 @@ export function PlantAssessmentForm() {
                 1
               </span>
               <span>
-                <strong>Desk Metallurgical Assessment</strong>: Our senior mineral processing engineers evaluate your ore grade, mineralogy, and target throughput to determine optimal flowsheet configuration.
+                <strong>Desk Metallurgical Assessment</strong>: Our senior
+                mineral processing engineers evaluate your ore grade,
+                mineralogy, and target throughput to determine optimal flowsheet
+                configuration.
               </span>
             </li>
             <li className="flex items-start gap-2.5">
@@ -259,7 +318,11 @@ export function PlantAssessmentForm() {
                 2
               </span>
               <span>
-                <strong>Direct Engineering Contact</strong>: A project engineer will contact <strong>{submissionResult.data.contactEmail}</strong> ({submissionResult.data.contactPhone}) to discuss site visit logistics and sample assays.
+                <strong>Direct Engineering Contact</strong>: A project engineer
+                will contact{' '}
+                <strong>{submissionResult.data.contactEmail}</strong> (
+                {submissionResult.data.contactPhone}) to discuss site visit
+                logistics and sample assays.
               </span>
             </li>
             <li className="flex items-start gap-2.5">
@@ -267,7 +330,9 @@ export function PlantAssessmentForm() {
                 3
               </span>
               <span>
-                <strong>Formal Engineering Proposal</strong>: Issuance of preliminary equipment sizing, mass balance calculations, and turnkey Capex/Opex budget.
+                <strong>Formal Engineering Proposal</strong>: Issuance of
+                preliminary equipment sizing, mass balance calculations, and
+                turnkey Capex/Opex budget.
               </span>
             </li>
           </ol>
@@ -275,7 +340,8 @@ export function PlantAssessmentForm() {
 
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-hairline pt-6">
           <p className="text-xs text-muted-foreground">
-            Need urgent engineering assistance? Call Managing Director Office at <strong>+254 722 724 676</strong>.
+            Need urgent engineering assistance? Call Managing Director Office at{' '}
+            <strong>+254 722 724 676</strong>.
           </p>
           <div className="flex gap-3">
             <Button
@@ -370,13 +436,16 @@ export function PlantAssessmentForm() {
                 Step 1: Client, Project &amp; Concession Profile
               </h3>
               <p className="text-xs text-muted-foreground">
-                Enter your commercial organization and mining concession coordinates for engineering intake.
+                Enter your commercial organization and mining concession
+                coordinates for engineering intake.
               </p>
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <Label htmlFor="clientName" required>Company / Operator Name</Label>
+                <Label htmlFor="clientName" required>
+                  Company / Operator Name
+                </Label>
                 <Input
                   id="clientName"
                   placeholder="e.g. Acacia Mining Resources Ltd"
@@ -395,7 +464,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div>
-                <Label htmlFor="contactEmail" required>Official Contact Email</Label>
+                <Label htmlFor="contactEmail" required>
+                  Official Contact Email
+                </Label>
                 <Input
                   id="contactEmail"
                   type="email"
@@ -406,7 +477,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div>
-                <Label htmlFor="contactPhone" required>Direct Phone Number / WhatsApp</Label>
+                <Label htmlFor="contactPhone" required>
+                  Direct Phone Number / WhatsApp
+                </Label>
                 <Input
                   id="contactPhone"
                   placeholder="e.g. +254 711 000 000"
@@ -425,7 +498,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div>
-                <Label htmlFor="miningLocation" required>Mining Location / Concession</Label>
+                <Label htmlFor="miningLocation" required>
+                  Mining Location / Concession
+                </Label>
                 <Input
                   id="miningLocation"
                   placeholder="e.g. Bondo, Siaya County, Kenya"
@@ -464,20 +539,25 @@ export function PlantAssessmentForm() {
                 Step 2: Mineral Type &amp; Ore Metallurgy
               </h3>
               <p className="text-xs text-muted-foreground">
-                Define the deposit characteristics to establish the crushing, grinding, and leaching kinetics.
+                Define the deposit characteristics to establish the crushing,
+                grinding, and leaching kinetics.
               </p>
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <Label htmlFor="mineralType" required>Target Commodity</Label>
+                <Label htmlFor="mineralType" required>
+                  Target Commodity
+                </Label>
                 <select
                   id="mineralType"
                   className="flex h-11 w-full rounded-md border border-input bg-card px-3.5 py-2 text-sm shadow-hairline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...register('mineralType')}
                 >
                   <option value="GOLD">Gold (Au) — Primary Focus</option>
-                  <option value="GEMSTONE">Gemstones (Tanzanite, Tsavorite, Ruby)</option>
+                  <option value="GEMSTONE">
+                    Gemstones (Tanzanite, Tsavorite, Ruby)
+                  </option>
                   <option value="COPPER">Copper (Cu)</option>
                   <option value="SILVER">Silver (Ag)</option>
                   <option value="BASE_METALS">Base Metals</option>
@@ -487,7 +567,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div>
-                <Label htmlFor="estimatedTph" required>Target Plant Throughput (TPH)</Label>
+                <Label htmlFor="estimatedTph" required>
+                  Target Plant Throughput (TPH)
+                </Label>
                 <Input
                   id="estimatedTph"
                   type="number"
@@ -499,7 +581,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div>
-                <Label htmlFor="oreGrade">Estimated Head Grade (g/t Au or %)</Label>
+                <Label htmlFor="oreGrade">
+                  Estimated Head Grade (g/t Au or %)
+                </Label>
                 <Input
                   id="oreGrade"
                   type="number"
@@ -510,7 +594,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div>
-                <Label htmlFor="oreHardness">Ore Hardness / Bond Work Index (kWh/t)</Label>
+                <Label htmlFor="oreHardness">
+                  Ore Hardness / Bond Work Index (kWh/t)
+                </Label>
                 <Input
                   id="oreHardness"
                   placeholder="e.g. Medium-Hard Quartz (14.2 kWh/t)"
@@ -519,7 +605,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div className="sm:col-span-2">
-                <Label htmlFor="oreMineralogy">Ore Mineralogy &amp; Host Rock</Label>
+                <Label htmlFor="oreMineralogy">
+                  Ore Mineralogy &amp; Host Rock
+                </Label>
                 <Input
                   id="oreMineralogy"
                   placeholder="e.g. Quartz vein with free gold, minor pyrite and arsenopyrite, low clay content"
@@ -528,7 +616,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div className="sm:col-span-2">
-                <Label htmlFor="oreDescription">Geological Description &amp; Deposit Background</Label>
+                <Label htmlFor="oreDescription">
+                  Geological Description &amp; Deposit Background
+                </Label>
                 <Textarea
                   id="oreDescription"
                   rows={3}
@@ -548,7 +638,8 @@ export function PlantAssessmentForm() {
                 Step 3: Processing Plant Infrastructure &amp; Circuit Scope
               </h3>
               <p className="text-xs text-muted-foreground">
-                State whether this is a greenfields project or an optimization/expansion of an existing facility.
+                State whether this is a greenfields project or an
+                optimization/expansion of an existing facility.
               </p>
             </div>
 
@@ -564,7 +655,8 @@ export function PlantAssessmentForm() {
                     This project involves an existing processing plant
                   </span>
                   <p className="text-xs text-muted-foreground">
-                    Check if you currently have operating crushers, mills, or leach circuits on site.
+                    Check if you currently have operating crushers, mills, or
+                    leach circuits on site.
                   </p>
                 </div>
               </label>
@@ -573,7 +665,9 @@ export function PlantAssessmentForm() {
             {formValues.hasExistingPlant && (
               <div className="grid gap-5 sm:grid-cols-2 animate-fadeIn">
                 <div>
-                  <Label htmlFor="existingCapacity">Current Operating Capacity (TPH)</Label>
+                  <Label htmlFor="existingCapacity">
+                    Current Operating Capacity (TPH)
+                  </Label>
                   <Input
                     id="existingCapacity"
                     type="number"
@@ -582,7 +676,9 @@ export function PlantAssessmentForm() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="existingPlantDesc">Existing Equipment Summary</Label>
+                  <Label htmlFor="existingPlantDesc">
+                    Existing Equipment Summary
+                  </Label>
                   <Input
                     id="existingPlantDesc"
                     placeholder="e.g. Jaw crusher, 1.2m ball mill, simple sluice boxes"
@@ -594,48 +690,84 @@ export function PlantAssessmentForm() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <Label htmlFor="crushingType">Crushing Circuit Requirement</Label>
+                <Label htmlFor="crushingType">
+                  Crushing Circuit Requirement
+                </Label>
                 <select
                   id="crushingType"
                   className="flex h-11 w-full rounded-md border border-input bg-card px-3.5 py-2 text-sm shadow-hairline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...register('crushingType')}
                 >
-                  <option value="Single-Stage Primary Jaw">Single-Stage Primary Jaw Crusher</option>
-                  <option value="Two-Stage Jaw + Secondary Cone">Two-Stage (Jaw + Secondary Cone)</option>
-                  <option value="Three-Stage Closed Circuit">Three-Stage Closed Crushing Circuit</option>
-                  <option value="Mobile Crushing Train">Mobile Diesel Crushing Train</option>
-                  <option value="Client Supplied">Client Already Has Crushing</option>
+                  <option value="Single-Stage Primary Jaw">
+                    Single-Stage Primary Jaw Crusher
+                  </option>
+                  <option value="Two-Stage Jaw + Secondary Cone">
+                    Two-Stage (Jaw + Secondary Cone)
+                  </option>
+                  <option value="Three-Stage Closed Circuit">
+                    Three-Stage Closed Crushing Circuit
+                  </option>
+                  <option value="Mobile Crushing Train">
+                    Mobile Diesel Crushing Train
+                  </option>
+                  <option value="Client Supplied">
+                    Client Already Has Crushing
+                  </option>
                 </select>
               </div>
 
               <div>
-                <Label htmlFor="grindingType">Milling &amp; Grinding Circuit</Label>
+                <Label htmlFor="grindingType">
+                  Milling &amp; Grinding Circuit
+                </Label>
                 <select
                   id="grindingType"
                   className="flex h-11 w-full rounded-md border border-input bg-card px-3.5 py-2 text-sm shadow-hairline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...register('grindingType')}
                 >
-                  <option value="Continuous Overflow Ball Mill">Continuous Overflow Ball Mill</option>
-                  <option value="Grate Discharge Ball Mill">Grate Discharge Ball Mill</option>
-                  <option value="Closed Circuit with Hydrocyclones">Closed Circuit with Hydrocyclone Pack</option>
-                  <option value="Rod Mill Primary + Ball Mill Secondary">Two-Stage Rod &amp; Ball Milling</option>
-                  <option value="To Be Determined by Audit">To Be Determined by Metallurgical Audit</option>
+                  <option value="Continuous Overflow Ball Mill">
+                    Continuous Overflow Ball Mill
+                  </option>
+                  <option value="Grate Discharge Ball Mill">
+                    Grate Discharge Ball Mill
+                  </option>
+                  <option value="Closed Circuit with Hydrocyclones">
+                    Closed Circuit with Hydrocyclone Pack
+                  </option>
+                  <option value="Rod Mill Primary + Ball Mill Secondary">
+                    Two-Stage Rod &amp; Ball Milling
+                  </option>
+                  <option value="To Be Determined by Audit">
+                    To Be Determined by Metallurgical Audit
+                  </option>
                 </select>
               </div>
 
               <div>
-                <Label htmlFor="leachingType">Gold Recovery &amp; Leaching Method</Label>
+                <Label htmlFor="leachingType">
+                  Gold Recovery &amp; Leaching Method
+                </Label>
                 <select
                   id="leachingType"
                   className="flex h-11 w-full rounded-md border border-input bg-card px-3.5 py-2 text-sm shadow-hairline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...register('leachingType')}
                 >
-                  <option value="Carbon-in-Leach (CIL) Agitation Tanks">Carbon-in-Leach (CIL) Agitation Tank Farm</option>
-                  <option value="Carbon-in-Pulp (CIP) Plant">Carbon-in-Pulp (CIP) Counter-Current Plant</option>
-                  <option value="Knelson Centrifugal Gravity Only">Knelson Centrifugal Gravity Only (Non-Cyanide)</option>
+                  <option value="Carbon-in-Leach (CIL) Agitation Tanks">
+                    Carbon-in-Leach (CIL) Agitation Tank Farm
+                  </option>
+                  <option value="Carbon-in-Pulp (CIP) Plant">
+                    Carbon-in-Pulp (CIP) Counter-Current Plant
+                  </option>
+                  <option value="Knelson Centrifugal Gravity Only">
+                    Knelson Centrifugal Gravity Only (Non-Cyanide)
+                  </option>
                   <option value="Heap Leaching Pad">Heap Leaching Pad</option>
-                  <option value="Vat Leaching System">Vat Leaching Agitation System</option>
-                  <option value="Flotation Circuit">Flotation Circuit for Sulfide Concentrates</option>
+                  <option value="Vat Leaching System">
+                    Vat Leaching Agitation System
+                  </option>
+                  <option value="Flotation Circuit">
+                    Flotation Circuit for Sulfide Concentrates
+                  </option>
                 </select>
               </div>
 
@@ -646,10 +778,18 @@ export function PlantAssessmentForm() {
                   className="flex h-11 w-full rounded-md border border-input bg-card px-3.5 py-2 text-sm shadow-hairline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   {...register('gravityType')}
                 >
-                  <option value="Knelson Centrifugal Concentrator">Knelson Centrifugal Concentrator</option>
-                  <option value="Gemeni Shaking Table">Gemeni Shaking Table</option>
-                  <option value="Spiral Concentrators">Heavy Mineral Spiral Concentrators</option>
-                  <option value="High-Recovery Sluice System">High-Recovery Continuous Sluices</option>
+                  <option value="Knelson Centrifugal Concentrator">
+                    Knelson Centrifugal Concentrator
+                  </option>
+                  <option value="Gemeni Shaking Table">
+                    Gemeni Shaking Table
+                  </option>
+                  <option value="Spiral Concentrators">
+                    Heavy Mineral Spiral Concentrators
+                  </option>
+                  <option value="High-Recovery Sluice System">
+                    High-Recovery Continuous Sluices
+                  </option>
                 </select>
               </div>
             </div>
@@ -664,13 +804,16 @@ export function PlantAssessmentForm() {
                 Step 4: Recovery Targets &amp; Operational Objectives
               </h3>
               <p className="text-xs text-muted-foreground">
-                Set recovery benchmarks and operational constraints for our engineering scoping review.
+                Set recovery benchmarks and operational constraints for our
+                engineering scoping review.
               </p>
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <Label htmlFor="currentRecovery">Current Estimated Recovery Rate (%)</Label>
+                <Label htmlFor="currentRecovery">
+                  Current Estimated Recovery Rate (%)
+                </Label>
                 <Input
                   id="currentRecovery"
                   type="number"
@@ -681,7 +824,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div>
-                <Label htmlFor="targetRecovery">Target Engineering Recovery Rate (%)</Label>
+                <Label htmlFor="targetRecovery">
+                  Target Engineering Recovery Rate (%)
+                </Label>
                 <Input
                   id="targetRecovery"
                   type="number"
@@ -692,7 +837,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div className="sm:col-span-2">
-                <Label htmlFor="operationalProblems">Current Operational Bottlenecks or Problems</Label>
+                <Label htmlFor="operationalProblems">
+                  Current Operational Bottlenecks or Problems
+                </Label>
                 <Textarea
                   id="operationalProblems"
                   rows={2}
@@ -702,7 +849,9 @@ export function PlantAssessmentForm() {
               </div>
 
               <div className="sm:col-span-2">
-                <Label htmlFor="clientObjectives">Primary Objectives &amp; Project Timeline</Label>
+                <Label htmlFor="clientObjectives">
+                  Primary Objectives &amp; Project Timeline
+                </Label>
                 <Textarea
                   id="clientObjectives"
                   rows={3}
@@ -714,9 +863,14 @@ export function PlantAssessmentForm() {
 
             {/* Summary Review Panel */}
             <div className="rounded-xl border border-brand-500/30 bg-surface-sunken p-4 text-xs leading-6 text-muted-foreground">
-              <span className="font-bold text-foreground">Ready for Submission:</span>
+              <span className="font-bold text-foreground">
+                Ready for Submission:
+              </span>
               <p className="mt-1">
-                Submitting this assessment registers an official technical opportunity in System 4 and alerts our engineering team. An engineer will conduct an initial desk review within 24 to 48 hours.
+                Submitting this assessment registers an official technical
+                opportunity in System 4 and alerts our engineering team. An
+                engineer will conduct an initial desk review within 24 to 48
+                hours.
               </p>
             </div>
           </div>

@@ -264,21 +264,44 @@ export function AdminMiningSitesList() {
   };
 
   const handleExport = () => {
-    if (!items.length) { toast.error('No data to export'); return; }
-    const headers = ['Name', 'Country', 'County', 'Minerals', 'Coordinates', 'Projects', 'Assessments', 'Status'];
-    const csv = [headers.join(','), ...items.map((s) => [
-      s.name, s.country ?? '', s.county ?? '',
-      (s.mineralTypes ?? []).join('; '),
-      s.coordinates ?? '',
-      s._count?.projects ?? 0,
-      s._count?.assessments ?? 0,
-      s.isActive ? 'Active' : 'Inactive',
-    ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(','))].join('\n');
+    if (!items.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Name',
+      'Country',
+      'County',
+      'Minerals',
+      'Coordinates',
+      'Projects',
+      'Assessments',
+      'Status',
+    ];
+    const csv = [
+      headers.join(','),
+      ...items.map((s) =>
+        [
+          s.name,
+          s.country ?? '',
+          s.county ?? '',
+          (s.mineralTypes ?? []).join('; '),
+          s.coordinates ?? '',
+          s._count?.projects ?? 0,
+          s._count?.assessments ?? 0,
+          s.isActive ? 'Active' : 'Inactive',
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
+    ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `mining-sites-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `mining-sites-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 

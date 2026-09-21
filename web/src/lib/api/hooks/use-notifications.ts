@@ -39,8 +39,7 @@ export function useMarkAllNotificationsRead() {
 export function useDismissNotification() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (id: string) =>
-      del(`/notifications/${id}`).then((r) => r.data),
+    mutationFn: (id: string) => del(`/notifications/${id}`).then((r) => r.data),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['notifications'] }),
   });
 }

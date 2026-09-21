@@ -272,20 +272,48 @@ export function AdminOrganizationsList() {
   };
 
   const handleExport = () => {
-    if (!orgs.length) { toast.error('No data to export'); return; }
-    const headers = ['Name', 'Type', 'Country', 'City', 'Email', 'Phone', 'Members', 'Projects', 'Status', 'Created'];
-    const csv = [headers.join(','), ...orgs.map((o) => [
-      o.name, o.type ?? '', o.country ?? '', o.city ?? '',
-      o.email ?? '', o.phone ?? '',
-      o._count?.members ?? 0, o._count?.projects ?? 0,
-      o.isActive ? 'Active' : 'Inactive',
-      formatRelativeDate(o.createdAt),
-    ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(','))].join('\n');
+    if (!orgs.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Name',
+      'Type',
+      'Country',
+      'City',
+      'Email',
+      'Phone',
+      'Members',
+      'Projects',
+      'Status',
+      'Created',
+    ];
+    const csv = [
+      headers.join(','),
+      ...orgs.map((o) =>
+        [
+          o.name,
+          o.type ?? '',
+          o.country ?? '',
+          o.city ?? '',
+          o.email ?? '',
+          o.phone ?? '',
+          o._count?.members ?? 0,
+          o._count?.projects ?? 0,
+          o.isActive ? 'Active' : 'Inactive',
+          formatRelativeDate(o.createdAt),
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
+    ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `organizations-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `organizations-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 

@@ -88,7 +88,11 @@ export function AdminPos() {
     tendered: number;
   } | null>(null);
 
-  const query = useInventoryItems({ search: debouncedSearch, page: 1, limit: 60 });
+  const query = useInventoryItems({
+    search: debouncedSearch,
+    page: 1,
+    limit: 60,
+  });
   const items = query.data?.data ?? [];
 
   const total = useMemo(

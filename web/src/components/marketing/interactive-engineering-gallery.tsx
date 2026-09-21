@@ -150,7 +150,9 @@ export function InteractiveEngineeringGallery({
 
             {/* Bottom metadata footer */}
             <div className="flex items-center justify-between border-t border-hairline px-4 py-2.5 text-[0.6875rem] text-muted-foreground">
-              <span className="font-mono">Record #{String(idx + 1).padStart(2, '0')}</span>
+              <span className="font-mono">
+                Record #{String(idx + 1).padStart(2, '0')}
+              </span>
               <span className="flex items-center gap-1 font-semibold text-brand-600 dark:text-brand-400">
                 <ZoomIn className="h-3 w-3" /> Click to zoom &amp; inspect
               </span>
@@ -269,7 +271,8 @@ export function InteractiveEngineeringGallery({
                 {activeItem.description}
               </p>
               <p className="mt-1 font-mono text-[0.6875rem] text-white/50">
-                Green Ngoria Supplies Limited · Engineering Document &amp; Asset Archive
+                Green Ngoria Supplies Limited · Engineering Document &amp; Asset
+                Archive
               </p>
             </div>
           </div>

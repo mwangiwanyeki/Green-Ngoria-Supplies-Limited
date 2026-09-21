@@ -135,9 +135,15 @@ function RowActions({
                 void markComplete.mutateAsync(
                   { leadId: item.leadId, consultationId: item.id },
                   {
-                    onSuccess: () => toast.success('Consultation marked complete'),
+                    onSuccess: () =>
+                      toast.success('Consultation marked complete'),
                     onError: (err) =>
-                      toast.error(getApiErrorMessage(err, 'Could not update consultation')),
+                      toast.error(
+                        getApiErrorMessage(
+                          err,
+                          'Could not update consultation',
+                        ),
+                      ),
                   },
                 );
               }}
@@ -203,7 +209,9 @@ function buildColumns(orgId: string): ColumnDef<ConsultationRow>[] {
             {row.original.location}
           </span>
         ) : (
-          <span className="text-xs text-muted-foreground">Virtual / Remote</span>
+          <span className="text-xs text-muted-foreground">
+            Virtual / Remote
+          </span>
         ),
     },
     {
@@ -305,20 +313,36 @@ export function AdminConsultationsList() {
   };
 
   const handleExport = () => {
-    if (!items.length) { toast.error('No data to export'); return; }
-    const headers = ['Lead Ref', 'Company', 'Contact', 'Type', 'Scheduled', 'Location', 'Status', 'Outcome'];
+    if (!items.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Lead Ref',
+      'Company',
+      'Contact',
+      'Type',
+      'Scheduled',
+      'Location',
+      'Status',
+      'Outcome',
+    ];
     const csv = [
       headers.join(','),
-      ...items.map((c) => [
-        c.leadReference,
-        c.leadCompanyName,
-        c.leadContactName,
-        c.type,
-        formatDate(c.scheduledAt),
-        c.location ?? '',
-        c.completedAt ? 'Completed' : 'Scheduled',
-        c.outcome ?? '',
-      ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')),
+      ...items.map((c) =>
+        [
+          c.leadReference,
+          c.leadCompanyName,
+          c.leadContactName,
+          c.type,
+          formatDate(c.scheduledAt),
+          c.location ?? '',
+          c.completedAt ? 'Completed' : 'Scheduled',
+          c.outcome ?? '',
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
     ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);

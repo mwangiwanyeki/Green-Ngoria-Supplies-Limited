@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
-import TechnicalAssessmentPage, { metadata as pageMetadata } from '../technical-assessment/page';
+import TechnicalAssessmentPage, {
+  metadata as pageMetadata,
+} from '../technical-assessment/page';
 
 export const metadata: Metadata = {
   ...pageMetadata,

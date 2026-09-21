@@ -99,7 +99,7 @@ export function ScopeRegister({
   return (
     <ul
       className={cn(
-        'grid border-t border-hairline',
+        'grid border-t border-hairline w-full min-w-0 max-w-full',
         columns === 2 && 'sm:grid-cols-2 sm:gap-x-10',
         columns === 3 && 'sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-10',
         className,
@@ -108,15 +108,15 @@ export function ScopeRegister({
       {items.map((item, index) => (
         <li
           key={item}
-          className="flex items-baseline gap-4 border-b border-hairline py-3.5"
+          className="flex items-baseline gap-3 sm:gap-4 border-b border-hairline py-3.5 min-w-0"
         >
           <span
             aria-hidden="true"
-            className="font-mono text-[0.6875rem] text-subtle"
+            className="font-mono text-[0.6875rem] text-subtle shrink-0"
           >
             {String(index + 1).padStart(2, '0')}
           </span>
-          <span className="text-sm leading-6">{item}</span>
+          <span className="text-sm leading-6 min-w-0 break-words">{item}</span>
         </li>
       ))}
     </ul>

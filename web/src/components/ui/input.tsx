@@ -106,8 +106,9 @@ const labelVariants = cva(
   'text-sm font-semibold leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
 );
 
-export interface LabelProps
-  extends React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> {
+export interface LabelProps extends React.ComponentPropsWithoutRef<
+  typeof LabelPrimitive.Root
+> {
   required?: boolean;
 }
 

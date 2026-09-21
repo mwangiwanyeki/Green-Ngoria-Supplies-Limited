@@ -103,11 +103,12 @@ const EMPTY_FORM: IncidentForm = {
 };
 
 /** Client-side mirror of CreateHseIncidentDto's @IsNotEmpty fields. */
-function validate(form: IncidentForm): Partial<Record<keyof IncidentForm, string>> {
+function validate(
+  form: IncidentForm,
+): Partial<Record<keyof IncidentForm, string>> {
   const errors: Partial<Record<keyof IncidentForm, string>> = {};
   if (!form.title.trim()) errors.title = 'Title is required.';
-  if (!form.description.trim())
-    errors.description = 'Description is required.';
+  if (!form.description.trim()) errors.description = 'Description is required.';
   if (!form.incidentDate.trim())
     errors.incidentDate = 'Incident date is required.';
   if (!form.severity) errors.severity = 'Severity is required.';
@@ -130,7 +131,10 @@ function ReportIncidentDialog({
   const [submitError, setSubmitError] = useState<string | null>(null);
   const createIncident = useCreateHseIncident(orgId);
 
-  const set = <K extends keyof IncidentForm>(key: K, value: IncidentForm[K]) => {
+  const set = <K extends keyof IncidentForm>(
+    key: K,
+    value: IncidentForm[K],
+  ) => {
     setForm((f) => ({ ...f, [key]: value }));
     setErrors((e) => ({ ...e, [key]: undefined }));
   };

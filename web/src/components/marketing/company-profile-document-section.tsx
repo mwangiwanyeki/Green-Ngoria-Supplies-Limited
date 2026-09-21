@@ -40,8 +40,11 @@ export function CompanyProfileDocumentSection({
   const doc = company.profileDocument;
 
   return (
-    <section id={id} className={`scroll-mt-24 py-12 md:py-16 ${className}`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      id={id}
+      className={`scroll-mt-24 py-12 md:py-16 w-full max-w-full overflow-hidden ${className}`}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full min-w-0">
         <Reveal kind="rise">
           <div className="relative overflow-hidden rounded-2xl border border-hairline bg-card shadow-card">
             {/* Subtle brand glow accent in corner */}
@@ -50,12 +53,12 @@ export function CompanyProfileDocumentSection({
               className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl dark:bg-brand-400/10"
             />
 
-            <div className="grid gap-8 p-6 sm:p-8 md:p-10 lg:grid-cols-12 lg:gap-12 lg:p-12">
+            <div className="grid gap-8 p-4 sm:p-8 md:p-10 lg:grid-cols-12 lg:gap-12 lg:p-12">
               {/* Left Column: Document Visual Representation */}
               <div className="flex flex-col items-center justify-center lg:col-span-5 xl:col-span-4">
                 <div
                   onClick={() => setIsOpen(true)}
-                  className="group relative aspect-[1/1.38] w-full max-w-[280px] cursor-pointer sm:max-w-[320px] transition-transform duration-300 hover:scale-[1.02]"
+                  className="group relative aspect-[1/1.38] w-full max-w-[240px] xs:max-w-[280px] cursor-pointer sm:max-w-[320px] transition-transform duration-300 hover:scale-[1.02]"
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
@@ -184,23 +187,41 @@ export function CompanyProfileDocumentSection({
 
                 {/* Interactive Action Buttons */}
                 <div className="mt-8 flex flex-col gap-3 border-t border-hairline pt-6 sm:flex-row sm:items-center sm:flex-wrap">
-                  {/* Primary: Preview in Modal */}
+                  {/* Primary: Open in Google Drive */}
                   <Button
+                    asChild
                     variant="brand"
+                    size="lg"
+                    className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold shadow-sm"
+                  >
+                    <a
+                      href={doc.googleDriveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Open full Company Profile on Google Drive"
+                    >
+                      <ExternalLink className="h-4 w-4 shrink-0" />
+                      <span>Open on Google Drive</span>
+                    </a>
+                  </Button>
+
+                  {/* Secondary: Preview in Modal */}
+                  <Button
+                    variant="outline"
                     size="lg"
                     onClick={() => setIsOpen(true)}
                     leftIcon={<Eye className="h-4 w-4 shrink-0" />}
-                    className="w-full sm:w-auto font-semibold"
+                    className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
                   >
-                    View Company Profile
+                    <span>Preview in Reader</span>
                   </Button>
 
-                  {/* Secondary: Direct Download */}
+                  {/* Tertiary: Direct Download */}
                   <Button
                     asChild
                     variant="outline"
                     size="lg"
-                    className="w-full sm:w-auto font-semibold"
+                    className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
                   >
                     <a
                       href={doc.fileUrl}
@@ -211,24 +232,32 @@ export function CompanyProfileDocumentSection({
                       <span>Download PDF ({doc.fileSize})</span>
                     </a>
                   </Button>
+                </div>
 
-                  {/* Tertiary: Open in Google Drive */}
-                  <Button
-                    asChild
-                    variant="ghost"
-                    size="lg"
-                    className="w-full sm:w-auto font-semibold text-muted-foreground hover:text-foreground border border-input sm:border-transparent"
-                  >
+                {/* Direct Google Drive URL Callout Banner */}
+                <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-xl border border-brand-500/20 bg-brand-500/5 p-3 sm:px-4 sm:py-3 text-xs">
+                  <div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-2 min-w-0 flex-1">
+                    <span className="font-bold text-brand-700 dark:text-brand-300 shrink-0 flex items-center gap-1.5">
+                      <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                      Google Drive Link:
+                    </span>
                     <a
                       href={doc.googleDriveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      title="Open source file on Google Drive"
+                      className="font-mono text-[0.6875rem] sm:text-xs text-foreground underline hover:text-brand-600 break-all"
                     >
-                      <ExternalLink className="h-4 w-4 shrink-0" />
-                      <span>Open on Google Drive</span>
+                      {doc.googleDriveUrl}
                     </a>
-                  </Button>
+                  </div>
+                  <a
+                    href={doc.googleDriveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 w-full sm:w-auto text-center rounded-md bg-brand-500/10 px-3 py-2 sm:py-1 font-semibold text-brand-700 hover:bg-brand-500/20 dark:text-brand-300 text-xs sm:text-[0.6875rem]"
+                  >
+                    Open Document ↗
+                  </a>
                 </div>
               </div>
             </div>
@@ -238,9 +267,9 @@ export function CompanyProfileDocumentSection({
 
       {/* Document Viewer Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-h-[94vh] max-w-6xl w-[96vw] flex flex-col p-0 overflow-hidden border border-hairline bg-card shadow-2xl sm:rounded-2xl">
+        <DialogContent className="max-h-[92vh] max-w-6xl w-[calc(100vw-1.5rem)] sm:w-[96vw] flex flex-col p-0 overflow-hidden border border-hairline bg-card shadow-2xl sm:rounded-2xl">
           {/* Custom Dialog Header with Controls */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-hairline bg-card px-5 py-3.5 pr-14">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-b border-hairline bg-card p-3.5 sm:px-5 sm:py-3.5 pr-12 sm:pr-14">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-brand-600 dark:text-brand-400 shrink-0" />
@@ -320,19 +349,19 @@ export function CompanyProfileDocumentSection({
           </div>
 
           {/* Viewer Area */}
-          <div className="relative flex-1 w-full bg-mineral-charcoal/95 min-h-[60vh] sm:min-h-[75vh]">
+          <div className="relative flex-1 w-full bg-mineral-charcoal/95 min-h-[50vh] sm:min-h-[70vh]">
             {viewerMode === 'native' ? (
               <object
                 data={`${doc.fileUrl}#view=FitH&toolbar=1`}
                 type="application/pdf"
                 className="h-full w-full border-0"
-                style={{ height: '75vh' }}
+                style={{ height: '70vh', minHeight: '340px' }}
               >
                 <iframe
                   src={`${doc.fileUrl}#view=FitH&toolbar=1`}
                   title="Green Ngoria Supplies Company Profile PDF"
                   className="h-full w-full border-0"
-                  style={{ height: '75vh' }}
+                  style={{ height: '70vh', minHeight: '340px' }}
                 />
               </object>
             ) : (
@@ -340,7 +369,7 @@ export function CompanyProfileDocumentSection({
                 src={doc.googleDrivePreviewUrl}
                 title="Green Ngoria Supplies Company Profile Google Drive Preview"
                 className="h-full w-full border-0"
-                style={{ height: '75vh' }}
+                style={{ height: '70vh', minHeight: '340px' }}
                 allow="autoplay"
               />
             )}

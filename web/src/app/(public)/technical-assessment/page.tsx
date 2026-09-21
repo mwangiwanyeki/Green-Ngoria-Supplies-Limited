@@ -80,7 +80,10 @@ export default function TechnicalAssessmentPage() {
           'Green Ngoria’s Technical Plant Assessment (System 4) is our structured engineering intake mechanism for mining operators, concessions, and investors across East Africa.',
           'Submit your deposit characteristics, target throughput, and existing equipment bottlenecks to receive an empirical flowsheet review, equipment sizing bill, and budgetary proposal.',
         ]}
-        primaryAction={{ label: 'Begin digital intake', href: '#assessment-form' }}
+        primaryAction={{
+          label: 'Begin digital intake',
+          href: '#assessment-form',
+        }}
         secondaryAction={{
           label: 'Explore gold plant circuit',
           href: '/gold-processing',
@@ -89,7 +92,10 @@ export default function TechnicalAssessmentPage() {
           { term: 'Intake Framework', value: 'System 4 Digital Assessment' },
           { term: 'Engineering Review', value: 'Within 24 – 48 Hours' },
           { term: 'Output Deliverables', value: 'Flowsheet & Capex Estimate' },
-          { term: 'Applicable Standards', value: 'ASME · ASTM · ISO 9001/14001' },
+          {
+            term: 'Applicable Standards',
+            value: 'ASME · ASTM · ISO 9001/14001',
+          },
         ]}
       />
 
@@ -116,11 +122,15 @@ export default function TechnicalAssessmentPage() {
                     Empirical Flowsheet Design &amp; Plant Optimization
                   </h2>
                   <p className="mt-1 line-clamp-2 text-xs leading-5 text-white/80 sm:text-sm">
-                    Evaluates ore throughput, grinding power requirements, hydrocyclone classification, and CIL retention times.
+                    Evaluates ore throughput, grinding power requirements,
+                    hydrocyclone classification, and CIL retention times.
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <a href="#assessment-form" className="inline-flex items-center justify-center rounded-lg bg-brand-500 px-4 py-2 text-xs font-bold text-black transition-colors hover:bg-brand-400">
+                  <a
+                    href="#assessment-form"
+                    className="inline-flex items-center justify-center rounded-lg bg-brand-500 px-4 py-2 text-xs font-bold text-black transition-colors hover:bg-brand-400"
+                  >
                     Fill Assessment Form
                   </a>
                 </div>
@@ -218,12 +228,14 @@ export default function TechnicalAssessmentPage() {
         <div className="mx-auto mt-10 max-w-4xl space-y-4">
           {[
             {
-              question: 'How quickly will I receive a response after submitting the assessment?',
+              question:
+                'How quickly will I receive a response after submitting the assessment?',
               answer:
                 'Our engineering department completes an initial desk metallurgical evaluation and contacts you within 24 to 48 business hours with preliminary findings and scope clarification.',
             },
             {
-              question: 'Does the assessment cover both new greenfield plants and existing plant optimization?',
+              question:
+                'Does the assessment cover both new greenfield plants and existing plant optimization?',
               answer:
                 'Yes. We assess both brand-new processing plants (from mine design to turnkey commissioning) and existing facilities suffering from low recovery rates, high wear, or bottlenecks.',
             },

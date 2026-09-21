@@ -54,10 +54,10 @@ const columns: { heading: string; links: { label: string; href: string }[] }[] =
 
 export function SiteFooter() {
   return (
-    <footer className="surface-ink on-ink relative overflow-hidden">
+    <footer className="surface-ink on-ink relative overflow-hidden w-full max-w-full">
       <div className="linework pointer-events-none absolute inset-0 opacity-40" />
 
-      <div className="relative mx-auto max-w-7xl px-5 pb-10 pt-20 sm:px-8 lg:px-10 lg:pt-24">
+      <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-20 sm:px-8 lg:px-10 lg:pt-24 w-full max-w-full min-w-0">
         <div className="grid gap-x-12 gap-y-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2fr)]">
           {/* Identity + contact */}
           <div>

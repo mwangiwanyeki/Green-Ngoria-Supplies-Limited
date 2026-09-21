@@ -184,7 +184,11 @@ export function AdminNotificationsList() {
                 : 'border-border bg-transparent text-muted-foreground hover:bg-muted hover:text-foreground',
             )}
           >
-            {k === 'all' ? 'All' : k === 'unread' ? `Unread (${unreadCount})` : 'Read'}
+            {k === 'all'
+              ? 'All'
+              : k === 'unread'
+                ? `Unread (${unreadCount})`
+                : 'Read'}
           </button>
         ))}
         {typeCounts.length > 1 && (
@@ -280,7 +284,8 @@ export function AdminNotificationsList() {
         onConfirm={() => {
           clearRead.mutate(undefined, {
             onSuccess: (res) => {
-              const removed = (res as { removed?: number } | undefined)?.removed;
+              const removed = (res as { removed?: number } | undefined)
+                ?.removed;
               toast.success(
                 removed ? `Cleared ${removed} notifications` : 'Cleared',
               );
@@ -309,7 +314,8 @@ function NotificationRow({
   onDismiss: () => void;
 }) {
   const unread = !n.readAt;
-  const typeLabel = TYPE_LABEL[n.type] ?? n.type.replace(/_/g, ' ').toLowerCase();
+  const typeLabel =
+    TYPE_LABEL[n.type] ?? n.type.replace(/_/g, ' ').toLowerCase();
 
   const body = (
     <div className="flex items-start gap-3 p-4">
@@ -334,7 +340,9 @@ function NotificationRow({
           <span
             className={cn(
               'truncate text-sm',
-              unread ? 'font-semibold text-foreground' : 'text-muted-foreground',
+              unread
+                ? 'font-semibold text-foreground'
+                : 'text-muted-foreground',
             )}
           >
             {n.title}

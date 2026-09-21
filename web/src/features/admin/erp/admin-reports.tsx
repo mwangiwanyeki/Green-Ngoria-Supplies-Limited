@@ -159,7 +159,13 @@ export function AdminReports() {
   const handleExportJson = () => {
     if (!data) return;
     const blob = new Blob(
-      [JSON.stringify({ generatedAt: new Date().toISOString(), ...data }, null, 2)],
+      [
+        JSON.stringify(
+          { generatedAt: new Date().toISOString(), ...data },
+          null,
+          2,
+        ),
+      ],
       { type: 'application/json' },
     );
     const url = URL.createObjectURL(blob);
@@ -195,7 +201,9 @@ export function AdminReports() {
       }, 500);
     }
     if (mode === 'pdf') {
-      toast.info('Choose "Save as PDF" as the destination in the print dialog.');
+      toast.info(
+        'Choose "Save as PDF" as the destination in the print dialog.',
+      );
     }
   };
 
@@ -349,9 +357,11 @@ export function AdminReports() {
       </div>
 
       {/* Print-only header block: shown only when printing (via a scoped
-        * @media print rule) so exported PDFs include the branding and period. */}
+       * @media print rule) so exported PDFs include the branding and period. */}
       <div className="hidden print:block border-b border-hairline pb-3 mb-2">
-        <h1 className="text-2xl font-semibold">Green Ngoria Supplies Limited</h1>
+        <h1 className="text-2xl font-semibold">
+          Green Ngoria Supplies Limited
+        </h1>
         <p className="text-sm text-muted-foreground">
           Enterprise Reports · {formatDay(data.from)} – {formatDay(data.to)} ·
           generated {new Date().toLocaleString('en-KE')}

@@ -62,7 +62,6 @@ interface CommissioningSystem {
   _count?: { tests: number };
 }
 
-
 // ─── Create system dialog ──────────────────────────────────────────────────
 
 interface SystemForm {
@@ -226,8 +225,7 @@ function AddTestDialog({
     if (!system) return;
     // Mirrors CreateCommissioningTestDto's @IsNotEmpty fields.
     const found: Partial<Record<keyof TestForm, string>> = {};
-    if (!form.testNumber.trim())
-      found.testNumber = 'Test number is required.';
+    if (!form.testNumber.trim()) found.testNumber = 'Test number is required.';
     if (!form.title.trim()) found.title = 'Title is required.';
     setErrors(found);
     if (Object.keys(found).length > 0) return;
@@ -310,90 +308,91 @@ function buildColumns(
   onAddTest: (system: CommissioningSystem) => void,
 ): ColumnDef<CommissioningSystem>[] {
   return [
-  {
-    accessorKey: 'sortOrder',
-    header: '#',
-    cell: ({ row }) => (
-      <span className="text-xs text-muted-foreground">
-        {row.original.sortOrder}
-      </span>
-    ),
-  },
-  {
-    accessorKey: 'name',
-    header: 'System',
-    cell: ({ row }) => (
-      <div className="flex flex-col">
-        <span className="font-medium">{row.original.name}</span>
-        {row.original.description && (
-          <span className="text-xs text-muted-foreground">
-            {row.original.description}
-          </span>
-        )}
-      </div>
-    ),
-  },
-  {
-    id: 'tests',
-    header: 'Tests',
-    cell: ({ row }) => row.original._count?.tests ?? row.original.tests.length,
-  },
-  {
-    id: 'passed',
-    header: 'Passed',
-    cell: ({ row }) =>
-      row.original.tests.filter((t) => t.result === 'PASSED').length,
-  },
-  {
-    id: 'approved',
-    header: 'Approved',
-    cell: ({ row }) =>
-      row.original.tests.filter((t) => t.status === 'APPROVED').length,
-  },
-  {
-    id: 'failed',
-    header: 'Failed',
-    cell: ({ row }) => {
-      const failed = row.original.tests.filter(
-        (t) => t.result === 'FAILED',
-      ).length;
-      return failed > 0 ? (
-        <Badge variant="destructive">{failed}</Badge>
-      ) : (
-        <span className="text-muted-foreground">0</span>
-      );
+    {
+      accessorKey: 'sortOrder',
+      header: '#',
+      cell: ({ row }) => (
+        <span className="text-xs text-muted-foreground">
+          {row.original.sortOrder}
+        </span>
+      ),
     },
-  },
-  {
-    id: 'actions',
-    header: '',
-    cell: ({ row }) => (
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger asChild>
-          <button
-            className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted"
-            aria-label={`Actions for ${row.original.name}`}
-          >
-            <MoreHorizontal className="h-4 w-4" />
-          </button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Portal>
-          <DropdownMenu.Content
-            align="end"
-            sideOffset={4}
-            className={rowMenuContentClass}
-          >
-            <DropdownMenu.Item
-              className={rowMenuItemClass}
-              onSelect={() => onAddTest(row.original)}
+    {
+      accessorKey: 'name',
+      header: 'System',
+      cell: ({ row }) => (
+        <div className="flex flex-col">
+          <span className="font-medium">{row.original.name}</span>
+          {row.original.description && (
+            <span className="text-xs text-muted-foreground">
+              {row.original.description}
+            </span>
+          )}
+        </div>
+      ),
+    },
+    {
+      id: 'tests',
+      header: 'Tests',
+      cell: ({ row }) =>
+        row.original._count?.tests ?? row.original.tests.length,
+    },
+    {
+      id: 'passed',
+      header: 'Passed',
+      cell: ({ row }) =>
+        row.original.tests.filter((t) => t.result === 'PASSED').length,
+    },
+    {
+      id: 'approved',
+      header: 'Approved',
+      cell: ({ row }) =>
+        row.original.tests.filter((t) => t.status === 'APPROVED').length,
+    },
+    {
+      id: 'failed',
+      header: 'Failed',
+      cell: ({ row }) => {
+        const failed = row.original.tests.filter(
+          (t) => t.result === 'FAILED',
+        ).length;
+        return failed > 0 ? (
+          <Badge variant="destructive">{failed}</Badge>
+        ) : (
+          <span className="text-muted-foreground">0</span>
+        );
+      },
+    },
+    {
+      id: 'actions',
+      header: '',
+      cell: ({ row }) => (
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button
+              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted"
+              aria-label={`Actions for ${row.original.name}`}
             >
-              <FlaskConical className="h-3.5 w-3.5" /> Add test
-            </DropdownMenu.Item>
-          </DropdownMenu.Content>
-        </DropdownMenu.Portal>
-      </DropdownMenu.Root>
-    ),
-  },
+              <MoreHorizontal className="h-4 w-4" />
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content
+              align="end"
+              sideOffset={4}
+              className={rowMenuContentClass}
+            >
+              <DropdownMenu.Item
+                className={rowMenuItemClass}
+                onSelect={() => onAddTest(row.original)}
+              >
+                <FlaskConical className="h-3.5 w-3.5" /> Add test
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
+      ),
+    },
   ];
 }
 

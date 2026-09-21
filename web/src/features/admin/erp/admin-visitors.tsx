@@ -135,7 +135,12 @@ function WebsiteTraffic() {
 
   if (isLoading) return <PageSkeleton />;
   if (isError)
-    return <ErrorState description={getApiErrorMessage(undefined)} retry={() => void refetch()} />;
+    return (
+      <ErrorState
+        description={getApiErrorMessage(undefined)}
+        retry={() => void refetch()}
+      />
+    );
 
   const t = data?.totals;
   const hasData = (t?.pageViews ?? 0) > 0;
@@ -210,7 +215,10 @@ function WebsiteTraffic() {
             </p>
             <div className="h-[280px]">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={chart} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <AreaChart
+                  data={chart}
+                  margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+                >
                   <defs>
                     <linearGradient id="vwGrad" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#0d9488" stopOpacity={0.4} />
@@ -221,12 +229,46 @@ function WebsiteTraffic() {
                       <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }} axisLine={false} tickLine={false} />
-                  <YAxis tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }} axisLine={false} tickLine={false} allowDecimals={false} />
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    vertical={false}
+                    stroke="hsl(var(--border))"
+                  />
+                  <XAxis
+                    dataKey="date"
+                    tick={{
+                      fontSize: 11,
+                      fill: 'hsl(var(--muted-foreground))',
+                    }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    tick={{
+                      fontSize: 11,
+                      fill: 'hsl(var(--muted-foreground))',
+                    }}
+                    axisLine={false}
+                    tickLine={false}
+                    allowDecimals={false}
+                  />
                   <Tooltip contentStyle={tooltipStyle} />
-                  <Area type="monotone" dataKey="views" name="Page views" stroke="#0d9488" strokeWidth={2.5} fill="url(#vwGrad)" />
-                  <Area type="monotone" dataKey="visitors" name="Visitors" stroke="#6366f1" strokeWidth={2.5} fill="url(#vsGrad)" />
+                  <Area
+                    type="monotone"
+                    dataKey="views"
+                    name="Page views"
+                    stroke="#0d9488"
+                    strokeWidth={2.5}
+                    fill="url(#vwGrad)"
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="visitors"
+                    name="Visitors"
+                    stroke="#6366f1"
+                    strokeWidth={2.5}
+                    fill="url(#vsGrad)"
+                  />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -234,9 +276,21 @@ function WebsiteTraffic() {
 
           <div className="grid gap-6 lg:grid-cols-2">
             <TopPagesCard pages={data?.topPages ?? []} />
-            <BreakdownCard title="Top locations" icon={<MapPin className="h-4 w-4" />} rows={data?.byCountry ?? []} />
-            <BreakdownCard title="Devices" icon={<Monitor className="h-4 w-4" />} rows={data?.byDevice ?? []} />
-            <BreakdownCard title="Referrers" icon={<Globe className="h-4 w-4" />} rows={data?.byReferrer ?? []} />
+            <BreakdownCard
+              title="Top locations"
+              icon={<MapPin className="h-4 w-4" />}
+              rows={data?.byCountry ?? []}
+            />
+            <BreakdownCard
+              title="Devices"
+              icon={<Monitor className="h-4 w-4" />}
+              rows={data?.byDevice ?? []}
+            />
+            <BreakdownCard
+              title="Referrers"
+              icon={<Globe className="h-4 w-4" />}
+              rows={data?.byReferrer ?? []}
+            />
           </div>
 
           <RecentSessionsCard sessions={data?.recentSessions ?? []} />
@@ -262,13 +316,18 @@ function TopPagesCard({
           {pages.map((p) => (
             <li key={p.path} className="space-y-1">
               <div className="flex items-center justify-between gap-3 text-xs">
-                <span className="truncate font-mono text-foreground">{p.path}</span>
+                <span className="truncate font-mono text-foreground">
+                  {p.path}
+                </span>
                 <span className="shrink-0 text-muted-foreground">
                   {p.views.toLocaleString()} · {fmtDuration(p.avgTimeMs)} avg
                 </span>
               </div>
               <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-sunken">
-                <div className="h-full rounded-full bg-brand-500" style={{ width: `${(p.views / max) * 100}%` }} />
+                <div
+                  className="h-full rounded-full bg-brand-500"
+                  style={{ width: `${(p.views / max) * 100}%` }}
+                />
               </div>
             </li>
           ))}
@@ -313,7 +372,10 @@ function BreakdownCard({
                 <span className="truncate">{r.name}</span>
               </span>
               <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-surface-sunken">
-                <div className="h-full rounded-full bg-teal-500" style={{ width: `${(r.value / total) * 100}%` }} />
+                <div
+                  className="h-full rounded-full bg-teal-500"
+                  style={{ width: `${(r.value / total) * 100}%` }}
+                />
               </div>
               <span className="w-16 shrink-0 text-right font-mono text-muted-foreground">
                 {r.value} · {Math.round((r.value / total) * 100)}%
@@ -336,7 +398,8 @@ function RecentSessionsCard({
     <div className="rounded-xl border border-hairline bg-card p-6">
       <h3 className="mb-1 text-base font-semibold">Recent visitor journeys</h3>
       <p className="mb-4 text-xs text-muted-foreground">
-        Each visitor&apos;s path through the site, most recent first. Click to expand the journey.
+        Each visitor&apos;s path through the site, most recent first. Click to
+        expand the journey.
       </p>
       {sessions.length === 0 ? (
         <p className="text-sm text-muted-foreground">No sessions yet.</p>
@@ -344,7 +407,9 @@ function RecentSessionsCard({
         <ul className="divide-y divide-hairline overflow-hidden rounded-lg border border-hairline">
           {sessions.map((s) => {
             const expanded = open === s.sessionId;
-            const loc = [s.city, s.region, s.country].filter(Boolean).join(', ') || 'Unknown location';
+            const loc =
+              [s.city, s.region, s.country].filter(Boolean).join(', ') ||
+              'Unknown location';
             return (
               <li key={s.sessionId}>
                 <button
@@ -352,7 +417,12 @@ function RecentSessionsCard({
                   onClick={() => setOpen(expanded ? null : s.sessionId)}
                   className="flex w-full items-center gap-3 bg-card p-3 text-left hover:bg-muted/40"
                 >
-                  <ChevronRight className={cn('h-4 w-4 shrink-0 text-muted-foreground transition-transform', expanded && 'rotate-90')} />
+                  <ChevronRight
+                    className={cn(
+                      'h-4 w-4 shrink-0 text-muted-foreground transition-transform',
+                      expanded && 'rotate-90',
+                    )}
+                  />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2 text-xs">
                       <span className="inline-flex items-center gap-1 font-medium text-foreground">
@@ -360,11 +430,14 @@ function RecentSessionsCard({
                         {loc}
                       </span>
                       <Badge variant="outline" className="text-[10px]">
-                        {s.deviceType ?? '—'}{s.browser ? ` · ${s.browser}` : ''}
+                        {s.deviceType ?? '—'}
+                        {s.browser ? ` · ${s.browser}` : ''}
                       </Badge>
                     </div>
                     <div className="mt-0.5 text-[11px] text-muted-foreground">
-                      {s.pageCount} page{s.pageCount === 1 ? '' : 's'} · {fmtDuration(s.durationMs)} · {formatRelativeDate(s.lastAt)}
+                      {s.pageCount} page{s.pageCount === 1 ? '' : 's'} ·{' '}
+                      {fmtDuration(s.durationMs)} ·{' '}
+                      {formatRelativeDate(s.lastAt)}
                       {s.referrer ? ` · from ${safeHost(s.referrer)}` : ''}
                     </div>
                   </div>
@@ -377,7 +450,9 @@ function RecentSessionsCard({
                           <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/15 font-mono text-[10px] text-brand-600 dark:text-brand-400">
                             {i + 1}
                           </span>
-                          <span className="font-mono text-foreground">{path}</span>
+                          <span className="font-mono text-foreground">
+                            {path}
+                          </span>
                         </li>
                       ))}
                     </ol>
@@ -417,7 +492,8 @@ function FrontDeskLog() {
   const checkOut = useCheckOutVisitor();
 
   const isCheckedIn = (r: Visitor) =>
-    (r.status ?? '').toUpperCase() === 'CHECKED_IN' || r.status === 'checked-in';
+    (r.status ?? '').toUpperCase() === 'CHECKED_IN' ||
+    r.status === 'checked-in';
 
   const columns: ErpColumn<Visitor>[] = [
     {
@@ -427,7 +503,9 @@ function FrontDeskLog() {
         <div>
           <div className="font-medium">{r.fullName}</div>
           {r.idNumber && (
-            <div className="font-mono text-xs text-muted-foreground">{r.idNumber}</div>
+            <div className="font-mono text-xs text-muted-foreground">
+              {r.idNumber}
+            </div>
           )}
         </div>
       ),
@@ -449,7 +527,9 @@ function FrontDeskLog() {
       key: 'in',
       header: 'Checked in',
       cell: (r) => (
-        <span className="text-xs text-muted-foreground">{formatRelativeDate(r.checkInAt)}</span>
+        <span className="text-xs text-muted-foreground">
+          {formatRelativeDate(r.checkInAt)}
+        </span>
       ),
     },
     {
@@ -468,7 +548,9 @@ function FrontDeskLog() {
             </Button>
           </div>
         ) : (
-          <span className="block text-right text-xs text-muted-foreground pr-2">—</span>
+          <span className="block text-right text-xs text-muted-foreground pr-2">
+            —
+          </span>
         ),
     },
   ];
@@ -533,7 +615,9 @@ function FrontDeskLog() {
               toast.success('Visitor registered');
               setShowAdd(false);
             } catch (err) {
-              toast.error(getApiErrorMessage(err, 'Could not register visitor'));
+              toast.error(
+                getApiErrorMessage(err, 'Could not register visitor'),
+              );
             }
           }}
         />
@@ -553,7 +637,8 @@ function FrontDeskLog() {
               toast.success('Visitor checked out');
               setCheckoutTarget(null);
             },
-            onError: (err) => toast.error(getApiErrorMessage(err, 'Check-out failed')),
+            onError: (err) =>
+              toast.error(getApiErrorMessage(err, 'Check-out failed')),
           });
         }}
       />
@@ -591,7 +676,8 @@ function RegisterVisitorDialog({
     hostName: '',
     vehiclePlate: '',
   });
-  const set = <K extends keyof typeof f>(k: K, v: string) => setF((p) => ({ ...p, [k]: v }));
+  const set = <K extends keyof typeof f>(k: K, v: string) =>
+    setF((p) => ({ ...p, [k]: v }));
 
   return (
     <Dialog open onOpenChange={(o) => !o && onClose()}>
@@ -599,23 +685,69 @@ function RegisterVisitorDialog({
         <DialogHeader>
           <DialogTitle>Register visitor</DialogTitle>
           <DialogDescription>
-            {branchId ? 'A badge number is generated automatically.' : 'Select a branch first.'}
+            {branchId
+              ? 'A badge number is generated automatically.'
+              : 'Select a branch first.'}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Full name *"><Input value={f.fullName} onChange={(e) => set('fullName', e.target.value)} /></Field>
-          <Field label="ID number"><Input value={f.idNumber} onChange={(e) => set('idNumber', e.target.value)} /></Field>
-          <Field label="Phone"><Input value={f.phone} onChange={(e) => set('phone', e.target.value)} /></Field>
-          <Field label="Email"><Input type="email" value={f.email} onChange={(e) => set('email', e.target.value)} /></Field>
-          <Field label="Company"><Input value={f.company} onChange={(e) => set('company', e.target.value)} /></Field>
-          <Field label="Host (person visited)"><Input value={f.hostName} onChange={(e) => set('hostName', e.target.value)} /></Field>
-          <Field label="Vehicle plate"><Input value={f.vehiclePlate} onChange={(e) => set('vehiclePlate', e.target.value)} /></Field>
+          <Field label="Full name *">
+            <Input
+              value={f.fullName}
+              onChange={(e) => set('fullName', e.target.value)}
+            />
+          </Field>
+          <Field label="ID number">
+            <Input
+              value={f.idNumber}
+              onChange={(e) => set('idNumber', e.target.value)}
+            />
+          </Field>
+          <Field label="Phone">
+            <Input
+              value={f.phone}
+              onChange={(e) => set('phone', e.target.value)}
+            />
+          </Field>
+          <Field label="Email">
+            <Input
+              type="email"
+              value={f.email}
+              onChange={(e) => set('email', e.target.value)}
+            />
+          </Field>
+          <Field label="Company">
+            <Input
+              value={f.company}
+              onChange={(e) => set('company', e.target.value)}
+            />
+          </Field>
+          <Field label="Host (person visited)">
+            <Input
+              value={f.hostName}
+              onChange={(e) => set('hostName', e.target.value)}
+            />
+          </Field>
+          <Field label="Vehicle plate">
+            <Input
+              value={f.vehiclePlate}
+              onChange={(e) => set('vehiclePlate', e.target.value)}
+            />
+          </Field>
           <div className="sm:col-span-2">
-            <Field label="Purpose of visit"><Textarea rows={2} value={f.purpose} onChange={(e) => set('purpose', e.target.value)} /></Field>
+            <Field label="Purpose of visit">
+              <Textarea
+                rows={2}
+                value={f.purpose}
+                onChange={(e) => set('purpose', e.target.value)}
+              />
+            </Field>
           </div>
         </div>
         <DialogFooter>
-          <Button variant="ghost" onClick={onClose} disabled={pending}>Cancel</Button>
+          <Button variant="ghost" onClick={onClose} disabled={pending}>
+            Cancel
+          </Button>
           <Button
             variant="brand"
             loading={pending}
@@ -641,7 +773,13 @@ function RegisterVisitorDialog({
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="space-y-1.5">
       <Label className="text-sm font-medium">{label}</Label>

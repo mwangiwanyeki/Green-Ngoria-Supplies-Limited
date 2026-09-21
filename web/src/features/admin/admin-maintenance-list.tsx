@@ -309,22 +309,42 @@ export function AdminMaintenanceList() {
   };
 
   const handleExport = () => {
-    if (!items.length) { toast.error('No data to export'); return; }
-    const headers = ['WO #', 'Title', 'Asset', 'Type', 'Status', 'Scheduled', 'Raised'];
-    const csv = [headers.join(','), ...items.map((w) => [
-      w.workOrderNumber ?? '',
-      w.title ?? '',
-      w.asset?.name ?? '',
-      w.type ?? '',
-      w.status ?? '',
-      w.scheduledDate ? formatDate(w.scheduledDate) : 'Unscheduled',
-      formatDate(w.createdAt),
-    ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(','))].join('\n');
+    if (!items.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'WO #',
+      'Title',
+      'Asset',
+      'Type',
+      'Status',
+      'Scheduled',
+      'Raised',
+    ];
+    const csv = [
+      headers.join(','),
+      ...items.map((w) =>
+        [
+          w.workOrderNumber ?? '',
+          w.title ?? '',
+          w.asset?.name ?? '',
+          w.type ?? '',
+          w.status ?? '',
+          w.scheduledDate ? formatDate(w.scheduledDate) : 'Unscheduled',
+          formatDate(w.createdAt),
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
+    ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `work-orders-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `work-orders-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 

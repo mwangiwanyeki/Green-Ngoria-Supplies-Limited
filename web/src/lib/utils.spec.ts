@@ -37,7 +37,9 @@ describe('Frontend Utils', () => {
   });
 
   it('slugifies titles into valid urls', () => {
-    expect(slugify('Gold CIP/CIL Processing Plant 2026')).toBe('gold-cip-cil-processing-plant-2026');
+    expect(slugify('Gold CIP/CIL Processing Plant 2026')).toBe(
+      'gold-cip-cil-processing-plant-2026',
+    );
   });
 
   it('truncates text with ellipsis', () => {

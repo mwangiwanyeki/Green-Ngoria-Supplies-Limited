@@ -62,12 +62,14 @@ export function PortalProfile() {
       />
       <ProfileSummary profile={data} />
       {/* If a link steers the user here with `#mfa` (e.g. from a security
-        * banner), default to the Security tab so the MFA UI is front-and-centre. */}
-      <Tabs defaultValue={
-        typeof window !== 'undefined' && window.location.hash === '#mfa'
-          ? 'security'
-          : 'profile'
-      }>
+       * banner), default to the Security tab so the MFA UI is front-and-centre. */}
+      <Tabs
+        defaultValue={
+          typeof window !== 'undefined' && window.location.hash === '#mfa'
+            ? 'security'
+            : 'profile'
+        }
+      >
         <TabsList>
           <TabsTrigger value="profile">
             <UserRound className="mr-2 h-4 w-4" />
@@ -285,7 +287,9 @@ function ChangePasswordForm() {
       },
       {
         onSuccess: () => {
-          toast.success('Password updated. Please sign in again on other devices.');
+          toast.success(
+            'Password updated. Please sign in again on other devices.',
+          );
           reset();
         },
         onError: (err) =>
@@ -364,7 +368,11 @@ function ChangePasswordForm() {
             type="submit"
             variant="brand"
             loading={change.isPending}
-            leftIcon={change.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : undefined}
+            leftIcon={
+              change.isPending ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : undefined
+            }
           >
             Update password
           </Button>

@@ -203,9 +203,10 @@ export function GoldCapabilitiesGrid() {
                 Turnkey Engineering, Procurement & Construction (EPC)
               </h4>
               <p className="mt-1 text-sm text-muted-foreground">
-                Every mining plant and equipment installation is led by qualified
-                process, civil, mechanical, and electrical engineers adhering to
-                ISO 9001 and ISO 14001 quality and environmental frameworks.
+                Every mining plant and equipment installation is led by
+                qualified process, civil, mechanical, and electrical engineers
+                adhering to ISO 9001 and ISO 14001 quality and environmental
+                frameworks.
               </p>
             </div>
           </div>

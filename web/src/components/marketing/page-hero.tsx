@@ -44,7 +44,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        'surface-ink on-ink texture-grain relative overflow-hidden',
+        'surface-ink on-ink texture-grain relative overflow-hidden w-full max-w-full',
         className,
       )}
     >
@@ -54,7 +54,7 @@ export function PageHero({
         className="pointer-events-none absolute -left-32 -top-48 h-[34rem] w-[34rem] rounded-full bg-brand-500/[0.13] blur-[130px]"
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-36 sm:px-8 sm:pb-24 sm:pt-40 lg:px-10 lg:pb-28 lg:pt-44">
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-36 sm:px-8 sm:pb-24 sm:pt-40 lg:px-10 lg:pb-28 lg:pt-44 w-full max-w-full min-w-0">
         <h1 className="max-w-[20ch] font-display text-display-xl font-extrabold text-[hsl(var(--on-ink))]">
           {title}
         </h1>
@@ -74,25 +74,62 @@ export function PageHero({
 
         {(primaryAction || secondaryAction) && (
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            {primaryAction && (
-              <Link href={primaryAction.href}>
-                <Button
-                  variant="brand"
-                  size="lg"
+            {primaryAction &&
+              (primaryAction.href.startsWith('http') ? (
+                <a
+                  href={primaryAction.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full sm:w-auto"
-                  rightIcon={<ArrowRight className="h-4 w-4" />}
                 >
-                  {primaryAction.label}
-                </Button>
-              </Link>
-            )}
-            {secondaryAction && (
-              <Link href={secondaryAction.href}>
-                <Button variant="on-ink" size="lg" className="w-full sm:w-auto">
-                  {secondaryAction.label}
-                </Button>
-              </Link>
-            )}
+                  <Button
+                    variant="brand"
+                    size="lg"
+                    className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
+                    rightIcon={<ArrowRight className="h-4 w-4 shrink-0" />}
+                  >
+                    <span>{primaryAction.label}</span>
+                  </Button>
+                </a>
+              ) : (
+                <Link href={primaryAction.href} className="w-full sm:w-auto">
+                  <Button
+                    variant="brand"
+                    size="lg"
+                    className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
+                    rightIcon={<ArrowRight className="h-4 w-4 shrink-0" />}
+                  >
+                    <span>{primaryAction.label}</span>
+                  </Button>
+                </Link>
+              ))}
+            {secondaryAction &&
+              (secondaryAction.href.startsWith('http') ? (
+                <a
+                  href={secondaryAction.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
+                  <Button
+                    variant="on-ink"
+                    size="lg"
+                    className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
+                  >
+                    <span>{secondaryAction.label}</span>
+                  </Button>
+                </a>
+              ) : (
+                <Link href={secondaryAction.href} className="w-full sm:w-auto">
+                  <Button
+                    variant="on-ink"
+                    size="lg"
+                    className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
+                  >
+                    <span>{secondaryAction.label}</span>
+                  </Button>
+                </Link>
+              ))}
           </div>
         )}
 

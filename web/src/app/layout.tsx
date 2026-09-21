@@ -1,10 +1,21 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Sora, Plus_Jakarta_Sans, IBM_Plex_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { QueryProvider } from '@/lib/query-provider';
 import { AuthInitializer } from '@/components/auth-initializer';
 import { Toaster } from 'sonner';
 import '@/styles/globals.css';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f8faf8' },
+    { media: '(prefers-color-scheme: dark)', color: '#0c1511' },
+  ],
+};
 
 /**
  * Display voice: Sora — geometric, engineered, tight at large sizes.
@@ -39,7 +50,8 @@ export const metadata: Metadata = {
   description:
     'Gold and gemstone mining, building works, road construction, water projects, mechanical and electrical services, oil and petroleum, timber importation and general supplies across East and Central Africa.',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://www.greenngoriasupplies.com',
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+      'https://www.greenngoriasupplies.com',
   ),
   openGraph: {
     type: 'website',
@@ -72,9 +84,9 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={`${display.variable} ${body.variable} ${mono.variable} overflow-x-hidden`}
     >
-      <body className="min-h-screen bg-background font-body antialiased">
+      <body className="min-h-screen w-full max-w-full overflow-x-hidden bg-background font-body antialiased relative">
         <ThemeProvider>
           <QueryProvider>
             <AuthInitializer />

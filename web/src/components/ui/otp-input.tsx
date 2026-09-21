@@ -110,7 +110,10 @@ export function OtpInput({
 
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const pasted = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, length);
+    const pasted = e.clipboardData
+      .getData('text')
+      .replace(/\D/g, '')
+      .slice(0, length);
     if (!pasted) return;
     onChange(pasted);
     refs.current[Math.min(pasted.length, length - 1)]?.focus();

@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<title>Duplicate Viewpoints Comparison</title>
+<style>
+  body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; }
+  h1 { margin-bottom: 20px; }
+  .pair { display: flex; align-items: center; background: #1e293b; border: 1px solid #334155; border-radius: 8px; margin-bottom: 16px; padding: 12px; gap: 20px; }
+  .img-box { width: 360px; text-align: center; }
+  .img-box img { width: 100%; height: 240px; object-fit: contain; background: #000; border-radius: 4px; }
+  .info { font-size: 13px; margin-top: 6px; font-family: monospace; }
+  .diff { font-size: 16px; font-weight: bold; color: #f59e0b; }
+</style>
+</head>
+<body>
+<h1>Potential Duplicate Pairs (Ranked by Visual Similarity)</h1>
+
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 7.05</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 20.19</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 21.52</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-04.webp">
+        <div class="info">#3: greenngoria-04.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 22.64</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-05.webp">
+        <div class="info">#4: greenngoria-05.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 24.26</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 24.51</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-15.webp">
+        <div class="info">#14: greenngoria-15.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 24.84</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-16.webp">
+        <div class="info">#15: greenngoria-16.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 25.23</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 27.64</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 28.06</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 28.06</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 28.16</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 28.28</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-03.webp">
+        <div class="info">#2: greenngoria-03.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 28.43</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-06.webp">
+        <div class="info">#5: greenngoria-06.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 29.54</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-12.webp">
+        <div class="info">#11: greenngoria-12.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 29.98</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-13.webp">
+        <div class="info">#12: greenngoria-13.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-04.webp">
+        <div class="info">#3: greenngoria-04.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.11</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-07.webp">
+        <div class="info">#6: greenngoria-07.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.28</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.33</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.47</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.59</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.63</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.86</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.88</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 30.97</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.18</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-10.webp">
+        <div class="info">#9: greenngoria-10.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.49</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-11.webp">
+        <div class="info">#10: greenngoria-11.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.51</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.58</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.64</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.80</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.81</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.86</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 31.89</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.05</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.09</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.11</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.46</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.61</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4068.webp">
+        <div class="info">#50: ace4068.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.62</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4109.webp">
+        <div class="info">#76: ace4109.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.62</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.70</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.74</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 32.89</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.21</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.38</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.44</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.58</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.70</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.86</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4073.webp">
+        <div class="info">#53: ace4073.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.88</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4074.webp">
+        <div class="info">#54: ace4074.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 33.91</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4108.webp">
+        <div class="info">#75: ace4108.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.03</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4109.webp">
+        <div class="info">#76: ace4109.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.04</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4102.webp">
+        <div class="info">#71: ace4102.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.17</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4103.webp">
+        <div class="info">#72: ace4103.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.24</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.25</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.52</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.63</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.68</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.69</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.69</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.84</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4075.webp">
+        <div class="info">#55: ace4075.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 34.90</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4076.webp">
+        <div class="info">#56: ace4076.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 35.15</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 35.62</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 35.66</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-05.webp">
+        <div class="info">#4: greenngoria-05.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 35.91</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-07.webp">
+        <div class="info">#6: greenngoria-07.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0314.webp">
+        <div class="info">#18: dji-0314.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 35.94</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 36.02</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0333.webp">
+        <div class="info">#29: dji-0333.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 36.06</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0323.webp">
+        <div class="info">#24: dji-0323.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4133.webp">
+        <div class="info">#92: ace4133.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 36.13</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4134.webp">
+        <div class="info">#93: ace4134.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 36.45</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 36.61</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 36.96</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0308.webp">
+        <div class="info">#17: dji-0308.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.34</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4068.webp">
+        <div class="info">#50: ace4068.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0315.webp">
+        <div class="info">#19: dji-0315.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.34</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4088.webp">
+        <div class="info">#63: ace4088.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.37</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4106.webp">
+        <div class="info">#74: ace4106.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.41</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0316.webp">
+        <div class="info">#20: dji-0316.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.50</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0308.webp">
+        <div class="info">#17: dji-0308.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.57</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4067.webp">
+        <div class="info">#49: ace4067.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.72</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.80</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 37.90</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0338.webp">
+        <div class="info">#30: dji-0338.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 38.25</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4088.webp">
+        <div class="info">#63: ace4088.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 38.33</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4097.webp">
+        <div class="info">#69: ace4097.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4083.webp">
+        <div class="info">#59: ace4083.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 38.61</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4088.webp">
+        <div class="info">#63: ace4088.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 38.73</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-17.webp">
+        <div class="info">#16: greenngoria-17.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 38.97</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4036.webp">
+        <div class="info">#31: ace4036.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4052.webp">
+        <div class="info">#42: ace4052.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 39.27</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4088.webp">
+        <div class="info">#63: ace4088.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4094.webp">
+        <div class="info">#66: ace4094.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 39.40</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4095.webp">
+        <div class="info">#67: ace4095.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 39.52</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 39.59</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4065.webp">
+        <div class="info">#48: ace4065.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4068.webp">
+        <div class="info">#50: ace4068.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 39.75</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4108.webp">
+        <div class="info">#75: ace4108.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4052.webp">
+        <div class="info">#42: ace4052.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 39.83</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4106.webp">
+        <div class="info">#74: ace4106.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0328.webp">
+        <div class="info">#27: dji-0328.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 40.40</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4083.webp">
+        <div class="info">#59: ace4083.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0327.webp">
+        <div class="info">#26: dji-0327.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 40.51</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4083.webp">
+        <div class="info">#59: ace4083.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0318.webp">
+        <div class="info">#22: dji-0318.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 40.76</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0329.webp">
+        <div class="info">#28: dji-0329.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0319.webp">
+        <div class="info">#23: dji-0319.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 41.09</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0326.webp">
+        <div class="info">#25: dji-0326.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/greenngoria-06.webp">
+        <div class="info">#5: greenngoria-06.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 41.33</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0317.webp">
+        <div class="info">#21: dji-0317.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0308.webp">
+        <div class="info">#17: dji-0308.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 41.53</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4108.webp">
+        <div class="info">#75: ace4108.webp</div>
+      </div>
+    </div>
+    
+    <div class="pair">
+      <div class="img-box">
+        <img src="../web/public/images/gallery/dji-0308.webp">
+        <div class="info">#17: dji-0308.webp</div>
+      </div>
+      <div>
+        <div class="diff">Diff: 41.54</div>
+        <div style="font-size: 12px; color: #94a3b8;">Lower = more identical viewpoint</div>
+      </div>
+      <div class="img-box">
+        <img src="../web/public/images/gallery/ace4109.webp">
+        <div class="info">#76: ace4109.webp</div>
+      </div>
+    </div>
+    </body></html>

@@ -58,15 +58,7 @@ interface Contract {
 }
 
 /** Mirrors the Currency enum in prisma/schema.prisma. */
-const CURRENCIES = [
-  'USD',
-  'KES',
-  'TZS',
-  'UGX',
-  'RWF',
-  'EUR',
-  'GBP',
-] as const;
+const CURRENCIES = ['USD', 'KES', 'TZS', 'UGX', 'RWF', 'EUR', 'GBP'] as const;
 
 /**
  * The contracts controller exposes no PATCH or DELETE — the status transition

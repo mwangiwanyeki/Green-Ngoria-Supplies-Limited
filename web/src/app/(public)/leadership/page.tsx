@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default function LeadershipPage() {
-  const chair = company.leadership[0];
+  const managingDirector = company.leadership[0];
 
   return (
     <>
@@ -34,7 +34,10 @@ export default function LeadershipPage() {
           'Every technical discipline is directed by certified professional engineers, delivering turnkey gold CIP/CIL processing plants and industrial infrastructure across East & Central Africa.',
         ]}
         primaryAction={{ label: 'Contact Executive Office', href: '/contact' }}
-        secondaryAction={{ label: 'Technical Plant Assessment', href: '/request-plant-assessment' }}
+        secondaryAction={{
+          label: 'Technical Plant Assessment',
+          href: '/request-plant-assessment',
+        }}
         facts={[
           { term: 'Board Governance', value: '4 Key Principals' },
           { term: 'Head Office', value: 'Nairobi, Kenya' },
@@ -65,7 +68,9 @@ export default function LeadershipPage() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
           <Reveal kind="rise">
             <div className="space-y-4">
-              <span className="tech-label">EQUITY &amp; STATUTORY GOVERNANCE</span>
+              <span className="tech-label">
+                EQUITY &amp; STATUTORY GOVERNANCE
+              </span>
               <h2
                 id="governance-heading"
                 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-foreground"
@@ -73,21 +78,47 @@ export default function LeadershipPage() {
                 Shareholding &amp; Capital Structure
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Incorporated under the Companies Act 2015 as a private limited company (CPR/2011/57284). Nominal share capital: <span className="font-semibold text-foreground">{company.shareholding.nominalCapital}</span>.
+                Incorporated under the Companies Act 2015 as a private limited
+                company (CPR/2011/57284). Nominal share capital:{' '}
+                <span className="font-semibold text-foreground">
+                  {company.shareholding.nominalCapital}
+                </span>
+                .
               </p>
             </div>
 
             {/* Equity Progress Bar */}
             <div className="mt-6 space-y-2">
               <div className="flex h-4 w-full overflow-hidden rounded-full bg-surface-sunken border border-hairline p-0.5">
-                <div className="h-full rounded-l-full bg-teal-600" style={{ width: '50%' }} title="Davis Mragha Ngoo (50%)" />
-                <div className="h-full bg-amber-500" style={{ width: '25%' }} title="Kenneth Madete Namboga (25%)" />
-                <div className="h-full rounded-r-full bg-indigo-500" style={{ width: '25%' }} title="Raymond Nyange Ngoo (25%)" />
+                <div
+                  className="h-full rounded-l-full bg-teal-600"
+                  style={{ width: '50%' }}
+                  title="Davis Mragha Ngoo (50%)"
+                />
+                <div
+                  className="h-full bg-amber-500"
+                  style={{ width: '25%' }}
+                  title="Kenneth Madete Namboga (25%)"
+                />
+                <div
+                  className="h-full rounded-r-full bg-indigo-500"
+                  style={{ width: '25%' }}
+                  title="Raymond Nyange Ngoo (25%)"
+                />
               </div>
               <div className="flex items-center justify-between text-[11px] font-mono text-muted-foreground">
-                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-teal-600" /> Davis (50%)</span>
-                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-amber-500" /> Kenneth (25%)</span>
-                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-indigo-500" /> Raymond (25%)</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-teal-600" /> Davis
+                  (50%)
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-amber-500" /> Kenneth
+                  (25%)
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-indigo-500" />{' '}
+                  Raymond (25%)
+                </span>
               </div>
             </div>
 
@@ -101,7 +132,9 @@ export default function LeadershipPage() {
                     <span className="font-display text-sm font-bold text-foreground">
                       {d.name}
                     </span>
-                    <div className="text-xs text-muted-foreground">Ordinary Shareholder</div>
+                    <div className="text-xs text-muted-foreground">
+                      Ordinary Shareholder
+                    </div>
                   </div>
                   <div className="text-right">
                     <span className="font-mono text-sm font-bold text-brand-700 dark:text-brand-400">
@@ -123,7 +156,8 @@ export default function LeadershipPage() {
                 Corporate Governance Standards
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Operating with institutional accountability across Kenya, Tanzania, Uganda, Rwanda, and Burundi.
+                Operating with institutional accountability across Kenya,
+                Tanzania, Uganda, Rwanda, and Burundi.
               </p>
             </div>
 
@@ -149,13 +183,13 @@ export default function LeadershipPage() {
         </div>
       </Section>
 
-      {/* ── Chairperson's Official Message ── */}
-      <Section tone="sunken" rule width="prose" labelledBy="chair-heading">
+      {/* ── Managing Director's Official Message ── */}
+      <Section tone="sunken" rule width="prose" labelledBy="md-heading">
         <div className="relative rounded-3xl border border-hairline bg-card/90 p-8 sm:p-12 shadow-card backdrop-blur-md">
           <Quote className="h-10 w-10 text-brand-600/20 absolute right-8 top-8" />
 
-          <h2 id="chair-heading" className="tech-label">
-            THE CHAIRPERSON&rsquo;S MESSAGE
+          <h2 id="md-heading" className="tech-label">
+            THE MANAGING DIRECTOR&rsquo;S MESSAGE
           </h2>
 
           <Reveal kind="unblur" className="mt-6">
@@ -176,7 +210,7 @@ export default function LeadershipPage() {
                   &ldquo;{company.chairmanMotto}&rdquo;
                 </p>
                 <p className="mt-1 text-xs font-mono text-muted-foreground">
-                  {chair.name} · {chair.role}
+                  {managingDirector.name} · {managingDirector.role}
                 </p>
               </div>
 

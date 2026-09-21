@@ -71,14 +71,19 @@ export interface AssessmentRecord {
   status: string;
   submittedAt: string | null;
   createdAt: string;
-  lead?: { reference: string; contactEmail: string; contactPhone: string } | null;
+  lead?: {
+    reference: string;
+    contactEmail: string;
+    contactPhone: string;
+  } | null;
   assignedEngineer?: { firstName: string; lastName: string } | null;
 }
 
 export function AdminAssessmentsList() {
   const [page, setPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [selectedAssessment, setSelectedAssessment] = useState<AssessmentRecord | null>(null);
+  const [selectedAssessment, setSelectedAssessment] =
+    useState<AssessmentRecord | null>(null);
 
   const { data: user } = useMe();
   const orgId = user?.organizationId ?? '';
@@ -155,7 +160,10 @@ export function AdminAssessmentsList() {
       header: 'Commodity / TPH',
       cell: ({ row }) => (
         <span className="rounded bg-brand-500/10 px-2 py-0.5 text-xs font-bold text-brand-700 dark:text-brand-400">
-          {row.original.mineralType || 'GOLD'} · {row.original.estimatedTph ? `${row.original.estimatedTph} TPH` : 'TBD'}
+          {row.original.mineralType || 'GOLD'} ·{' '}
+          {row.original.estimatedTph
+            ? `${row.original.estimatedTph} TPH`
+            : 'TBD'}
         </span>
       ),
     },
@@ -193,9 +201,15 @@ export function AdminAssessmentsList() {
   if (isError) return <ErrorState retry={() => void refetch()} />;
 
   const totalCount = assessments.length;
-  const submittedCount = assessments.filter((a) => a.status === 'SUBMITTED').length;
-  const reviewCount = assessments.filter((a) => ['UNDER_REVIEW', 'ENGINEERING_REVIEW'].includes(a.status)).length;
-  const completedCount = assessments.filter((a) => a.status === 'COMPLETED').length;
+  const submittedCount = assessments.filter(
+    (a) => a.status === 'SUBMITTED',
+  ).length;
+  const reviewCount = assessments.filter((a) =>
+    ['UNDER_REVIEW', 'ENGINEERING_REVIEW'].includes(a.status),
+  ).length;
+  const completedCount = assessments.filter(
+    (a) => a.status === 'COMPLETED',
+  ).length;
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -213,8 +227,8 @@ export function AdminAssessmentsList() {
               Refresh
             </Button>
             {/* Absolute URL to the public apex — this page lives on the
-              * marketing site, not on admin.greenngoria.com, so a relative
-              * link 404s from the admin subdomain. */}
+             * marketing site, not on admin.greenngoria.com, so a relative
+             * link 404s from the admin subdomain. */}
             <a
               href={`${siteConfig.url}/technical-assessment`}
               target="_blank"
@@ -231,20 +245,36 @@ export function AdminAssessmentsList() {
       {/* KPI Stats Overview */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-hairline bg-card p-5 shadow-sm">
-          <span className="text-xs text-muted-foreground font-medium">Total Assessment Records</span>
-          <p className="mt-1 font-display text-2xl font-bold text-foreground">{totalCount}</p>
+          <span className="text-xs text-muted-foreground font-medium">
+            Total Assessment Records
+          </span>
+          <p className="mt-1 font-display text-2xl font-bold text-foreground">
+            {totalCount}
+          </p>
         </div>
         <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5 shadow-sm">
-          <span className="text-xs text-amber-700 dark:text-amber-400 font-medium">Awaiting Desk Review</span>
-          <p className="mt-1 font-display text-2xl font-bold text-amber-700 dark:text-amber-400">{submittedCount}</p>
+          <span className="text-xs text-amber-700 dark:text-amber-400 font-medium">
+            Awaiting Desk Review
+          </span>
+          <p className="mt-1 font-display text-2xl font-bold text-amber-700 dark:text-amber-400">
+            {submittedCount}
+          </p>
         </div>
         <div className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-5 shadow-sm">
-          <span className="text-xs text-blue-700 dark:text-blue-400 font-medium">In Engineering Review</span>
-          <p className="mt-1 font-display text-2xl font-bold text-blue-700 dark:text-blue-400">{reviewCount}</p>
+          <span className="text-xs text-blue-700 dark:text-blue-400 font-medium">
+            In Engineering Review
+          </span>
+          <p className="mt-1 font-display text-2xl font-bold text-blue-700 dark:text-blue-400">
+            {reviewCount}
+          </p>
         </div>
         <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5 shadow-sm">
-          <span className="text-xs text-emerald-700 dark:text-emerald-400 font-medium">Completed Feasibilities</span>
-          <p className="mt-1 font-display text-2xl font-bold text-emerald-700 dark:text-emerald-400">{completedCount}</p>
+          <span className="text-xs text-emerald-700 dark:text-emerald-400 font-medium">
+            Completed Feasibilities
+          </span>
+          <p className="mt-1 font-display text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+            {completedCount}
+          </p>
         </div>
       </div>
 
@@ -292,7 +322,10 @@ export function AdminAssessmentsList() {
 
       {/* Detailed Technical Inspection Modal */}
       {selectedAssessment && (
-        <Dialog open={!!selectedAssessment} onOpenChange={(open) => !open && setSelectedAssessment(null)}>
+        <Dialog
+          open={!!selectedAssessment}
+          onOpenChange={(open) => !open && setSelectedAssessment(null)}
+        >
           <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
             <DialogHeader>
               <div className="flex items-center justify-between gap-4">
@@ -302,10 +335,12 @@ export function AdminAssessmentsList() {
                 <StatusBadge status={selectedAssessment.status} />
               </div>
               <DialogTitle className="mt-2 font-display text-xl font-bold">
-                {selectedAssessment.clientName} — {selectedAssessment.projectName || 'Plant Assessment'}
+                {selectedAssessment.clientName} —{' '}
+                {selectedAssessment.projectName || 'Plant Assessment'}
               </DialogTitle>
               <DialogDescription>
-                Submitted {formatDate(selectedAssessment.createdAt)} · Location: {selectedAssessment.miningLocation || 'East Africa'}
+                Submitted {formatDate(selectedAssessment.createdAt)} · Location:{' '}
+                {selectedAssessment.miningLocation || 'East Africa'}
               </DialogDescription>
             </DialogHeader>
 
@@ -318,21 +353,33 @@ export function AdminAssessmentsList() {
                 <div className="mt-2 grid grid-cols-2 gap-4 text-xs">
                   <div>
                     <span className="text-muted-foreground">Company:</span>{' '}
-                    <strong className="text-foreground">{selectedAssessment.clientName}</strong>
+                    <strong className="text-foreground">
+                      {selectedAssessment.clientName}
+                    </strong>
                   </div>
                   <div>
                     <span className="text-muted-foreground">Location:</span>{' '}
-                    <strong className="text-foreground">{selectedAssessment.miningLocation || 'N/A'}</strong>
+                    <strong className="text-foreground">
+                      {selectedAssessment.miningLocation || 'N/A'}
+                    </strong>
                   </div>
                   {selectedAssessment.lead && (
                     <>
                       <div>
-                        <span className="text-muted-foreground">Lead Email:</span>{' '}
-                        <strong className="text-foreground">{selectedAssessment.lead.contactEmail}</strong>
+                        <span className="text-muted-foreground">
+                          Lead Email:
+                        </span>{' '}
+                        <strong className="text-foreground">
+                          {selectedAssessment.lead.contactEmail}
+                        </strong>
                       </div>
                       <div>
-                        <span className="text-muted-foreground">Lead Phone:</span>{' '}
-                        <strong className="text-foreground">{selectedAssessment.lead.contactPhone}</strong>
+                        <span className="text-muted-foreground">
+                          Lead Phone:
+                        </span>{' '}
+                        <strong className="text-foreground">
+                          {selectedAssessment.lead.contactPhone}
+                        </strong>
                       </div>
                     </>
                   )}
@@ -346,29 +393,55 @@ export function AdminAssessmentsList() {
                 </h4>
                 <div className="mt-3 grid grid-cols-2 gap-4 text-xs">
                   <div>
-                    <span className="text-muted-foreground">Target Mineral:</span>{' '}
-                    <span className="font-bold text-brand-700 dark:text-brand-400">{selectedAssessment.mineralType || 'GOLD'}</span>
+                    <span className="text-muted-foreground">
+                      Target Mineral:
+                    </span>{' '}
+                    <span className="font-bold text-brand-700 dark:text-brand-400">
+                      {selectedAssessment.mineralType || 'GOLD'}
+                    </span>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">Target Throughput:</span>{' '}
-                    <strong className="text-foreground">{selectedAssessment.estimatedTph ? `${selectedAssessment.estimatedTph} TPH` : 'TBD'}</strong>
+                    <span className="text-muted-foreground">
+                      Target Throughput:
+                    </span>{' '}
+                    <strong className="text-foreground">
+                      {selectedAssessment.estimatedTph
+                        ? `${selectedAssessment.estimatedTph} TPH`
+                        : 'TBD'}
+                    </strong>
                   </div>
                   <div>
                     <span className="text-muted-foreground">Head Grade:</span>{' '}
-                    <strong className="text-foreground">{selectedAssessment.oreGrade ? `${selectedAssessment.oreGrade} g/t` : 'TBD'}</strong>
+                    <strong className="text-foreground">
+                      {selectedAssessment.oreGrade
+                        ? `${selectedAssessment.oreGrade} g/t`
+                        : 'TBD'}
+                    </strong>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">Ore Hardness / BWi:</span>{' '}
-                    <strong className="text-foreground">{selectedAssessment.oreHardness || 'N/A'}</strong>
+                    <span className="text-muted-foreground">
+                      Ore Hardness / BWi:
+                    </span>{' '}
+                    <strong className="text-foreground">
+                      {selectedAssessment.oreHardness || 'N/A'}
+                    </strong>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-muted-foreground">Mineralogy Notes:</span>{' '}
-                    <p className="mt-1 text-foreground">{selectedAssessment.oreMineralogy || 'None provided'}</p>
+                    <span className="text-muted-foreground">
+                      Mineralogy Notes:
+                    </span>{' '}
+                    <p className="mt-1 text-foreground">
+                      {selectedAssessment.oreMineralogy || 'None provided'}
+                    </p>
                   </div>
                   {selectedAssessment.oreDescription && (
                     <div className="col-span-2">
-                      <span className="text-muted-foreground">Geological Description:</span>{' '}
-                      <p className="mt-1 text-foreground">{selectedAssessment.oreDescription}</p>
+                      <span className="text-muted-foreground">
+                        Geological Description:
+                      </span>{' '}
+                      <p className="mt-1 text-foreground">
+                        {selectedAssessment.oreDescription}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -381,28 +454,56 @@ export function AdminAssessmentsList() {
                 </h4>
                 <div className="mt-3 grid grid-cols-2 gap-4 text-xs">
                   <div>
-                    <span className="text-muted-foreground">Has Operating Plant:</span>{' '}
-                    <strong className="text-foreground">{selectedAssessment.hasExistingPlant ? 'Yes' : 'No (Greenfields)'}</strong>
+                    <span className="text-muted-foreground">
+                      Has Operating Plant:
+                    </span>{' '}
+                    <strong className="text-foreground">
+                      {selectedAssessment.hasExistingPlant
+                        ? 'Yes'
+                        : 'No (Greenfields)'}
+                    </strong>
                   </div>
                   {selectedAssessment.hasExistingPlant && (
                     <div>
-                      <span className="text-muted-foreground">Existing Capacity:</span>{' '}
-                      <strong className="text-foreground">{selectedAssessment.existingCapacity ? `${selectedAssessment.existingCapacity} TPH` : 'N/A'}</strong>
+                      <span className="text-muted-foreground">
+                        Existing Capacity:
+                      </span>{' '}
+                      <strong className="text-foreground">
+                        {selectedAssessment.existingCapacity
+                          ? `${selectedAssessment.existingCapacity} TPH`
+                          : 'N/A'}
+                      </strong>
                     </div>
                   )}
                   {selectedAssessment.existingPlantDesc && (
                     <div className="col-span-2">
-                      <span className="text-muted-foreground">Existing Equipment:</span>{' '}
-                      <p className="mt-1 text-foreground">{selectedAssessment.existingPlantDesc}</p>
+                      <span className="text-muted-foreground">
+                        Existing Equipment:
+                      </span>{' '}
+                      <p className="mt-1 text-foreground">
+                        {selectedAssessment.existingPlantDesc}
+                      </p>
                     </div>
                   )}
                   <div>
-                    <span className="text-muted-foreground">Current Recovery:</span>{' '}
-                    <strong className="text-foreground">{selectedAssessment.currentRecovery ? `${selectedAssessment.currentRecovery}%` : 'N/A'}</strong>
+                    <span className="text-muted-foreground">
+                      Current Recovery:
+                    </span>{' '}
+                    <strong className="text-foreground">
+                      {selectedAssessment.currentRecovery
+                        ? `${selectedAssessment.currentRecovery}%`
+                        : 'N/A'}
+                    </strong>
                   </div>
                   <div>
-                    <span className="text-muted-foreground">Target Recovery:</span>{' '}
-                    <strong className="text-brand-700 dark:text-brand-400">{selectedAssessment.targetRecovery ? `${selectedAssessment.targetRecovery}%` : '90%'}</strong>
+                    <span className="text-muted-foreground">
+                      Target Recovery:
+                    </span>{' '}
+                    <strong className="text-brand-700 dark:text-brand-400">
+                      {selectedAssessment.targetRecovery
+                        ? `${selectedAssessment.targetRecovery}%`
+                        : '90%'}
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -415,14 +516,22 @@ export function AdminAssessmentsList() {
                 <div className="mt-2 space-y-3 text-xs">
                   {selectedAssessment.operationalProblems && (
                     <div>
-                      <span className="text-muted-foreground">Reported Challenges:</span>
-                      <p className="mt-0.5 text-foreground">{selectedAssessment.operationalProblems}</p>
+                      <span className="text-muted-foreground">
+                        Reported Challenges:
+                      </span>
+                      <p className="mt-0.5 text-foreground">
+                        {selectedAssessment.operationalProblems}
+                      </p>
                     </div>
                   )}
                   {selectedAssessment.clientObjectives && (
                     <div>
-                      <span className="text-muted-foreground">Client Objectives:</span>
-                      <p className="mt-0.5 text-foreground">{selectedAssessment.clientObjectives}</p>
+                      <span className="text-muted-foreground">
+                        Client Objectives:
+                      </span>
+                      <p className="mt-0.5 text-foreground">
+                        {selectedAssessment.clientObjectives}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -434,34 +543,68 @@ export function AdminAssessmentsList() {
                   Engineering Workflow State Machine
                 </h4>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  Transition this assessment through professional engineering review gates:
+                  Transition this assessment through professional engineering
+                  review gates:
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Button
                     size="sm"
-                    variant={selectedAssessment.status === 'UNDER_REVIEW' ? 'brand' : 'outline'}
-                    onClick={() => handleStatusTransition(selectedAssessment.id, 'UNDER_REVIEW')}
+                    variant={
+                      selectedAssessment.status === 'UNDER_REVIEW'
+                        ? 'brand'
+                        : 'outline'
+                    }
+                    onClick={() =>
+                      handleStatusTransition(
+                        selectedAssessment.id,
+                        'UNDER_REVIEW',
+                      )
+                    }
                   >
                     Set Under Review
                   </Button>
                   <Button
                     size="sm"
-                    variant={selectedAssessment.status === 'ENGINEERING_REVIEW' ? 'brand' : 'outline'}
-                    onClick={() => handleStatusTransition(selectedAssessment.id, 'ENGINEERING_REVIEW')}
+                    variant={
+                      selectedAssessment.status === 'ENGINEERING_REVIEW'
+                        ? 'brand'
+                        : 'outline'
+                    }
+                    onClick={() =>
+                      handleStatusTransition(
+                        selectedAssessment.id,
+                        'ENGINEERING_REVIEW',
+                      )
+                    }
                   >
                     Start Engineering Review
                   </Button>
                   <Button
                     size="sm"
-                    variant={selectedAssessment.status === 'REPORT_PREPARATION' ? 'brand' : 'outline'}
-                    onClick={() => handleStatusTransition(selectedAssessment.id, 'REPORT_PREPARATION')}
+                    variant={
+                      selectedAssessment.status === 'REPORT_PREPARATION'
+                        ? 'brand'
+                        : 'outline'
+                    }
+                    onClick={() =>
+                      handleStatusTransition(
+                        selectedAssessment.id,
+                        'REPORT_PREPARATION',
+                      )
+                    }
                   >
                     Report Preparation
                   </Button>
                   <Button
                     size="sm"
-                    variant={selectedAssessment.status === 'COMPLETED' ? 'brand' : 'outline'}
-                    onClick={() => handleStatusTransition(selectedAssessment.id, 'COMPLETED')}
+                    variant={
+                      selectedAssessment.status === 'COMPLETED'
+                        ? 'brand'
+                        : 'outline'
+                    }
+                    onClick={() =>
+                      handleStatusTransition(selectedAssessment.id, 'COMPLETED')
+                    }
                   >
                     Mark Completed
                   </Button>
@@ -470,7 +613,10 @@ export function AdminAssessmentsList() {
             </div>
 
             <DialogFooter>
-              <Button variant="outline" onClick={() => setSelectedAssessment(null)}>
+              <Button
+                variant="outline"
+                onClick={() => setSelectedAssessment(null)}
+              >
                 Close
               </Button>
             </DialogFooter>

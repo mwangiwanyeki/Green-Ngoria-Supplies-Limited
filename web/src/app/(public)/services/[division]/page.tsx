@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import {
   ArrowRight,
   ArrowUpRight,
-  ShieldCheck,
   CheckCircle2,
   Clock,
   Layers,
@@ -67,7 +66,12 @@ export default async function ServiceDivisionPage({
         title={division.headline}
         lead={division.intro}
         primaryAction={division.cta}
-        secondaryAction={division.secondaryCta ?? { label: 'All ten divisions', href: '/services' }}
+        secondaryAction={
+          division.secondaryCta ?? {
+            label: 'All ten divisions',
+            href: '/services',
+          }
+        }
         facts={
           division.keyMetrics && division.keyMetrics.length > 0
             ? division.keyMetrics.map((m) => ({
@@ -77,9 +81,14 @@ export default async function ServiceDivisionPage({
             : [
                 { term: 'Division', value: division.name },
                 { term: 'Category', value: division.eyebrow },
-                { term: 'Recorded scope items', value: String(division.scope.length) },
                 {
-                  term: division.reach ? division.reach.title : 'Delivered across',
+                  term: 'Recorded scope items',
+                  value: String(division.scope.length),
+                },
+                {
+                  term: division.reach
+                    ? division.reach.title
+                    : 'Delivered across',
                   value: division.reach
                     ? division.reach.items.slice(0, 2).join(' · ')
                     : 'Kenya · Tanzania · Uganda · Rwanda · Burundi',
@@ -155,7 +164,8 @@ export default async function ServiceDivisionPage({
           align="stack"
         />
 
-        {division.deliverableCategories && division.deliverableCategories.length > 0 ? (
+        {division.deliverableCategories &&
+        division.deliverableCategories.length > 0 ? (
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {division.deliverableCategories.map((category) => (
               <div
@@ -196,10 +206,15 @@ export default async function ServiceDivisionPage({
 
         {/* Primary Scope Checklist */}
         <div className="mt-12 rounded-2xl border border-hairline bg-card p-6 lg:p-8">
-          <h3 className="tech-label text-foreground">Scope of Work — Official Company Profile</h3>
+          <h3 className="tech-label text-foreground">
+            Scope of Work — Official Company Profile
+          </h3>
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {division.scope.map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-xs leading-5 text-foreground/90">
+              <li
+                key={item}
+                className="flex items-start gap-2.5 text-xs leading-5 text-foreground/90"
+              >
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600 dark:text-brand-400" />
                 <span>{item}</span>
               </li>
@@ -239,10 +254,15 @@ export default async function ServiceDivisionPage({
                   </p>
 
                   <div className="mt-4 space-y-2 border-t border-hairline pt-3">
-                    <span className="tech-label text-[0.6875rem]">Key Deliverables:</span>
+                    <span className="tech-label text-[0.6875rem]">
+                      Key Deliverables:
+                    </span>
                     <ul className="space-y-1">
                       {phase.deliverables.map((d) => (
-                        <li key={d} className="flex items-start gap-1.5 text-[0.75rem] text-foreground/80">
+                        <li
+                          key={d}
+                          className="flex items-start gap-1.5 text-[0.75rem] text-foreground/80"
+                        >
                           <ChevronRight className="mt-0.5 h-3 w-3 shrink-0 text-brand-500" />
                           <span>{d}</span>
                         </li>
@@ -253,7 +273,10 @@ export default async function ServiceDivisionPage({
 
                 <div className="mt-5 border-t border-hairline pt-3">
                   <span className="block font-mono text-[0.6875rem] text-muted-foreground">
-                    Signoff Gate: <strong className="text-foreground">{phase.milestoneRecord}</strong>
+                    Signoff Gate:{' '}
+                    <strong className="text-foreground">
+                      {phase.milestoneRecord}
+                    </strong>
                   </span>
                 </div>
               </div>
@@ -277,14 +300,23 @@ export default async function ServiceDivisionPage({
               <table className="w-full text-left text-sm">
                 <thead className="border-b border-hairline bg-secondary/50 text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   <tr>
-                    <th scope="col" className="px-6 py-4">Parameter / Specification</th>
-                    <th scope="col" className="px-6 py-4">Standard Design Criteria</th>
-                    <th scope="col" className="px-6 py-4">Application &amp; Engineering Notes</th>
+                    <th scope="col" className="px-6 py-4">
+                      Parameter / Specification
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Standard Design Criteria
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Application &amp; Engineering Notes
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-hairline">
                   {division.technicalSpecs.map((spec) => (
-                    <tr key={spec.parameter} className="transition-colors hover:bg-accent/40">
+                    <tr
+                      key={spec.parameter}
+                      className="transition-colors hover:bg-accent/40"
+                    >
                       <td className="px-6 py-4 font-semibold text-foreground">
                         {spec.parameter}
                       </td>
@@ -354,7 +386,7 @@ export default async function ServiceDivisionPage({
             {
               term: 'Health, Safety & Environment',
               value:
-                'Environment, Health and Safety is given absolute priority in all projects the company undertakes, adhering strictly to ISO 14001:2015 and OHSAS 18001:2007 frameworks.',
+                'Environment, Health and Safety is given absolute priority in all projects the company undertakes, adhering strictly to NEMA EMCA Cap 387, OSHA 2007, and environmental mining regulations.',
             },
             {
               term: 'Independent Quality Control',
@@ -468,7 +500,12 @@ export default async function ServiceDivisionPage({
         title={division.cta.label}
         body={`Reach our customer care on ${company.customerCare.phone} or email ${company.customerCare.email} — or send the details through the request for quotation form and our engineering team will respond with a full proposal.`}
         primary={division.cta}
-        secondary={division.secondaryCta ?? { label: 'Contact customer care', href: '/contact' }}
+        secondary={
+          division.secondaryCta ?? {
+            label: 'Contact customer care',
+            href: '/contact',
+          }
+        }
       />
     </>
   );

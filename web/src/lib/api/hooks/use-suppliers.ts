@@ -62,8 +62,7 @@ export function useSuppliers(params?: Record<string, unknown>) {
   const accessToken = useAccessToken();
   return useQuery({
     queryKey: ['orgs', orgId, 'procurement', 'vendors', params ?? {}],
-    queryFn: () =>
-      get(`${BASE(orgId!)}`, { params }),
+    queryFn: () => get(`${BASE(orgId!)}`, { params }),
     enabled: !!accessToken && !!orgId,
   });
 }
@@ -77,7 +76,9 @@ export function useCreateSupplier() {
     mutationFn: (p: CreateSupplierPayload) =>
       post(`${BASE(orgId!)}`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['orgs', orgId, 'procurement', 'vendors'] });
+      void qc.invalidateQueries({
+        queryKey: ['orgs', orgId, 'procurement', 'vendors'],
+      });
     },
   });
 }
@@ -89,7 +90,9 @@ export function useUpdateSupplier(vendorId: string) {
     mutationFn: (p: Partial<CreateSupplierPayload>) =>
       patch(`${BASE(orgId!)}/${vendorId}`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['orgs', orgId, 'procurement', 'vendors'] });
+      void qc.invalidateQueries({
+        queryKey: ['orgs', orgId, 'procurement', 'vendors'],
+      });
     },
   });
 }
@@ -101,7 +104,9 @@ export function useApproveSupplier(vendorId: string) {
     mutationFn: () =>
       post(`${BASE(orgId!)}/${vendorId}/approve`, {}).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['orgs', orgId, 'procurement', 'vendors'] });
+      void qc.invalidateQueries({
+        queryKey: ['orgs', orgId, 'procurement', 'vendors'],
+      });
     },
   });
 }

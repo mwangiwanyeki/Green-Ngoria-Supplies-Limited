@@ -9,11 +9,18 @@ import { useErpList, useErpResource } from './use-erp';
 // ─── Enums (mirror Prisma PaymentMethod) ─────────────────────────────────────
 
 export const EXPENSE_PAYMENT_METHODS = [
-  'CASH', 'BANK_TRANSFER', 'MOBILE_MONEY', 'CHEQUE', 'OTHER',
+  'CASH',
+  'BANK_TRANSFER',
+  'MOBILE_MONEY',
+  'CHEQUE',
+  'OTHER',
 ] as const;
 export type ExpensePaymentMethod = (typeof EXPENSE_PAYMENT_METHODS)[number];
 
-export const EXPENSE_PAYMENT_METHOD_LABELS: Record<ExpensePaymentMethod, string> = {
+export const EXPENSE_PAYMENT_METHOD_LABELS: Record<
+  ExpensePaymentMethod,
+  string
+> = {
   CASH: 'Cash',
   BANK_TRANSFER: 'Bank Transfer',
   MOBILE_MONEY: 'Mobile Money',
@@ -98,8 +105,12 @@ export function useCreateExpense() {
     mutationFn: (p: CreateExpensePayload) =>
       post(`${BASE(orgId!)}`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/expenses'] });
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/expenses/stats', 'one', {}] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/expenses'],
+      });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/expenses/stats', 'one', {}],
+      });
     },
   });
 }
@@ -108,11 +119,23 @@ export function useDeleteExpense() {
   const { orgId, branchId } = useCtx();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ expenseId, delBranchId }: { expenseId: string; delBranchId: string }) =>
-      del(`${BASE(orgId!)}/${expenseId}?branchId=${delBranchId}`).then((r) => r.data),
+    mutationFn: ({
+      expenseId,
+      delBranchId,
+    }: {
+      expenseId: string;
+      delBranchId: string;
+    }) =>
+      del(`${BASE(orgId!)}/${expenseId}?branchId=${delBranchId}`).then(
+        (r) => r.data,
+      ),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/expenses'] });
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/expenses/stats', 'one', {}] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/expenses'],
+      });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/expenses/stats', 'one', {}],
+      });
     },
   });
 }

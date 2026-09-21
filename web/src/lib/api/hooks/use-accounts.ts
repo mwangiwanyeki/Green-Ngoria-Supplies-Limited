@@ -9,8 +9,15 @@ import { useErpList, useErpResource } from './use-erp';
 // ─── Enums ────────────────────────────────────────────────────────────────────
 
 export const ACCOUNT_TYPES = [
-  'CASH', 'BANK', 'MOBILE_MONEY', 'PETTY_CASH',
-  'RECEIVABLE', 'PAYABLE', 'EQUITY', 'REVENUE', 'EXPENSE',
+  'CASH',
+  'BANK',
+  'MOBILE_MONEY',
+  'PETTY_CASH',
+  'RECEIVABLE',
+  'PAYABLE',
+  'EQUITY',
+  'REVENUE',
+  'EXPENSE',
 ] as const;
 export type AccountType = (typeof ACCOUNT_TYPES)[number];
 
@@ -116,8 +123,12 @@ export function useCreateAccount() {
     mutationFn: (p: CreateAccountPayload) =>
       post(`${BASE(orgId!)}`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/accounts'] });
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/accounts/summary', 'one', {}] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/accounts'],
+      });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/accounts/summary', 'one', {}],
+      });
     },
   });
 }
@@ -129,7 +140,9 @@ export function useUpdateAccount(accountId: string) {
     mutationFn: (p: Partial<CreateAccountPayload>) =>
       patch(`${BASE(orgId!)}/${accountId}`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/accounts'] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/accounts'],
+      });
     },
   });
 }
@@ -141,8 +154,12 @@ export function useManualEntry(accountId: string) {
     mutationFn: (p: ManualEntryPayload) =>
       post(`${BASE(orgId!)}/${accountId}/transactions`, p).then((r) => r.data),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/accounts'] });
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/accounts/summary', 'one', {}] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/accounts'],
+      });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/accounts/summary', 'one', {}],
+      });
     },
   });
 }
@@ -151,11 +168,23 @@ export function useDeleteAccount() {
   const { orgId, branchId } = useCtx();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ accountId, delBranchId }: { accountId: string; delBranchId: string }) =>
-      del(`${BASE(orgId!)}/${accountId}?branchId=${delBranchId}`).then((r) => r.data),
+    mutationFn: ({
+      accountId,
+      delBranchId,
+    }: {
+      accountId: string;
+      delBranchId: string;
+    }) =>
+      del(`${BASE(orgId!)}/${accountId}?branchId=${delBranchId}`).then(
+        (r) => r.data,
+      ),
     onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/accounts'] });
-      void qc.invalidateQueries({ queryKey: ['erp', orgId, branchId, 'erp/accounts/summary', 'one', {}] });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/accounts'],
+      });
+      void qc.invalidateQueries({
+        queryKey: ['erp', orgId, branchId, 'erp/accounts/summary', 'one', {}],
+      });
     },
   });
 }

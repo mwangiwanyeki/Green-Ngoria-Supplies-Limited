@@ -123,16 +123,16 @@ const PRIORITIES = ['LOW', 'MEDIUM', 'HIGH'] as const;
 
 /** Mirror of server-side PIPELINE_TRANSITIONS for the "Change stage" select. */
 const PIPELINE_TRANSITIONS: Record<string, string[]> = {
-  NEW:          ['QUALIFIED', 'LOST', 'INACTIVE'],
-  QUALIFIED:    ['CONSULTATION', 'LOST', 'INACTIVE'],
+  NEW: ['QUALIFIED', 'LOST', 'INACTIVE'],
+  QUALIFIED: ['CONSULTATION', 'LOST', 'INACTIVE'],
   CONSULTATION: ['ASSESSMENT', 'QUALIFIED', 'LOST'],
-  ASSESSMENT:   ['RFQ', 'CONSULTATION', 'LOST'],
-  RFQ:          ['QUOTATION', 'ASSESSMENT', 'LOST'],
-  QUOTATION:    ['NEGOTIATION', 'RFQ', 'LOST'],
-  NEGOTIATION:  ['WON', 'LOST', 'QUOTATION'],
-  WON:          [],
-  LOST:         ['NEW'],
-  INACTIVE:     ['NEW'],
+  ASSESSMENT: ['RFQ', 'CONSULTATION', 'LOST'],
+  RFQ: ['QUOTATION', 'ASSESSMENT', 'LOST'],
+  QUOTATION: ['NEGOTIATION', 'RFQ', 'LOST'],
+  NEGOTIATION: ['WON', 'LOST', 'QUOTATION'],
+  WON: [],
+  LOST: ['NEW'],
+  INACTIVE: ['NEW'],
 };
 
 const PIPELINE_COLORS: Record<string, string> = {
@@ -409,20 +409,54 @@ export function AdminLeadsList() {
 
   // ── Export ──
   const handleExport = () => {
-    if (!leads.length) { toast.error('No data to export'); return; }
-    const headers = ['Reference', 'Company', 'Contact', 'Email', 'Phone', 'Country', 'Source', 'Status', 'Priority', 'Mineral', 'Est. Value', 'Currency', 'Created'];
-    const csv = [headers.join(','), ...leads.map((l) => [
-      l.reference, l.companyName, l.contactName, l.contactEmail ?? '',
-      l.contactPhone ?? '', l.country ?? '', l.source ?? '', l.status,
-      l.priority ?? '', l.mineralType ?? '',
-      l.estimatedValue != null ? Number(l.estimatedValue).toFixed(2) : '',
-      l.currency, formatRelativeDate(l.createdAt),
-    ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(','))].join('\n');
+    if (!leads.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Reference',
+      'Company',
+      'Contact',
+      'Email',
+      'Phone',
+      'Country',
+      'Source',
+      'Status',
+      'Priority',
+      'Mineral',
+      'Est. Value',
+      'Currency',
+      'Created',
+    ];
+    const csv = [
+      headers.join(','),
+      ...leads.map((l) =>
+        [
+          l.reference,
+          l.companyName,
+          l.contactName,
+          l.contactEmail ?? '',
+          l.contactPhone ?? '',
+          l.country ?? '',
+          l.source ?? '',
+          l.status,
+          l.priority ?? '',
+          l.mineralType ?? '',
+          l.estimatedValue != null ? Number(l.estimatedValue).toFixed(2) : '',
+          l.currency,
+          formatRelativeDate(l.createdAt),
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
+    ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `leads-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 
@@ -812,7 +846,11 @@ export function AdminLeadsList() {
                 onChange={(event) => setNextStage(event.target.value)}
               >
                 <option value="">Select stage…</option>
-                {(PIPELINE_TRANSITIONS[advancing?.status as keyof typeof PIPELINE_TRANSITIONS] ?? PIPELINE_STAGES).map((stage) => (
+                {(
+                  PIPELINE_TRANSITIONS[
+                    advancing?.status as keyof typeof PIPELINE_TRANSITIONS
+                  ] ?? PIPELINE_STAGES
+                ).map((stage) => (
                   <option key={stage} value={stage}>
                     {stage.replace(/_/g, ' ')}
                   </option>

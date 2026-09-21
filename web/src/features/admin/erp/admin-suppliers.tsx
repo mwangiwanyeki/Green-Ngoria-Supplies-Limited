@@ -2,22 +2,37 @@
 
 import * as React from 'react';
 import {
-  Plus, Truck, Eye, Pencil, CheckCircle2, Globe, Mail, Phone,
+  Plus,
+  Truck,
+  Eye,
+  Pencil,
+  CheckCircle2,
+  Globe,
+  Mail,
+  Phone,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input, Label } from '@/components/ui/input';
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle,
-  DialogFooter, DialogDescription,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogDescription,
 } from '@/components/ui/dialog';
 import { ErpListPage, type ErpColumn } from './erp-list-page';
 import { formatDate } from '@/lib/utils';
 import { getApiErrorMessage } from '@/lib/api/api-error';
 import {
-  useSuppliers, useCreateSupplier, useUpdateSupplier, useApproveSupplier,
-  type Supplier, type CreateSupplierPayload,
+  useSuppliers,
+  useCreateSupplier,
+  useUpdateSupplier,
+  useApproveSupplier,
+  type Supplier,
+  type CreateSupplierPayload,
 } from '@/lib/api/hooks/use-suppliers';
 import { useDebouncedValue } from '@/lib/hooks/use-debounced-value';
 
@@ -57,7 +72,9 @@ export function AdminSuppliers() {
       key: 'phone',
       header: 'Phone',
       cell: (r) => (
-        <span className="font-mono text-xs">{r.phone ?? <span className="text-muted-foreground">—</span>}</span>
+        <span className="font-mono text-xs">
+          {r.phone ?? <span className="text-muted-foreground">—</span>}
+        </span>
       ),
     },
     {
@@ -71,7 +88,9 @@ export function AdminSuppliers() {
       key: 'country',
       header: 'Country',
       cell: (r) => (
-        <span className="text-sm text-muted-foreground">{r.country ?? '—'}</span>
+        <span className="text-sm text-muted-foreground">
+          {r.country ?? '—'}
+        </span>
       ),
     },
     {
@@ -81,10 +100,14 @@ export function AdminSuppliers() {
         r.specializations?.length ? (
           <div className="flex flex-wrap gap-1">
             {r.specializations.slice(0, 2).map((s) => (
-              <Badge key={s} variant="outline" className="text-xs">{s}</Badge>
+              <Badge key={s} variant="outline" className="text-xs">
+                {s}
+              </Badge>
             ))}
             {r.specializations.length > 2 && (
-              <Badge variant="outline" className="text-xs">+{r.specializations.length - 2}</Badge>
+              <Badge variant="outline" className="text-xs">
+                +{r.specializations.length - 2}
+              </Badge>
             )}
           </div>
         ) : (
@@ -114,17 +137,25 @@ export function AdminSuppliers() {
       header: '',
       cell: (r) => (
         <div className="flex items-center justify-end gap-1">
-          <Button size="sm" variant="ghost" className="h-7 w-7 p-0" title="View"
-            onClick={() => setViewSupplier(r)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0"
+            title="View"
+            onClick={() => setViewSupplier(r)}
+          >
             <Eye className="h-3.5 w-3.5" />
           </Button>
-          <Button size="sm" variant="ghost" className="h-7 w-7 p-0" title="Edit"
-            onClick={() => setEditSupplier(r)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0"
+            title="Edit"
+            onClick={() => setEditSupplier(r)}
+          >
             <Pencil className="h-3.5 w-3.5" />
           </Button>
-          {!r.isApproved && (
-            <ApproveButton vendorId={r.id} />
-          )}
+          {!r.isApproved && <ApproveButton vendorId={r.id} />}
         </div>
       ),
     },
@@ -136,9 +167,12 @@ export function AdminSuppliers() {
         title="Suppliers"
         description="Approved vendors and procurement contacts."
         actions={
-          <Button size="sm" variant="brand"
+          <Button
+            size="sm"
+            variant="brand"
             leftIcon={<Plus className="h-4 w-4" />}
-            onClick={() => setShowAdd(true)}>
+            onClick={() => setShowAdd(true)}
+          >
             Add Supplier
           </Button>
         }
@@ -146,19 +180,22 @@ export function AdminSuppliers() {
         columns={columns}
         query={query as never}
         search={search}
-        onSearchChange={(v) => { setSearch(v); setPage(1); }}
+        onSearchChange={(v) => {
+          setSearch(v);
+          setPage(1);
+        }}
         page={page}
         perPage={perPage}
         onPageChange={setPage}
-        onPerPageChange={(n) => { setPerPage(n); setPage(1); }}
+        onPerPageChange={(n) => {
+          setPerPage(n);
+          setPage(1);
+        }}
         emptyLabel="No suppliers yet"
         rowKey={(r) => r.id}
       />
 
-      <SupplierFormDialog
-        open={showAdd}
-        onClose={() => setShowAdd(false)}
-      />
+      <SupplierFormDialog open={showAdd} onClose={() => setShowAdd(false)} />
 
       {editSupplier && (
         <SupplierFormDialog
@@ -172,7 +209,10 @@ export function AdminSuppliers() {
         <SupplierDetailDialog
           supplier={viewSupplier}
           onClose={() => setViewSupplier(null)}
-          onEdit={() => { setEditSupplier(viewSupplier); setViewSupplier(null); }}
+          onEdit={() => {
+            setEditSupplier(viewSupplier);
+            setViewSupplier(null);
+          }}
         />
       )}
     </>
@@ -184,7 +224,9 @@ export function AdminSuppliers() {
 function ApproveButton({ vendorId }: { vendorId: string }) {
   const approveMutation = useApproveSupplier(vendorId);
   return (
-    <Button size="sm" variant="ghost"
+    <Button
+      size="sm"
+      variant="ghost"
       className="h-7 w-7 p-0 hover:text-success"
       title="Approve supplier"
       loading={approveMutation.isPending}
@@ -195,7 +237,8 @@ function ApproveButton({ vendorId }: { vendorId: string }) {
         } catch (err) {
           toast.error(getApiErrorMessage(err, 'Could not approve supplier'));
         }
-      }}>
+      }}
+    >
       <CheckCircle2 className="h-3.5 w-3.5" />
     </Button>
   );
@@ -204,11 +247,19 @@ function ApproveButton({ vendorId }: { vendorId: string }) {
 // ─── Supplier Form ────────────────────────────────────────────────────────────
 
 function SupplierFormDialog({
-  open, supplier, onClose,
-}: { open: boolean; supplier?: Supplier | null; onClose: () => void }) {
+  open,
+  supplier,
+  onClose,
+}: {
+  open: boolean;
+  supplier?: Supplier | null;
+  onClose: () => void;
+}) {
   const isEdit = !!supplier;
   const [name, setName] = React.useState(supplier?.name ?? '');
-  const [contactName, setContactName] = React.useState(supplier?.contactName ?? '');
+  const [contactName, setContactName] = React.useState(
+    supplier?.contactName ?? '',
+  );
   const [email, setEmail] = React.useState(supplier?.email ?? '');
   const [phone, setPhone] = React.useState(supplier?.phone ?? '');
   const [country, setCountry] = React.useState(supplier?.country ?? 'Kenya');
@@ -216,7 +267,7 @@ function SupplierFormDialog({
   const [taxPin, setTaxPin] = React.useState(supplier?.taxPin ?? '');
   const [website, setWebsite] = React.useState(supplier?.website ?? '');
   const [specializationsRaw, setSpecializationsRaw] = React.useState(
-    (supplier?.specializations ?? []).join(', ')
+    (supplier?.specializations ?? []).join(', '),
   );
   const [notes, setNotes] = React.useState(supplier?.notes ?? '');
 
@@ -239,7 +290,10 @@ function SupplierFormDialog({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) { toast.error('Supplier name is required'); return; }
+    if (!name.trim()) {
+      toast.error('Supplier name is required');
+      return;
+    }
     const specializations = specializationsRaw
       .split(',')
       .map((s) => s.trim())
@@ -285,20 +339,32 @@ function SupplierFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4 px-6 pb-2">
+        <form
+          onSubmit={(e) => void handleSubmit(e)}
+          className="space-y-4 px-6 pb-2"
+        >
           {/* Name + contact */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label className="text-sm">
-                Supplier / company name <span className="text-destructive">*</span>
+                Supplier / company name{' '}
+                <span className="text-destructive">*</span>
               </Label>
-              <Input value={name} onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Weir Minerals Africa" className="h-9 text-sm" />
+              <Input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="e.g. Weir Minerals Africa"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Contact person</Label>
-              <Input value={contactName} onChange={(e) => setContactName(e.target.value)}
-                placeholder="Primary contact name" className="h-9 text-sm" />
+              <Input
+                value={contactName}
+                onChange={(e) => setContactName(e.target.value)}
+                placeholder="Primary contact name"
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
@@ -306,13 +372,22 @@ function SupplierFormDialog({
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label className="text-sm">Phone</Label>
-              <Input value={phone} onChange={(e) => setPhone(e.target.value)}
-                placeholder="+254 700 000000" className="h-9 text-sm" />
+              <Input
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+254 700 000000"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Email</Label>
-              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                placeholder="contact@supplier.com" className="h-9 text-sm" />
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="contact@supplier.com"
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
@@ -320,13 +395,21 @@ function SupplierFormDialog({
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label className="text-sm">Country</Label>
-              <Input value={country} onChange={(e) => setCountry(e.target.value)}
-                placeholder="Kenya" className="h-9 text-sm" />
+              <Input
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                placeholder="Kenya"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Tax PIN / KRA PIN</Label>
-              <Input value={taxPin} onChange={(e) => setTaxPin(e.target.value)}
-                placeholder="P0000000000A" className="h-9 text-sm" />
+              <Input
+                value={taxPin}
+                onChange={(e) => setTaxPin(e.target.value)}
+                placeholder="P0000000000A"
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
@@ -334,13 +417,21 @@ function SupplierFormDialog({
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label className="text-sm">Address</Label>
-              <Input value={address} onChange={(e) => setAddress(e.target.value)}
-                placeholder="Physical or postal address" className="h-9 text-sm" />
+              <Input
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Physical or postal address"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Website</Label>
-              <Input value={website} onChange={(e) => setWebsite(e.target.value)}
-                placeholder="https://supplier.com" className="h-9 text-sm" />
+              <Input
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                placeholder="https://supplier.com"
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
@@ -352,25 +443,37 @@ function SupplierFormDialog({
                 (comma-separated)
               </span>
             </Label>
-            <Input value={specializationsRaw}
+            <Input
+              value={specializationsRaw}
               onChange={(e) => setSpecializationsRaw(e.target.value)}
               placeholder="e.g. CIP Equipment, Grinding Media, Reagents"
-              className="h-9 text-sm" />
+              className="h-9 text-sm"
+            />
           </div>
 
           {/* Notes */}
           <div className="space-y-1.5">
             <Label className="text-sm">Notes</Label>
-            <textarea value={notes} onChange={(e) => setNotes(e.target.value)}
-              placeholder="Optional notes about this supplier…" rows={2} maxLength={1000}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none" />
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="Optional notes about this supplier…"
+              rows={2}
+              maxLength={1000}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none"
+            />
           </div>
         </form>
 
         <DialogFooter>
-          <Button variant="outline" disabled={isPending} onClick={onClose}>Cancel</Button>
-          <Button variant="brand" loading={isPending}
-            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}>
+          <Button variant="outline" disabled={isPending} onClick={onClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="brand"
+            loading={isPending}
+            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}
+          >
             {isEdit ? 'Save changes' : 'Add supplier'}
           </Button>
         </DialogFooter>
@@ -382,8 +485,14 @@ function SupplierFormDialog({
 // ─── Supplier Detail ──────────────────────────────────────────────────────────
 
 function SupplierDetailDialog({
-  supplier, onClose, onEdit,
-}: { supplier: Supplier; onClose: () => void; onEdit: () => void }) {
+  supplier,
+  onClose,
+  onEdit,
+}: {
+  supplier: Supplier;
+  onClose: () => void;
+  onEdit: () => void;
+}) {
   return (
     <Dialog open onOpenChange={(o) => !o && onClose()}>
       <DialogContent className="max-w-lg">
@@ -414,21 +523,32 @@ function SupplierDetailDialog({
           {/* Contact links */}
           <div className="flex flex-wrap gap-2">
             {supplier.phone && (
-              <a href={`tel:${supplier.phone}`}
-                className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-accent">
-                <Phone className="h-3.5 w-3.5" />{supplier.phone}
+              <a
+                href={`tel:${supplier.phone}`}
+                className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-accent"
+              >
+                <Phone className="h-3.5 w-3.5" />
+                {supplier.phone}
               </a>
             )}
             {supplier.email && (
-              <a href={`mailto:${supplier.email}`}
-                className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-accent">
-                <Mail className="h-3.5 w-3.5" />{supplier.email}
+              <a
+                href={`mailto:${supplier.email}`}
+                className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-accent"
+              >
+                <Mail className="h-3.5 w-3.5" />
+                {supplier.email}
               </a>
             )}
             {supplier.website && (
-              <a href={supplier.website} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-accent">
-                <Globe className="h-3.5 w-3.5" />Website
+              <a
+                href={supplier.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium hover:bg-accent"
+              >
+                <Globe className="h-3.5 w-3.5" />
+                Website
               </a>
             )}
           </div>
@@ -441,7 +561,9 @@ function SupplierDetailDialog({
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {supplier.specializations.map((s) => (
-                  <Badge key={s} variant="outline">{s}</Badge>
+                  <Badge key={s} variant="outline">
+                    {s}
+                  </Badge>
                 ))}
               </div>
             </div>
@@ -464,8 +586,12 @@ function SupplierDetailDialog({
         </div>
 
         <DialogFooter>
-          <Button variant="brand" size="sm" leftIcon={<Pencil className="h-3.5 w-3.5" />}
-            onClick={onEdit}>
+          <Button
+            variant="brand"
+            size="sm"
+            leftIcon={<Pencil className="h-3.5 w-3.5" />}
+            onClick={onEdit}
+          >
             Edit
           </Button>
         </DialogFooter>

@@ -136,8 +136,7 @@ function EditorialRail({
   const caption = item.feature?.imageCaption ?? 'Green Ngoria · Bondo plant';
   const eyebrow = item.feature?.eyebrow ?? eyebrowFallback;
   const title =
-    item.feature?.title ??
-    'Every division headed by a qualified engineer';
+    item.feature?.title ?? 'Every division headed by a qualified engineer';
   const body = item.feature?.body;
   const href = item.feature?.href ?? item.href;
   const action = item.feature?.action ?? `${item.label} overview`;
@@ -673,7 +672,10 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
                         <span className="border-b border-brand-600/30 pb-px dark:border-brand-400/30">
                           {item.label} overview
                         </span>
-                        <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                        <ArrowUpRight
+                          className="h-3.5 w-3.5"
+                          aria-hidden="true"
+                        />
                       </Link>
                     </div>
                   )}

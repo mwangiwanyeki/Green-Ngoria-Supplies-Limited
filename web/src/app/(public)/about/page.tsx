@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const chair = company.leadership[0];
+  const managingDirector = company.leadership[0];
 
   return (
     <>
@@ -124,10 +124,10 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Chairman's message */}
-      <Section tone="sunken" rule width="prose" labelledBy="chair-heading">
-        <h2 id="chair-heading" className="tech-label">
-          From the chairperson
+      {/* Managing Director's message */}
+      <Section tone="sunken" rule width="prose" labelledBy="md-heading">
+        <h2 id="md-heading" className="tech-label">
+          From the managing director
         </h2>
         <Reveal kind="unblur" className="mt-8">
           <blockquote className="space-y-6">
@@ -144,7 +144,7 @@ export default function AboutPage() {
             &ldquo;{company.chairmanMotto}&rdquo;
           </p>
           <p className="mt-2 text-sm text-subtle">
-            {chair.name} · {chair.role}
+            {managingDirector.name} · {managingDirector.role}
           </p>
           <Link href="/leadership" className="mt-8 inline-block">
             <Button variant="outline">Meet the leadership team</Button>

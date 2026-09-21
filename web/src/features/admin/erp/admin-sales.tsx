@@ -1140,8 +1140,10 @@ function NewSaleDialog({
   const createSale = useCreateSale();
   const { data: customersData } = useErpCustomers({ limit: 100 });
   const customers = customersData?.data ?? [];
-  const { data: itemsData } = useInventoryItems({ search: itemSearch,
-    limit: 20, });
+  const { data: itemsData } = useInventoryItems({
+    search: itemSearch,
+    limit: 20,
+  });
   const inventoryItems = itemsData?.data ?? [];
 
   // ── Derived totals ──

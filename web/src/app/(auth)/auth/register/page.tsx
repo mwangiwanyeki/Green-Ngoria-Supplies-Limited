@@ -76,7 +76,9 @@ export default function RegisterPage() {
           <h1 className="font-display text-2xl font-bold">Check your email</h1>
           <p className="text-sm text-muted-foreground">
             We&apos;ve sent a verification link to{' '}
-            <span className="font-medium text-foreground">{submittedEmail}</span>
+            <span className="font-medium text-foreground">
+              {submittedEmail}
+            </span>
             . Click it to activate your account, then sign in.
           </p>
         </div>

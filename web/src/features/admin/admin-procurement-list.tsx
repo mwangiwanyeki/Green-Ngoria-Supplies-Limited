@@ -91,7 +91,6 @@ interface PurchaseOrderRow {
   vendor?: { name: string } | null;
 }
 
-
 /** Mirrors the Currency enum in prisma/schema.prisma. */
 const CURRENCIES = ['USD', 'KES', 'TZS', 'UGX', 'RWF', 'EUR', 'GBP'] as const;
 
@@ -558,109 +557,109 @@ function buildRequisitionColumns(
   pendingId: string | undefined,
 ): ColumnDef<RequisitionRow>[] {
   return [
-  {
-    accessorKey: 'requisitionNo',
-    header: 'Req #',
-    cell: ({ row }) => (
-      <span className="font-mono text-xs text-muted-foreground">
-        {row.original.requisitionNo}
-      </span>
-    ),
-  },
-  { accessorKey: 'title', header: 'Title' },
-  {
-    accessorKey: 'urgency',
-    header: 'Urgency',
-    cell: ({ row }) => (
-      <Badge
-        variant={
-          row.original.urgency === 'EMERGENCY' ||
-          row.original.urgency === 'URGENT'
-            ? 'destructive'
-            : 'outline'
-        }
-      >
-        {row.original.urgency}
-      </Badge>
-    ),
-  },
-  {
-    accessorKey: 'status',
-    header: 'Status',
-    cell: ({ row }) => <StatusBadge status={row.original.status} />,
-  },
-  {
-    accessorKey: 'totalEstimated',
-    header: 'Est. Value',
-    cell: ({ row }) =>
-      row.original.totalEstimated
-        ? formatCurrency(row.original.totalEstimated, row.original.currency)
-        : '—',
-  },
-  {
-    accessorKey: 'requiredByDate',
-    header: 'Required By',
-    cell: ({ row }) => formatDate(row.original.requiredByDate),
-  },
-  {
-    accessorKey: 'createdAt',
-    header: 'Created',
-    cell: ({ row }) => formatRelativeDate(row.original.createdAt),
-  },
-  {
-    id: 'actions',
-    header: '',
-    cell: ({ row }) => {
-      const req = row.original;
-      const next = REQUISITION_NEXT[req.status] ?? [];
-      const pending = pendingId === req.id;
-      return (
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger asChild>
-            <button
-              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted"
-              aria-label={`Actions for ${req.requisitionNo}`}
-              disabled={pending}
-            >
-              {pending ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <MoreHorizontal className="h-4 w-4" />
-              )}
-            </button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content
-              align="end"
-              sideOffset={4}
-              className={rowMenuContentClass}
-            >
-              {next.length === 0 ? (
-                <DropdownMenu.Item className={rowMenuItemClass} disabled>
-                  No further transitions
-                </DropdownMenu.Item>
-              ) : (
-                next.map((status) => (
-                  <DropdownMenu.Item
-                    key={status}
-                    className={
-                      status === 'CANCELLED'
-                        ? rowMenuDestructiveItemClass
-                        : rowMenuItemClass
-                    }
-                    onSelect={() => onTransition(req, status)}
-                  >
-                    <ArrowRight className="h-3.5 w-3.5" />
-                    Move to {status.replace(/_/g, ' ').toLowerCase()}
-                  </DropdownMenu.Item>
-                ))
-              )}
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
-      );
+    {
+      accessorKey: 'requisitionNo',
+      header: 'Req #',
+      cell: ({ row }) => (
+        <span className="font-mono text-xs text-muted-foreground">
+          {row.original.requisitionNo}
+        </span>
+      ),
     },
-  },
+    { accessorKey: 'title', header: 'Title' },
+    {
+      accessorKey: 'urgency',
+      header: 'Urgency',
+      cell: ({ row }) => (
+        <Badge
+          variant={
+            row.original.urgency === 'EMERGENCY' ||
+            row.original.urgency === 'URGENT'
+              ? 'destructive'
+              : 'outline'
+          }
+        >
+          {row.original.urgency}
+        </Badge>
+      ),
+    },
+    {
+      accessorKey: 'status',
+      header: 'Status',
+      cell: ({ row }) => <StatusBadge status={row.original.status} />,
+    },
+    {
+      accessorKey: 'totalEstimated',
+      header: 'Est. Value',
+      cell: ({ row }) =>
+        row.original.totalEstimated
+          ? formatCurrency(row.original.totalEstimated, row.original.currency)
+          : '—',
+    },
+    {
+      accessorKey: 'requiredByDate',
+      header: 'Required By',
+      cell: ({ row }) => formatDate(row.original.requiredByDate),
+    },
+    {
+      accessorKey: 'createdAt',
+      header: 'Created',
+      cell: ({ row }) => formatRelativeDate(row.original.createdAt),
+    },
+    {
+      id: 'actions',
+      header: '',
+      cell: ({ row }) => {
+        const req = row.original;
+        const next = REQUISITION_NEXT[req.status] ?? [];
+        const pending = pendingId === req.id;
+        return (
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <button
+                className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted"
+                aria-label={`Actions for ${req.requisitionNo}`}
+                disabled={pending}
+              >
+                {pending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <MoreHorizontal className="h-4 w-4" />
+                )}
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content
+                align="end"
+                sideOffset={4}
+                className={rowMenuContentClass}
+              >
+                {next.length === 0 ? (
+                  <DropdownMenu.Item className={rowMenuItemClass} disabled>
+                    No further transitions
+                  </DropdownMenu.Item>
+                ) : (
+                  next.map((status) => (
+                    <DropdownMenu.Item
+                      key={status}
+                      className={
+                        status === 'CANCELLED'
+                          ? rowMenuDestructiveItemClass
+                          : rowMenuItemClass
+                      }
+                      onSelect={() => onTransition(req, status)}
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" />
+                      Move to {status.replace(/_/g, ' ').toLowerCase()}
+                    </DropdownMenu.Item>
+                  ))
+                )}
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        );
+      },
+    },
   ];
 }
 
@@ -706,95 +705,95 @@ function buildPoColumns(
   pendingId: string | undefined,
 ): ColumnDef<PurchaseOrderRow>[] {
   return [
-  {
-    id: 'poNumber',
-    header: 'PO #',
-    cell: ({ row }) => (
-      <span className="font-mono text-xs text-muted-foreground">
-        {row.original.poNumber ?? '—'}
-      </span>
-    ),
-  },
-  {
-    id: 'vendor',
-    header: 'Vendor',
-    cell: ({ row }) => row.original.vendor?.name ?? '—',
-  },
-  {
-    id: 'status',
-    header: 'Status',
-    cell: ({ row }) =>
-      row.original.status ? (
-        <StatusBadge status={row.original.status} />
-      ) : (
-        <span className="text-muted-foreground">—</span>
+    {
+      id: 'poNumber',
+      header: 'PO #',
+      cell: ({ row }) => (
+        <span className="font-mono text-xs text-muted-foreground">
+          {row.original.poNumber ?? '—'}
+        </span>
       ),
-  },
-  {
-    accessorKey: 'totalAmount',
-    header: 'Amount',
-    cell: ({ row }) =>
-      formatCurrency(row.original.totalAmount, row.original.currency),
-  },
-  {
-    accessorKey: 'expectedDelivery',
-    header: 'Expected Delivery',
-    cell: ({ row }) => formatDate(row.original.expectedDelivery),
-  },
-  {
-    accessorKey: 'createdAt',
-    header: 'Created',
-    cell: ({ row }) => formatRelativeDate(row.original.createdAt),
-  },
-  {
-    id: 'actions',
-    header: '',
-    cell: ({ row }) => {
-      const po = row.original;
-      const pending = pendingId === po.id;
-      return (
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger asChild>
-            <button
-              className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted"
-              aria-label={`Actions for purchase order ${po.poNumber ?? po.id}`}
-              disabled={pending}
-            >
-              {pending ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <MoreHorizontal className="h-4 w-4" />
-              )}
-            </button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content
-              align="end"
-              sideOffset={4}
-              className={rowMenuContentClass}
-            >
-              {PO_STATUSES.filter((status) => status !== po.status).map(
-                (status) => (
-                  <DropdownMenu.Item
-                    key={status}
-                    className={
-                      status === 'CANCELLED'
-                        ? rowMenuDestructiveItemClass
-                        : rowMenuItemClass
-                    }
-                    onSelect={() => onUpdateStatus(po, status)}
-                  >
-                    <ArrowRight className="h-3.5 w-3.5" />
-                    Mark {status.toLowerCase()}
-                  </DropdownMenu.Item>
-                ),
-              )}
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
-      );
     },
-  },
+    {
+      id: 'vendor',
+      header: 'Vendor',
+      cell: ({ row }) => row.original.vendor?.name ?? '—',
+    },
+    {
+      id: 'status',
+      header: 'Status',
+      cell: ({ row }) =>
+        row.original.status ? (
+          <StatusBadge status={row.original.status} />
+        ) : (
+          <span className="text-muted-foreground">—</span>
+        ),
+    },
+    {
+      accessorKey: 'totalAmount',
+      header: 'Amount',
+      cell: ({ row }) =>
+        formatCurrency(row.original.totalAmount, row.original.currency),
+    },
+    {
+      accessorKey: 'expectedDelivery',
+      header: 'Expected Delivery',
+      cell: ({ row }) => formatDate(row.original.expectedDelivery),
+    },
+    {
+      accessorKey: 'createdAt',
+      header: 'Created',
+      cell: ({ row }) => formatRelativeDate(row.original.createdAt),
+    },
+    {
+      id: 'actions',
+      header: '',
+      cell: ({ row }) => {
+        const po = row.original;
+        const pending = pendingId === po.id;
+        return (
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <button
+                className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted"
+                aria-label={`Actions for purchase order ${po.poNumber ?? po.id}`}
+                disabled={pending}
+              >
+                {pending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <MoreHorizontal className="h-4 w-4" />
+                )}
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content
+                align="end"
+                sideOffset={4}
+                className={rowMenuContentClass}
+              >
+                {PO_STATUSES.filter((status) => status !== po.status).map(
+                  (status) => (
+                    <DropdownMenu.Item
+                      key={status}
+                      className={
+                        status === 'CANCELLED'
+                          ? rowMenuDestructiveItemClass
+                          : rowMenuItemClass
+                      }
+                      onSelect={() => onUpdateStatus(po, status)}
+                    >
+                      <ArrowRight className="h-3.5 w-3.5" />
+                      Mark {status.toLowerCase()}
+                    </DropdownMenu.Item>
+                  ),
+                )}
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        );
+      },
+    },
   ];
 }
 
@@ -828,10 +827,7 @@ export function AdminProcurementList() {
   const transitionRequisition = useTransitionRequisitionById(orgId);
   const updatePoStatus = useUpdatePurchaseOrderStatus(orgId);
 
-  const handleRequisitionTransition = (
-    req: RequisitionRow,
-    status: string,
-  ) => {
+  const handleRequisitionTransition = (req: RequisitionRow, status: string) => {
     if (
       status === 'CANCELLED' &&
       !confirmAction(

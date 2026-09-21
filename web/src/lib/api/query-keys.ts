@@ -126,8 +126,7 @@ export const QK = {
 
   // Finance
   finance: {
-    summary: (orgId: string) =>
-      ['orgs', orgId, 'finance', 'summary'] as const,
+    summary: (orgId: string) => ['orgs', orgId, 'finance', 'summary'] as const,
   },
   invoices: {
     all: (orgId: string, params?: object) =>

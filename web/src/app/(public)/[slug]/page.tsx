@@ -63,9 +63,18 @@ export default async function PublicCapabilityPage({
       {/* 1 — Comprehensive Hero */}
       <PageHero
         title={page.title}
-        lead={page.leadParagraphs && page.leadParagraphs.length > 0 ? page.leadParagraphs : [page.intro]}
+        lead={
+          page.leadParagraphs && page.leadParagraphs.length > 0
+            ? page.leadParagraphs
+            : [page.intro]
+        }
         primaryAction={page.primaryCta}
-        secondaryAction={page.secondaryCta ?? { label: 'Contact engineering team', href: '/contact' }}
+        secondaryAction={
+          page.secondaryCta ?? {
+            label: 'Contact engineering team',
+            href: '/contact',
+          }
+        }
         facts={page.keyMetrics.map((m) => ({
           term: m.label,
           value: `${m.value} (${m.detail})`,
@@ -178,10 +187,15 @@ export default async function PublicCapabilityPage({
 
         {/* Capabilities Checklist */}
         <div className="mt-12 rounded-2xl border border-hairline bg-card p-6 lg:p-8">
-          <h3 className="tech-label text-foreground">Core Competency Register</h3>
+          <h3 className="tech-label text-foreground">
+            Core Competency Register
+          </h3>
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {page.capabilities.map((cap) => (
-              <li key={cap} className="flex items-start gap-2.5 text-xs leading-5 text-foreground/90">
+              <li
+                key={cap}
+                className="flex items-start gap-2.5 text-xs leading-5 text-foreground/90"
+              >
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600 dark:text-brand-400" />
                 <span>{cap}</span>
               </li>
@@ -221,10 +235,15 @@ export default async function PublicCapabilityPage({
                   </p>
 
                   <div className="mt-4 space-y-2 border-t border-hairline pt-3">
-                    <span className="tech-label text-[0.6875rem]">Key Deliverables:</span>
+                    <span className="tech-label text-[0.6875rem]">
+                      Key Deliverables:
+                    </span>
                     <ul className="space-y-1">
                       {phase.deliverables.map((d) => (
-                        <li key={d} className="flex items-start gap-1.5 text-[0.75rem] text-foreground/80">
+                        <li
+                          key={d}
+                          className="flex items-start gap-1.5 text-[0.75rem] text-foreground/80"
+                        >
                           <ChevronRight className="mt-0.5 h-3 w-3 shrink-0 text-brand-500" />
                           <span>{d}</span>
                         </li>
@@ -235,7 +254,10 @@ export default async function PublicCapabilityPage({
 
                 <div className="mt-5 border-t border-hairline pt-3">
                   <span className="block font-mono text-[0.6875rem] text-muted-foreground">
-                    Signoff Gate: <strong className="text-foreground">{phase.milestoneRecord}</strong>
+                    Signoff Gate:{' '}
+                    <strong className="text-foreground">
+                      {phase.milestoneRecord}
+                    </strong>
                   </span>
                 </div>
               </div>
@@ -259,14 +281,23 @@ export default async function PublicCapabilityPage({
               <table className="w-full text-left text-sm">
                 <thead className="border-b border-hairline bg-secondary/50 text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   <tr>
-                    <th scope="col" className="px-6 py-4">Engineering Parameter</th>
-                    <th scope="col" className="px-6 py-4">Standard Design Criteria</th>
-                    <th scope="col" className="px-6 py-4">Application &amp; Notes</th>
+                    <th scope="col" className="px-6 py-4">
+                      Engineering Parameter
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Standard Design Criteria
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Application &amp; Notes
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-hairline">
                   {page.technicalSpecs.map((spec) => (
-                    <tr key={spec.parameter} className="transition-colors hover:bg-accent/40">
+                    <tr
+                      key={spec.parameter}
+                      className="transition-colors hover:bg-accent/40"
+                    >
                       <td className="px-6 py-4 font-semibold text-foreground">
                         {spec.parameter}
                       </td>
@@ -348,7 +379,12 @@ export default async function PublicCapabilityPage({
       {/* 9 — Final Action Banner */}
       <CtaBanner
         primary={page.primaryCta}
-        secondary={page.secondaryCta ?? { label: 'Talk to an engineer', href: '/contact' }}
+        secondary={
+          page.secondaryCta ?? {
+            label: 'Talk to an engineer',
+            href: '/contact',
+          }
+        }
       />
     </>
   );

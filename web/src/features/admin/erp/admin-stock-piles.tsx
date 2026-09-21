@@ -20,7 +20,11 @@ export function AdminStockPiles() {
   const debouncedSearch = useDebouncedValue(search);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(15);
-  const query = useStockPiles({ search: debouncedSearch, page, limit: perPage });
+  const query = useStockPiles({
+    search: debouncedSearch,
+    page,
+    limit: perPage,
+  });
   const { data: stats } = useStockPileStats();
 
   const columns: ErpColumn<StockPile>[] = [

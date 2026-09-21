@@ -22,14 +22,14 @@ export function CtaBanner({
   secondary?: { label: string; href: string };
 }) {
   return (
-    <section className="surface-ink on-ink texture-grain relative overflow-hidden">
+    <section className="surface-ink on-ink texture-grain relative overflow-hidden w-full max-w-full">
       <div className="linework pointer-events-none absolute inset-0 opacity-50" />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 h-[30rem] w-[52rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.14] blur-[130px]"
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-8 py-24 lg:px-10 lg:py-32 w-full max-w-full min-w-0">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end lg:gap-20">
           <div>
             <h2 className="max-w-[18ch] font-display text-display-lg font-extrabold text-[hsl(var(--on-ink))]">
@@ -43,19 +43,19 @@ export function CtaBanner({
                 <Button
                   variant="brand"
                   size="lg"
-                  className="w-full sm:w-auto font-semibold"
+                  className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
                   rightIcon={<ArrowRight className="h-4 w-4 shrink-0" />}
                 >
-                  {primary.label}
+                  <span>{primary.label}</span>
                 </Button>
               </Link>
               <Link href={secondary.href} className="w-full sm:w-auto">
                 <Button
                   variant="on-ink"
                   size="lg"
-                  className="w-full sm:w-auto font-semibold"
+                  className="w-full sm:w-auto h-auto min-h-[2.75rem] sm:min-h-[3rem] py-3 sm:py-3.5 px-4 sm:px-7 text-xs xs:text-sm sm:text-[0.9375rem] whitespace-normal sm:whitespace-nowrap leading-snug text-center font-semibold"
                 >
-                  {secondary.label}
+                  <span>{secondary.label}</span>
                 </Button>
               </Link>
             </div>

@@ -128,7 +128,9 @@ export function PortalSidebar() {
           {portalNav.map(({ label, href, icon }) => {
             const Icon = ICON_MAP[icon] ?? LayoutDashboard;
             const active =
-              href === '/portal' ? pathname === href : pathname.startsWith(href);
+              href === '/portal'
+                ? pathname === href
+                : pathname.startsWith(href);
 
             if (sidebarCollapsed) {
               return (
@@ -147,7 +149,10 @@ export function PortalSidebar() {
                       {active && (
                         <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-brand-500" />
                       )}
-                      <Icon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                      <Icon
+                        className="h-4.5 w-4.5 shrink-0"
+                        aria-hidden="true"
+                      />
                     </Link>
                   </TooltipTrigger>
                   <TooltipContent side="right" sideOffset={12}>
@@ -191,7 +196,9 @@ export function PortalSidebar() {
                   </button>
                 </TooltipTrigger>
                 <TooltipContent side="right" sideOffset={12}>
-                  <div className="font-semibold text-xs">Expand sidebar (Ctrl+B)</div>
+                  <div className="font-semibold text-xs">
+                    Expand sidebar (Ctrl+B)
+                  </div>
                 </TooltipContent>
               </Tooltip>
 

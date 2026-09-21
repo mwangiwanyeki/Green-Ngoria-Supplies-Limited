@@ -74,11 +74,19 @@ export function AdminInventory() {
   // Dialog state
   const [showAdd, setShowAdd] = React.useState(false);
   const [editItem, setEditItem] = React.useState<InventoryItem | null>(null);
-  const [adjustItem, setAdjustItem] = React.useState<InventoryItem | null>(null);
+  const [adjustItem, setAdjustItem] = React.useState<InventoryItem | null>(
+    null,
+  );
   const [viewItem, setViewItem] = React.useState<InventoryItem | null>(null);
-  const [archiveTarget, setArchiveTarget] = React.useState<InventoryItem | null>(null);
+  const [archiveTarget, setArchiveTarget] =
+    React.useState<InventoryItem | null>(null);
 
-  const query = useInventoryItems({ search: debouncedSearch, filter, page, limit: perPage });
+  const query = useInventoryItems({
+    search: debouncedSearch,
+    filter,
+    page,
+    limit: perPage,
+  });
   const { data: stats } = useInventoryStats();
   const archiveMutation = useArchiveInventoryItem();
 
@@ -91,7 +99,9 @@ export function AdminInventory() {
         <div>
           <div className="font-medium text-sm">{r.name}</div>
           {r.category?.name && (
-            <div className="text-xs text-muted-foreground">{r.category.name}</div>
+            <div className="text-xs text-muted-foreground">
+              {r.category.name}
+            </div>
           )}
         </div>
       ),
@@ -147,7 +157,9 @@ export function AdminInventory() {
       key: 'uom',
       header: 'Unit',
       cell: (r) => (
-        <span className="text-xs text-muted-foreground">{r.unitOfMeasure ?? 'pcs'}</span>
+        <span className="text-xs text-muted-foreground">
+          {r.unitOfMeasure ?? 'pcs'}
+        </span>
       ),
     },
     {
@@ -166,20 +178,40 @@ export function AdminInventory() {
       header: '',
       cell: (r) => (
         <div className="flex items-center justify-end gap-1">
-          <Button size="sm" variant="ghost" className="h-7 w-7 p-0" title="View"
-            onClick={() => setViewItem(r)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0"
+            title="View"
+            onClick={() => setViewItem(r)}
+          >
             <Eye className="h-3.5 w-3.5" />
           </Button>
-          <Button size="sm" variant="ghost" className="h-7 w-7 p-0" title="Edit item"
-            onClick={() => setEditItem(r)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0"
+            title="Edit item"
+            onClick={() => setEditItem(r)}
+          >
             <Pencil className="h-3.5 w-3.5" />
           </Button>
-          <Button size="sm" variant="ghost" className="h-7 w-7 p-0 hover:text-brand-600"
-            title="Adjust stock" onClick={() => setAdjustItem(r)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0 hover:text-brand-600"
+            title="Adjust stock"
+            onClick={() => setAdjustItem(r)}
+          >
             <ArrowUpDown className="h-3.5 w-3.5" />
           </Button>
-          <Button size="sm" variant="ghost" className="h-7 w-7 p-0 hover:text-destructive"
-            title="Archive item" onClick={() => setArchiveTarget(r)}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0 hover:text-destructive"
+            title="Archive item"
+            onClick={() => setArchiveTarget(r)}
+          >
             <Archive className="h-3.5 w-3.5" />
           </Button>
         </div>
@@ -190,14 +222,28 @@ export function AdminInventory() {
   // ── Export ────────────────────────────────────────────────────────────────
   function handleExport() {
     const rows = query.data?.data ?? [];
-    if (rows.length === 0) { toast.error('No data to export'); return; }
-    const headers = ['SKU', 'Name', 'Category', 'Unit', 'Sell Price', 'Cost Price', 'Qty', 'Reorder Level', 'Status'];
+    if (rows.length === 0) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'SKU',
+      'Name',
+      'Category',
+      'Unit',
+      'Sell Price',
+      'Cost Price',
+      'Qty',
+      'Reorder Level',
+      'Status',
+    ];
     const csv = [
       headers.join(','),
       ...rows.map((r) => {
         const qty = r.quantity ?? 0;
         const reorder = r.reorderLevel ?? 10;
-        const status = qty <= 0 ? 'Out of stock' : qty <= reorder ? 'Low stock' : 'In stock';
+        const status =
+          qty <= 0 ? 'Out of stock' : qty <= reorder ? 'Low stock' : 'In stock';
         return [
           r.sku,
           r.name,
@@ -208,7 +254,9 @@ export function AdminInventory() {
           qty,
           reorder,
           status,
-        ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',');
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(',');
       }),
     ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -224,7 +272,10 @@ export function AdminInventory() {
   // ── Price tags print ──────────────────────────────────────────────────────
   function handlePriceTags() {
     const rows = query.data?.data ?? [];
-    if (rows.length === 0) { toast.error('No items to print tags for'); return; }
+    if (rows.length === 0) {
+      toast.error('No items to print tags for');
+      return;
+    }
     const html = `<!DOCTYPE html><html><head><title>Price Tags</title><style>
       body{margin:0;font-family:sans-serif}
       .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px}
@@ -234,15 +285,23 @@ export function AdminInventory() {
       .price{font-size:16px;font-weight:700}
       @media print{@page{size:A4}}
     </style></head><body><div class="grid">
-    ${rows.map((r) => `
+    ${rows
+      .map(
+        (r) => `
       <div class="tag">
         <div class="name">${r.name}</div>
         <div class="sku">${r.sku}</div>
         <div class="price">KSh ${Number(r.unitPrice ?? 0).toLocaleString()}</div>
-      </div>`).join('')}
+      </div>`,
+      )
+      .join('')}
     </div></body></html>`;
     const win = window.open('', '_blank');
-    if (win) { win.document.write(html); win.document.close(); win.print(); }
+    if (win) {
+      win.document.write(html);
+      win.document.close();
+      win.print();
+    }
   }
 
   return (
@@ -252,16 +311,28 @@ export function AdminInventory() {
         description="Stock items scoped to the active branch."
         actions={
           <>
-            <Button size="sm" variant="outline"
-              leftIcon={<Download className="h-4 w-4" />} onClick={handleExport}>
+            <Button
+              size="sm"
+              variant="outline"
+              leftIcon={<Download className="h-4 w-4" />}
+              onClick={handleExport}
+            >
               Export
             </Button>
-            <Button size="sm" variant="outline"
-              leftIcon={<Tag className="h-4 w-4" />} onClick={handlePriceTags}>
+            <Button
+              size="sm"
+              variant="outline"
+              leftIcon={<Tag className="h-4 w-4" />}
+              onClick={handlePriceTags}
+            >
               Price Tags
             </Button>
-            <Button size="sm" variant="brand"
-              leftIcon={<Plus className="h-4 w-4" />} onClick={() => setShowAdd(true)}>
+            <Button
+              size="sm"
+              variant="brand"
+              leftIcon={<Plus className="h-4 w-4" />}
+              onClick={() => setShowAdd(true)}
+            >
               Add Item
             </Button>
           </>
@@ -300,15 +371,24 @@ export function AdminInventory() {
           { key: 'out', label: 'Out of Stock' },
         ]}
         filterValue={filter}
-        onFilterChange={(k) => { setFilter(k as 'all' | 'low' | 'out'); setPage(1); }}
+        onFilterChange={(k) => {
+          setFilter(k as 'all' | 'low' | 'out');
+          setPage(1);
+        }}
         columns={columns}
         query={query}
         search={search}
-        onSearchChange={(v) => { setSearch(v); setPage(1); }}
+        onSearchChange={(v) => {
+          setSearch(v);
+          setPage(1);
+        }}
         page={page}
         perPage={perPage}
         onPageChange={setPage}
-        onPerPageChange={(n) => { setPerPage(n); setPage(1); }}
+        onPerPageChange={(n) => {
+          setPerPage(n);
+          setPage(1);
+        }}
         emptyLabel="No inventory items yet"
         rowKey={(r) => r.id}
       />
@@ -335,8 +415,14 @@ export function AdminInventory() {
         <ItemDetailDialog
           item={viewItem}
           onClose={() => setViewItem(null)}
-          onEdit={() => { setEditItem(viewItem); setViewItem(null); }}
-          onAdjust={() => { setAdjustItem(viewItem); setViewItem(null); }}
+          onEdit={() => {
+            setEditItem(viewItem);
+            setViewItem(null);
+          }}
+          onAdjust={() => {
+            setAdjustItem(viewItem);
+            setViewItem(null);
+          }}
         />
       )}
 
@@ -361,7 +447,10 @@ export function AdminInventory() {
         onConfirm={async () => {
           if (!archiveTarget) return;
           try {
-            await archiveMutation.mutateAsync({ itemId: archiveTarget.id, archiveBranchId: branchId });
+            await archiveMutation.mutateAsync({
+              itemId: archiveTarget.id,
+              archiveBranchId: branchId,
+            });
             toast.success(`"${archiveTarget.name}" archived`);
             setArchiveTarget(null);
           } catch (err) {
@@ -389,15 +478,27 @@ function ItemFormDialog({
   const isEdit = !!item;
 
   const [name, setName] = React.useState(item?.name ?? '');
-  const [unitPrice, setUnitPrice] = React.useState(Number(item?.unitPrice ?? 0));
-  const [costPrice, setCostPrice] = React.useState(Number(item?.costPrice ?? 0));
+  const [unitPrice, setUnitPrice] = React.useState(
+    Number(item?.unitPrice ?? 0),
+  );
+  const [costPrice, setCostPrice] = React.useState(
+    Number(item?.costPrice ?? 0),
+  );
   const [quantity, setQuantity] = React.useState(item?.quantity ?? 0);
-  const [reorderLevel, setReorderLevel] = React.useState(item?.reorderLevel ?? 10);
-  const [unitOfMeasure, setUnitOfMeasure] = React.useState(item?.unitOfMeasure ?? 'pcs');
+  const [reorderLevel, setReorderLevel] = React.useState(
+    item?.reorderLevel ?? 10,
+  );
+  const [unitOfMeasure, setUnitOfMeasure] = React.useState(
+    item?.unitOfMeasure ?? 'pcs',
+  );
   const [description, setDescription] = React.useState(item?.description ?? '');
   const [barcode, setBarcode] = React.useState(item?.barcode ?? '');
-  const [categoryId, setCategoryId] = React.useState(item?.categoryId ?? item?.category?.id ?? '');
-  const [storeId, setStoreId] = React.useState(item?.storeId ?? item?.store?.id ?? '');
+  const [categoryId, setCategoryId] = React.useState(
+    item?.categoryId ?? item?.category?.id ?? '',
+  );
+  const [storeId, setStoreId] = React.useState(
+    item?.storeId ?? item?.store?.id ?? '',
+  );
 
   const { data: categoriesData } = useInventoryCategories({ limit: 100 });
   const categories = categoriesData?.data ?? [];
@@ -425,8 +526,14 @@ function ItemFormDialog({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) { toast.error('Item name is required'); return; }
-    if (unitPrice <= 0) { toast.error('Selling price must be greater than zero'); return; }
+    if (!name.trim()) {
+      toast.error('Item name is required');
+      return;
+    }
+    if (unitPrice <= 0) {
+      toast.error('Selling price must be greater than zero');
+      return;
+    }
     try {
       const payload = {
         branchId,
@@ -469,27 +576,50 @@ function ItemFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(e) => void handleSubmit(e)} className="space-y-5 px-6 pb-2">
+        <form
+          onSubmit={(e) => void handleSubmit(e)}
+          className="space-y-5 px-6 pb-2"
+        >
           {/* Name */}
           <div className="space-y-1.5">
-            <Label className="text-sm">Item name <span className="text-destructive">*</span></Label>
-            <Input value={name} onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Air Filter ZH-1100" className="h-9 text-sm" />
+            <Label className="text-sm">
+              Item name <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Air Filter ZH-1100"
+              className="h-9 text-sm"
+            />
           </div>
 
           {/* Pricing row */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
-              <Label className="text-sm">Selling price (KSh) <span className="text-destructive">*</span></Label>
-              <Input type="number" min={0} step={0.01} value={unitPrice || ''}
+              <Label className="text-sm">
+                Selling price (KSh) <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                type="number"
+                min={0}
+                step={0.01}
+                value={unitPrice || ''}
                 onChange={(e) => setUnitPrice(Number(e.target.value))}
-                placeholder="0.00" className="h-9 text-sm" />
+                placeholder="0.00"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Cost price (KSh)</Label>
-              <Input type="number" min={0} step={0.01} value={costPrice || ''}
+              <Input
+                type="number"
+                min={0}
+                step={0.01}
+                value={costPrice || ''}
                 onChange={(e) => setCostPrice(Number(e.target.value))}
-                placeholder="0.00" className="h-9 text-sm" />
+                placeholder="0.00"
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
@@ -498,15 +628,23 @@ function ItemFormDialog({
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label className="text-sm">Opening stock quantity</Label>
-                <Input type="number" min={0} value={quantity}
+                <Input
+                  type="number"
+                  min={0}
+                  value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="h-9 text-sm" />
+                  className="h-9 text-sm"
+                />
               </div>
               <div className="space-y-1.5">
                 <Label className="text-sm">Reorder level</Label>
-                <Input type="number" min={0} value={reorderLevel}
+                <Input
+                  type="number"
+                  min={0}
+                  value={reorderLevel}
                   onChange={(e) => setReorderLevel(Number(e.target.value))}
-                  className="h-9 text-sm" />
+                  className="h-9 text-sm"
+                />
               </div>
             </div>
           )}
@@ -515,9 +653,13 @@ function ItemFormDialog({
           {isEdit && (
             <div className="space-y-1.5">
               <Label className="text-sm">Reorder level</Label>
-              <Input type="number" min={0} value={reorderLevel}
+              <Input
+                type="number"
+                min={0}
+                value={reorderLevel}
                 onChange={(e) => setReorderLevel(Number(e.target.value))}
-                className="h-9 text-sm" />
+                className="h-9 text-sm"
+              />
             </div>
           )}
 
@@ -532,7 +674,9 @@ function ItemFormDialog({
                 <SelectContent>
                   <SelectItem value="">No category</SelectItem>
                   {categories.map((c) => (
-                    <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                    <SelectItem key={c.id} value={c.id}>
+                      {c.name}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -546,7 +690,9 @@ function ItemFormDialog({
                 <SelectContent>
                   <SelectItem value="">No store</SelectItem>
                   {stores.map((s) => (
-                    <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
+                    <SelectItem key={s.id} value={s.id}>
+                      {s.name}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -557,30 +703,50 @@ function ItemFormDialog({
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label className="text-sm">Unit of measure</Label>
-              <Input value={unitOfMeasure} onChange={(e) => setUnitOfMeasure(e.target.value)}
-                placeholder="pcs, kg, ltr…" className="h-9 text-sm" />
+              <Input
+                value={unitOfMeasure}
+                onChange={(e) => setUnitOfMeasure(e.target.value)}
+                placeholder="pcs, kg, ltr…"
+                className="h-9 text-sm"
+              />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm">Barcode</Label>
-              <Input value={barcode} onChange={(e) => setBarcode(e.target.value)}
-                placeholder="Scan or type barcode" className="h-9 text-sm" />
+              <Input
+                value={barcode}
+                onChange={(e) => setBarcode(e.target.value)}
+                placeholder="Scan or type barcode"
+                className="h-9 text-sm"
+              />
             </div>
           </div>
 
           {/* Description */}
           <div className="space-y-1.5">
             <Label className="text-sm">Description</Label>
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)}
-              placeholder="Optional item description…" rows={2} maxLength={1000}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none" />
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Optional item description…"
+              rows={2}
+              maxLength={1000}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 resize-none"
+            />
           </div>
         </form>
 
         <DialogFooter>
-          <Button variant="outline" disabled={isPending} onClick={onClose}>Cancel</Button>
-          <Button variant="brand" loading={isPending}
-            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}>
-            {isEdit ? 'Save changes' : `Add item${unitPrice > 0 ? ` · ${formatKsh(unitPrice)}` : ''}`}
+          <Button variant="outline" disabled={isPending} onClick={onClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="brand"
+            loading={isPending}
+            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}
+          >
+            {isEdit
+              ? 'Save changes'
+              : `Add item${unitPrice > 0 ? ` · ${formatKsh(unitPrice)}` : ''}`}
           </Button>
         </DialogFooter>
       </DialogContent>
@@ -620,15 +786,65 @@ function ItemDetailDialog({
 
         <div className="space-y-4 px-6 pb-2">
           <div className="grid grid-cols-2 gap-3 rounded-lg border border-border bg-muted/30 p-4 text-sm">
-            <DetailRow label="SKU" value={<span className="font-mono text-xs">{item.sku}</span>} />
-            <DetailRow label="Status" value={<Badge variant={stockVariant as 'success' | 'warning' | 'destructive'}>{stockStatus}</Badge>} />
-            <DetailRow label="Sell price" value={formatKsh(item.unitPrice ?? 0)} />
-            <DetailRow label="Cost price" value={Number(item.costPrice ?? 0) > 0 ? formatKsh(item.costPrice ?? 0) : '—'} />
-            <DetailRow label="Qty on hand" value={<span className={cn('font-semibold tabular-nums', qty <= 0 ? 'text-destructive' : qty <= reorder ? 'text-warning-foreground' : 'text-success')}>{qty} {item.unitOfMeasure ?? 'pcs'}</span>} />
-            <DetailRow label="Reorder level" value={`${reorder} ${item.unitOfMeasure ?? 'pcs'}`} />
+            <DetailRow
+              label="SKU"
+              value={<span className="font-mono text-xs">{item.sku}</span>}
+            />
+            <DetailRow
+              label="Status"
+              value={
+                <Badge
+                  variant={
+                    stockVariant as 'success' | 'warning' | 'destructive'
+                  }
+                >
+                  {stockStatus}
+                </Badge>
+              }
+            />
+            <DetailRow
+              label="Sell price"
+              value={formatKsh(item.unitPrice ?? 0)}
+            />
+            <DetailRow
+              label="Cost price"
+              value={
+                Number(item.costPrice ?? 0) > 0
+                  ? formatKsh(item.costPrice ?? 0)
+                  : '—'
+              }
+            />
+            <DetailRow
+              label="Qty on hand"
+              value={
+                <span
+                  className={cn(
+                    'font-semibold tabular-nums',
+                    qty <= 0
+                      ? 'text-destructive'
+                      : qty <= reorder
+                        ? 'text-warning-foreground'
+                        : 'text-success',
+                  )}
+                >
+                  {qty} {item.unitOfMeasure ?? 'pcs'}
+                </span>
+              }
+            />
+            <DetailRow
+              label="Reorder level"
+              value={`${reorder} ${item.unitOfMeasure ?? 'pcs'}`}
+            />
             <DetailRow label="Category" value={item.category?.name ?? '—'} />
             <DetailRow label="Store" value={item.store?.name ?? '—'} />
-            {item.barcode && <DetailRow label="Barcode" value={<span className="font-mono text-xs">{item.barcode}</span>} />}
+            {item.barcode && (
+              <DetailRow
+                label="Barcode"
+                value={
+                  <span className="font-mono text-xs">{item.barcode}</span>
+                }
+              />
+            )}
           </div>
           {item.description && (
             <p className="rounded-md border border-border bg-muted/20 px-3 py-2.5 text-sm text-muted-foreground">
@@ -636,23 +852,39 @@ function ItemDetailDialog({
             </p>
           )}
           {qty <= reorder && (
-            <div className={cn(
-              'flex items-start gap-2 rounded-md border px-3 py-2.5 text-sm',
-              qty <= 0
-                ? 'border-destructive/30 bg-destructive/5 text-destructive'
-                : 'border-warning/30 bg-warning/5 text-warning-foreground',
-            )}>
+            <div
+              className={cn(
+                'flex items-start gap-2 rounded-md border px-3 py-2.5 text-sm',
+                qty <= 0
+                  ? 'border-destructive/30 bg-destructive/5 text-destructive'
+                  : 'border-warning/30 bg-warning/5 text-warning-foreground',
+              )}
+            >
               <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
-              <span>{qty <= 0 ? 'Out of stock — restock required.' : `Low stock alert — only ${qty} left (reorder at ${reorder}).`}</span>
+              <span>
+                {qty <= 0
+                  ? 'Out of stock — restock required.'
+                  : `Low stock alert — only ${qty} left (reorder at ${reorder}).`}
+              </span>
             </div>
           )}
         </div>
 
         <DialogFooter className="flex-wrap gap-2">
-          <Button variant="outline" size="sm" leftIcon={<ArrowUpDown className="h-3.5 w-3.5" />} onClick={onAdjust}>
+          <Button
+            variant="outline"
+            size="sm"
+            leftIcon={<ArrowUpDown className="h-3.5 w-3.5" />}
+            onClick={onAdjust}
+          >
             Adjust Stock
           </Button>
-          <Button variant="brand" size="sm" leftIcon={<Pencil className="h-3.5 w-3.5" />} onClick={onEdit}>
+          <Button
+            variant="brand"
+            size="sm"
+            leftIcon={<Pencil className="h-3.5 w-3.5" />}
+            onClick={onEdit}
+          >
             Edit item
           </Button>
         </DialogFooter>
@@ -661,10 +893,18 @@ function ItemDetailDialog({
   );
 }
 
-function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
+function DetailRow({
+  label,
+  value,
+}: {
+  label: string;
+  value: React.ReactNode;
+}) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </p>
       <div className="mt-0.5 text-sm font-medium">{value}</div>
     </div>
   );
@@ -681,7 +921,8 @@ function AdjustStockDialog({
   branchId: string;
   onClose: () => void;
 }) {
-  const [movementType, setMovementType] = React.useState<StockMovementType>('ADJUSTMENT');
+  const [movementType, setMovementType] =
+    React.useState<StockMovementType>('ADJUSTMENT');
   const [delta, setDelta] = React.useState<number>(0);
   const [reason, setReason] = React.useState('');
   const [unitCost, setUnitCost] = React.useState<number>(0);
@@ -693,8 +934,14 @@ function AdjustStockDialog({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (delta === 0) { toast.error('Quantity change cannot be zero'); return; }
-    if (projectedQty < 0) { toast.error('Adjustment would take stock below zero'); return; }
+    if (delta === 0) {
+      toast.error('Quantity change cannot be zero');
+      return;
+    }
+    if (projectedQty < 0) {
+      toast.error('Adjustment would take stock below zero');
+      return;
+    }
     try {
       await adjustMutation.mutateAsync({
         branchId,
@@ -719,21 +966,40 @@ function AdjustStockDialog({
             Adjust Stock — {item.name}
           </DialogTitle>
           <DialogDescription>
-            Current stock: <strong>{currentQty} {item.unitOfMeasure ?? 'pcs'}</strong>
-            {item.sku && <> · SKU: <span className="font-mono">{item.sku}</span></>}
+            Current stock:{' '}
+            <strong>
+              {currentQty} {item.unitOfMeasure ?? 'pcs'}
+            </strong>
+            {item.sku && (
+              <>
+                {' '}
+                · SKU: <span className="font-mono">{item.sku}</span>
+              </>
+            )}
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4 px-6 pb-2">
+        <form
+          onSubmit={(e) => void handleSubmit(e)}
+          className="space-y-4 px-6 pb-2"
+        >
           {/* Movement type */}
           <div className="space-y-1.5">
-            <Label className="text-sm">Movement type <span className="text-destructive">*</span></Label>
-            <Select value={movementType}
-              onValueChange={(v) => setMovementType(v as StockMovementType)}>
-              <SelectTrigger className="h-9 text-sm"><SelectValue /></SelectTrigger>
+            <Label className="text-sm">
+              Movement type <span className="text-destructive">*</span>
+            </Label>
+            <Select
+              value={movementType}
+              onValueChange={(v) => setMovementType(v as StockMovementType)}
+            >
+              <SelectTrigger className="h-9 text-sm">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 {STOCK_MOVEMENT_TYPES.map((t) => (
-                  <SelectItem key={t} value={t}>{STOCK_MOVEMENT_TYPE_LABELS[t]}</SelectItem>
+                  <SelectItem key={t} value={t}>
+                    {STOCK_MOVEMENT_TYPE_LABELS[t]}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -741,72 +1007,116 @@ function AdjustStockDialog({
 
           {/* Delta — sign toggle + absolute value */}
           <div className="space-y-1.5">
-            <Label className="text-sm">Quantity change <span className="text-destructive">*</span></Label>
+            <Label className="text-sm">
+              Quantity change <span className="text-destructive">*</span>
+            </Label>
             <div className="flex gap-2">
               <div className="flex rounded-md border border-border overflow-hidden">
-                <button type="button"
+                <button
+                  type="button"
                   onClick={() => setDelta((d) => Math.abs(d) * -1)}
-                  className={cn('px-3 py-2 text-xs font-semibold transition-colors',
-                    delta <= 0 ? 'bg-destructive/10 text-destructive' : 'text-muted-foreground hover:bg-accent')}>
+                  className={cn(
+                    'px-3 py-2 text-xs font-semibold transition-colors',
+                    delta <= 0
+                      ? 'bg-destructive/10 text-destructive'
+                      : 'text-muted-foreground hover:bg-accent',
+                  )}
+                >
                   − Remove
                 </button>
-                <button type="button"
+                <button
+                  type="button"
                   onClick={() => setDelta((d) => Math.abs(d))}
-                  className={cn('px-3 py-2 text-xs font-semibold transition-colors',
-                    delta >= 0 ? 'bg-success/10 text-success' : 'text-muted-foreground hover:bg-accent')}>
+                  className={cn(
+                    'px-3 py-2 text-xs font-semibold transition-colors',
+                    delta >= 0
+                      ? 'bg-success/10 text-success'
+                      : 'text-muted-foreground hover:bg-accent',
+                  )}
+                >
                   + Add
                 </button>
               </div>
-              <Input type="number" min={1} value={Math.abs(delta) || ''}
+              <Input
+                type="number"
+                min={1}
+                value={Math.abs(delta) || ''}
                 onChange={(e) => {
                   const abs = Math.max(0, Number(e.target.value));
                   setDelta(delta < 0 ? -abs : abs);
                 }}
-                placeholder="Quantity" className="h-9 flex-1 text-sm" />
+                placeholder="Quantity"
+                className="h-9 flex-1 text-sm"
+              />
             </div>
           </div>
 
           {/* Unit cost (for purchases) */}
-          {(movementType === 'PURCHASE') && (
+          {movementType === 'PURCHASE' && (
             <div className="space-y-1.5">
               <Label className="text-sm">Unit cost (KSh)</Label>
-              <Input type="number" min={0} step={0.01} value={unitCost || ''}
+              <Input
+                type="number"
+                min={0}
+                step={0.01}
+                value={unitCost || ''}
                 onChange={(e) => setUnitCost(Number(e.target.value))}
-                placeholder="0.00" className="h-9 text-sm" />
+                placeholder="0.00"
+                className="h-9 text-sm"
+              />
             </div>
           )}
 
           {/* Reason */}
           <div className="space-y-1.5">
             <Label className="text-sm">Reason</Label>
-            <Input value={reason} onChange={(e) => setReason(e.target.value)}
+            <Input
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
               placeholder="e.g. Stock count correction, received from supplier…"
-              className="h-9 text-sm" maxLength={500} />
+              className="h-9 text-sm"
+              maxLength={500}
+            />
           </div>
 
           {/* Preview */}
           {delta !== 0 && (
-            <div className={cn(
-              'rounded-lg border p-3 text-sm space-y-1.5',
-              projectedQty < 0
-                ? 'border-destructive/30 bg-destructive/5'
-                : 'border-border bg-muted/20',
-            )}>
+            <div
+              className={cn(
+                'rounded-lg border p-3 text-sm space-y-1.5',
+                projectedQty < 0
+                  ? 'border-destructive/30 bg-destructive/5'
+                  : 'border-border bg-muted/20',
+              )}
+            >
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Current stock</span>
                 <span className="tabular-nums font-medium">{currentQty}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Change</span>
-                <span className={cn('tabular-nums font-semibold',
-                  isPositive ? 'text-success' : 'text-destructive')}>
-                  {isPositive ? '+' : ''}{delta}
+                <span
+                  className={cn(
+                    'tabular-nums font-semibold',
+                    isPositive ? 'text-success' : 'text-destructive',
+                  )}
+                >
+                  {isPositive ? '+' : ''}
+                  {delta}
                 </span>
               </div>
               <div className="flex justify-between border-t border-border pt-1.5 font-semibold">
                 <span>New balance</span>
-                <span className={cn('tabular-nums',
-                  projectedQty < 0 ? 'text-destructive' : projectedQty === 0 ? 'text-warning-foreground' : 'text-success')}>
+                <span
+                  className={cn(
+                    'tabular-nums',
+                    projectedQty < 0
+                      ? 'text-destructive'
+                      : projectedQty === 0
+                        ? 'text-warning-foreground'
+                        : 'text-success',
+                  )}
+                >
                   {projectedQty}
                 </span>
               </div>
@@ -815,12 +1125,19 @@ function AdjustStockDialog({
         </form>
 
         <DialogFooter>
-          <Button variant="outline" disabled={adjustMutation.isPending} onClick={onClose}>
+          <Button
+            variant="outline"
+            disabled={adjustMutation.isPending}
+            onClick={onClose}
+          >
             Cancel
           </Button>
-          <Button variant="brand" loading={adjustMutation.isPending}
+          <Button
+            variant="brand"
+            loading={adjustMutation.isPending}
             disabled={delta === 0 || projectedQty < 0}
-            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}>
+            onClick={(e) => void handleSubmit(e as unknown as React.FormEvent)}
+          >
             Apply adjustment
           </Button>
         </DialogFooter>

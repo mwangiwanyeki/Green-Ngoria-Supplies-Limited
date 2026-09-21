@@ -11,23 +11,16 @@ import {
   Building2,
   Cpu,
   Hammer,
-  Award,
-  Sparkles,
-  ExternalLink,
   Briefcase,
   CheckCircle2,
   Compass,
   MapPin,
-  Calendar,
   Layers,
-  ChevronRight,
   X,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Button } from '@/components/ui/button';
-import { company } from '@/config/company';
-import { cn } from '@/lib/utils';
 
 export interface LeaderProfile {
   name: string;
@@ -51,28 +44,28 @@ export interface LeaderProfile {
 export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
   {
     name: 'Davis Mragha Ngoo',
-    role: 'Chairperson · Director',
-    category: 'governance',
+    role: 'Managing Director',
+    category: 'executive',
     image: '/images/leadership/davis-mragha-ngoo.webp',
     email: 'davisngoo@greenngoria.com',
     phone: '+254722115133',
     shares: '500 ordinary shares (50%)',
     location: 'Head Office, Nairobi, Kenya',
     responsibilities:
-      'Responsible for strategy and for overseeing the group\'s business, setting governance standards and fostering the effectiveness of the board and of individual directors. His message to clients — "Making your vision become a reality" — frames how Green Ngoria approaches every engagement.',
+      'Responsible as Managing Director for corporate strategy, executive leadership, and group operations, setting governance standards and driving overall business growth across East and Central Africa. His message to clients — "Making your vision become a reality" — frames how Green Ngoria approaches every engagement.',
     dossier: {
       mandate:
-        'Board Leadership, Regional Strategic Growth, Investor Partnerships & Corporate Governance Standards.',
+        'Managing Director, Regional Strategic Growth, Investor Partnerships & Corporate Governance Standards.',
       biography:
-        'Davis Mragha Ngoo has steered Green Ngoria Supplies Limited as Chairperson since its foundational growth across Kenya and Uganda. He brings decades of executive leadership in resource allocation, international joint ventures, and strategic corporate governance across East and Central Africa.',
+        'Davis Mragha Ngoo has steered Green Ngoria Supplies Limited as Managing Director since its foundational growth across Kenya and Uganda. He brings decades of executive leadership in resource allocation, international joint ventures, and strategic corporate governance across East and Central Africa.',
       focusAreas: [
-        'Corporate Governance & Board Integrity',
+        'Corporate Governance & Executive Leadership',
         'Cross-Border Strategic Expansion (Kenya, Uganda, Tanzania)',
         'Investor Relations & Major Plant Financing',
         'ESG Compliance & Sustainable Mining Frameworks',
       ],
       governanceRoles: [
-        'Chairman of the Board of Directors',
+        'Managing Director & Board Director',
         'Strategic Investment Committee Lead',
         'Senior Delegate for East African Mineral Partnerships',
       ],
@@ -85,20 +78,20 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
   },
   {
     name: 'Kenneth Madete Namboga',
-    role: 'Managing Director',
-    category: 'executive',
+    role: 'Director',
+    category: 'governance',
     image: '/images/leadership/kenneth-madete-namboga.webp',
     email: 'kennethmadete@greenngoria.com',
     phone: '+256 772 419 871',
     shares: '250 ordinary shares (25%)',
     location: 'East Africa / Uganda & Kenya',
     responsibilities:
-      'Accountable for company operations and for giving strategic guidance and direction to the board, ensuring the company achieves its mission and objectives across mining, construction and supplies.',
+      'Serves as Director on the board of Green Ngoria Supplies Limited, providing strategic guidance, operational oversight, and technical insight across mining, construction, and supplies.',
     dossier: {
       mandate:
-        'Operational Leadership, Plant EPC Execution, Commercial Operations & Enterprise Project Delivery.',
+        'Board Director, Plant EPC Advisory, Earthworks & Regional Mineral Projects.',
       biography:
-        'Kenneth Madete Namboga is the Managing Director of Green Ngoria Supplies Limited. With deep hands-on expertise in mining plant engineering, earthworks, and specialized civil construction, he directs daily operations, procurement networks, and plant commissioning throughout the region.',
+        'Kenneth Madete Namboga is a Director of Green Ngoria Supplies Limited. With deep hands-on expertise in mining plant engineering, earthworks, and specialized civil construction, he provides operational direction, procurement networks, and plant commissioning guidance throughout the region.',
       focusAreas: [
         'Gold CIP/CIL Processing Plant Delivery',
         'Heavy Civil, Structural & Mechanical Plant Erection',
@@ -106,9 +99,9 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
         'Operational Continuity & Technical Workforce Leadership',
       ],
       governanceRoles: [
-        'Managing Director & Executive Board Member',
-        'Chairperson of the Technical Operations Executive Committee',
-        'Chief Procurement & Commercial Sign-off Authority',
+        'Board Director (25% Equity Principal)',
+        'Technical Operations Executive Committee Member',
+        'Procurement & Commercial Advisory',
       ],
       activeProjects: [
         'Bondo Concession 30–45 TPH CIP Gold Plant',
@@ -119,7 +112,7 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
   },
   {
     name: 'Raymond Nyange Ngoo',
-    role: 'Legal Officer · Director',
+    role: 'Director and Company Attorney',
     category: 'governance',
     image: '/images/leadership/raymond-nyange-ngoo.webp',
     email: 'raymondngoo@greenngoria.com',
@@ -127,12 +120,12 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
     shares: '250 ordinary shares (25%)',
     location: 'Nairobi, Kenya',
     responsibilities:
-      "Provides legal expertise across the organisation's structures and activities, advising management on the legal and regulatory framework and monitoring corporate governance compliance.",
+      "Provides legal expertise across the organisation's structures and activities, advising management on the legal and regulatory framework, statutory licensing, and monitoring corporate governance compliance.",
     dossier: {
       mandate:
-        'Legal Counsel, Mining Regulatory Compliance, Contractual Structuring & Corporate Governance.',
+        'Director & Company Attorney, Mining Regulatory Compliance, Contractual Structuring & Corporate Governance.',
       biography:
-        'Raymond Nyange Ngoo serves as Legal Officer and Director, overseeing corporate jurisprudence, mining licenses, land easements, statutory filings, and compliance with Kenyan and regional mining frameworks, NEMA environmental standards, and commercial contractual agreements.',
+        'Raymond Nyange Ngoo serves as Director and Company Attorney, overseeing corporate jurisprudence, mining licenses, land easements, statutory filings, and compliance with Kenyan and regional mining frameworks, NEMA environmental standards, and commercial contractual agreements.',
       focusAreas: [
         'Mining Act Compliance & Statutory Licensing',
         'FIDIC & Bespoke Construction Contract Drafting',
@@ -140,7 +133,7 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
         'Corporate Risk Mitigation & Intellectual Property Control',
       ],
       governanceRoles: [
-        'General Legal Counsel & Corporate Secretary',
+        'Director and Company Attorney',
         'Ethics, Anti-Corruption & Compliance Committee Lead',
         'Board Director (25% Equity Principal)',
       ],
@@ -190,31 +183,36 @@ export const EXTENDED_LEADERSHIP: LeaderProfile[] = [
 export const TECHNICAL_CADRE = [
   {
     role: 'Head of Process Metallurgy & Plant Design',
-    focus: 'Crushing circuits, ball mills, agitation leaching, elution and carbon regeneration.',
+    focus:
+      'Crushing circuits, ball mills, agitation leaching, elution and carbon regeneration.',
     credential: 'Registered Professional Metallurgical Engineer (BSc. / MSc.)',
     icon: FlaskConical,
   },
   {
     role: 'Lead Civil & Structural Project Engineer',
-    focus: 'Reinforced concrete plant foundations, structural steelwork, road access and stormwater control.',
+    focus:
+      'Reinforced concrete plant foundations, structural steelwork, road access and stormwater control.',
     credential: 'Registered Civil/Structural Engineer (EBK / IEK Accredited)',
     icon: Building2,
   },
   {
     role: 'Senior Mechanical & Erection Engineer',
-    focus: 'Plant machinery alignment, slurry pump pipework, cyclones, conveyor networks and hydro-testing.',
+    focus:
+      'Plant machinery alignment, slurry pump pipework, cyclones, conveyor networks and hydro-testing.',
     credential: 'Certified Mechanical Engineer (Heavy Plant & Mining Systems)',
     icon: Hammer,
   },
   {
     role: 'Electrical, Automation & Instrumentation Lead',
-    focus: 'Substations, motor control centers (MCC), SCADA automation, PLC instrumentation and backup power.',
+    focus:
+      'Substations, motor control centers (MCC), SCADA automation, PLC instrumentation and backup power.',
     credential: 'Class A Electrical Engineering Lead (Energy & Automation)',
     icon: Cpu,
   },
   {
     role: 'HSE & Environmental Compliance Officer',
-    focus: 'ISO 14001, OHSAS 18001, NEMA EIA audits, cyanide management code and zero-harm culture.',
+    focus:
+      'NEMA EIA audits, EMCA Cap 387, OSHA 2007, cyanide management code and zero-harm culture.',
     credential: 'Certified Lead Environmental & Occupational Safety Auditor',
     icon: ShieldCheck,
   },
@@ -232,7 +230,9 @@ function monogram(name: string) {
 }
 
 export function LeadershipSection() {
-  const [selectedLeader, setSelectedLeader] = useState<LeaderProfile | null>(null);
+  const [selectedLeader, setSelectedLeader] = useState<LeaderProfile | null>(
+    null,
+  );
 
   return (
     <div className="space-y-16">
@@ -345,7 +345,9 @@ export function LeadershipSection() {
             Qualified Engineering Leadership
           </h2>
           <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-            Every technical discipline is directed by certified professional engineers with specialized mining, metallurgy, civil, and electrical erection backgrounds across East Africa.
+            Every technical discipline is directed by certified professional
+            engineers with specialized mining, metallurgy, civil, and electrical
+            erection backgrounds across East Africa.
           </p>
         </div>
 
@@ -457,7 +459,9 @@ export function LeadershipSection() {
                 <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 scrollbar-thin">
                   {/* Executive Mandate & Bio */}
                   <div>
-                    <h4 className="tech-label">EXECUTIVE MANDATE &amp; RESPONSIBILITIES</h4>
+                    <h4 className="tech-label">
+                      EXECUTIVE MANDATE &amp; RESPONSIBILITIES
+                    </h4>
                     <p className="mt-2 text-sm leading-relaxed text-foreground font-medium">
                       {selectedLeader.dossier.mandate}
                     </p>
@@ -474,7 +478,10 @@ export function LeadershipSection() {
                     </h4>
                     <ul className="mt-3 space-y-2">
                       {selectedLeader.dossier.focusAreas.map((area, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs text-muted-foreground">
+                        <li
+                          key={idx}
+                          className="flex items-start gap-2.5 text-xs text-muted-foreground"
+                        >
                           <CheckCircle2 className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400 mt-0.5 shrink-0" />
                           <span>{area}</span>
                         </li>
@@ -490,11 +497,16 @@ export function LeadershipSection() {
                         Governance Roles
                       </div>
                       <ul className="space-y-1.5">
-                        {selectedLeader.dossier.governanceRoles.map((g, idx) => (
-                          <li key={idx} className="text-xs text-muted-foreground list-disc list-inside">
-                            {g}
-                          </li>
-                        ))}
+                        {selectedLeader.dossier.governanceRoles.map(
+                          (g, idx) => (
+                            <li
+                              key={idx}
+                              className="text-xs text-muted-foreground list-disc list-inside"
+                            >
+                              {g}
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </div>
 
@@ -505,7 +517,10 @@ export function LeadershipSection() {
                       </div>
                       <ul className="space-y-1.5">
                         {selectedLeader.dossier.activeProjects.map((p, idx) => (
-                          <li key={idx} className="text-xs text-muted-foreground list-disc list-inside">
+                          <li
+                            key={idx}
+                            className="text-xs text-muted-foreground list-disc list-inside"
+                          >
                             {p}
                           </li>
                         ))}
@@ -520,7 +535,11 @@ export function LeadershipSection() {
                     Official Green Ngoria Executive Record
                   </span>
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setSelectedLeader(null)}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setSelectedLeader(null)}
+                    >
                       Close
                     </Button>
                     <Button size="sm" asChild>

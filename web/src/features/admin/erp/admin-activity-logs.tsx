@@ -16,7 +16,11 @@ export function AdminActivityLogs() {
   const debouncedSearch = useDebouncedValue(search);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(25);
-  const query = useActivityLogs({ search: debouncedSearch, page, limit: perPage });
+  const query = useActivityLogs({
+    search: debouncedSearch,
+    page,
+    limit: perPage,
+  });
 
   const columns: ErpColumn<ActivityLogEntry>[] = [
     {

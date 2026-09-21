@@ -70,18 +70,11 @@ export const ENGINEERING_ROLES = [
   'ELECTRICAL_ENGINEER',
 ] as const;
 
-export const FINANCE_ROLES = [
-  'FINANCE_OFFICER',
-  'ACCOUNTANT',
-] as const;
+export const FINANCE_ROLES = ['FINANCE_OFFICER', 'ACCOUNTANT'] as const;
 
-export const PROCUREMENT_ROLES = [
-  'PROCUREMENT_OFFICER',
-] as const;
+export const PROCUREMENT_ROLES = ['PROCUREMENT_OFFICER'] as const;
 
-export const HSE_ROLES = [
-  'HSE_OFFICER',
-] as const;
+export const HSE_ROLES = ['HSE_OFFICER'] as const;
 
 // ─── Admin (ERP) navigation ────────────────────────────────────────────────
 // Structure derived from company ERP specification with role-based visibility.
@@ -144,33 +137,57 @@ export const adminNav: readonly AdminNavItem[] = [
         label: 'Consultations',
         href: '/admin/consultations',
         icon: 'CalendarClock',
-        allowedRoles: [...EXECUTIVE_ROLES, ...SALES_ROLES, ...ENGINEERING_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...SALES_ROLES,
+          ...ENGINEERING_ROLES,
+        ],
       },
     ],
   },
   {
     label: 'Commercial',
     icon: 'FileCheck',
-    allowedRoles: [...EXECUTIVE_ROLES, ...SALES_ROLES, ...PM_ROLES, ...FINANCE_ROLES],
+    allowedRoles: [
+      ...EXECUTIVE_ROLES,
+      ...SALES_ROLES,
+      ...PM_ROLES,
+      ...FINANCE_ROLES,
+    ],
     children: [
       {
         label: 'Quotations',
         href: '/admin/quotations',
         icon: 'FileCheck',
         badge: 'NEW',
-        allowedRoles: [...EXECUTIVE_ROLES, ...SALES_ROLES, ...PM_ROLES, ...FINANCE_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...SALES_ROLES,
+          ...PM_ROLES,
+          ...FINANCE_ROLES,
+        ],
       },
       {
         label: 'Contracts',
         href: '/admin/contracts',
         icon: 'ScrollText',
-        allowedRoles: [...EXECUTIVE_ROLES, ...SALES_ROLES, ...PM_ROLES, 'LEGAL_OFFICER'],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...SALES_ROLES,
+          ...PM_ROLES,
+          'LEGAL_OFFICER',
+        ],
       },
       {
         label: 'RFQs',
         href: '/admin/rfqs',
         icon: 'FileText',
-        allowedRoles: [...EXECUTIVE_ROLES, ...SALES_ROLES, ...PM_ROLES, ...PROCUREMENT_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...SALES_ROLES,
+          ...PM_ROLES,
+          ...PROCUREMENT_ROLES,
+        ],
       },
     ],
   },
@@ -188,24 +205,42 @@ export const adminNav: readonly AdminNavItem[] = [
     href: '/admin/site-ops',
     icon: 'Hammer',
     badge: 'NEW',
-    allowedRoles: [...EXECUTIVE_ROLES, ...PM_ROLES, ...HSE_ROLES, 'MINING_ENGINEER'],
+    allowedRoles: [
+      ...EXECUTIVE_ROLES,
+      ...PM_ROLES,
+      ...HSE_ROLES,
+      'MINING_ENGINEER',
+    ],
   },
   {
     label: 'Engineering',
     icon: 'Cpu',
-    allowedRoles: [...EXECUTIVE_ROLES, ...ENGINEERING_ROLES, 'PROJECT_MANAGER', 'PRODUCTION_MANAGER'],
+    allowedRoles: [
+      ...EXECUTIVE_ROLES,
+      ...ENGINEERING_ROLES,
+      'PROJECT_MANAGER',
+      'PRODUCTION_MANAGER',
+    ],
     children: [
       {
         label: 'Assessments',
         href: '/admin/assessments',
         icon: 'ClipboardList',
-        allowedRoles: [...EXECUTIVE_ROLES, ...ENGINEERING_ROLES, 'PROJECT_MANAGER'],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...ENGINEERING_ROLES,
+          'PROJECT_MANAGER',
+        ],
       },
       {
         label: 'Documents',
         href: '/admin/engineering',
         icon: 'Files',
-        allowedRoles: [...EXECUTIVE_ROLES, ...ENGINEERING_ROLES, 'PROJECT_MANAGER'],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...ENGINEERING_ROLES,
+          'PROJECT_MANAGER',
+        ],
       },
       {
         label: 'Mining Sites',
@@ -217,13 +252,23 @@ export const adminNav: readonly AdminNavItem[] = [
         label: 'Equipment',
         href: '/admin/equipment',
         icon: 'Boxes',
-        allowedRoles: [...EXECUTIVE_ROLES, ...ENGINEERING_ROLES, ...PM_ROLES, ...SALES_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...ENGINEERING_ROLES,
+          ...PM_ROLES,
+          ...SALES_ROLES,
+        ],
       },
       {
         label: 'Spares',
         href: '/admin/spares',
         icon: 'PackageCheck',
-        allowedRoles: [...EXECUTIVE_ROLES, ...ENGINEERING_ROLES, ...PM_ROLES, ...SALES_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...ENGINEERING_ROLES,
+          ...PM_ROLES,
+          ...SALES_ROLES,
+        ],
       },
       {
         label: 'Commissioning',
@@ -256,19 +301,35 @@ export const adminNav: readonly AdminNavItem[] = [
   {
     label: 'Operations',
     icon: 'Cog',
-    allowedRoles: [...EXECUTIVE_ROLES, ...PM_ROLES, ...ENGINEERING_ROLES, ...HSE_ROLES, ...PROCUREMENT_ROLES],
+    allowedRoles: [
+      ...EXECUTIVE_ROLES,
+      ...PM_ROLES,
+      ...ENGINEERING_ROLES,
+      ...HSE_ROLES,
+      ...PROCUREMENT_ROLES,
+    ],
     children: [
       {
         label: 'HSE',
         href: '/admin/hse',
         icon: 'ShieldAlert',
-        allowedRoles: [...EXECUTIVE_ROLES, ...HSE_ROLES, ...PM_ROLES, ...ENGINEERING_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...HSE_ROLES,
+          ...PM_ROLES,
+          ...ENGINEERING_ROLES,
+        ],
       },
       {
         label: 'Procurement',
         href: '/admin/procurement',
         icon: 'Truck',
-        allowedRoles: [...EXECUTIVE_ROLES, ...PROCUREMENT_ROLES, ...PM_ROLES, ...FINANCE_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...PROCUREMENT_ROLES,
+          ...PM_ROLES,
+          ...FINANCE_ROLES,
+        ],
       },
       {
         label: 'Vendors',
@@ -281,14 +342,23 @@ export const adminNav: readonly AdminNavItem[] = [
         href: '/admin/vat-leach',
         icon: 'FlaskConical',
         badge: 'UPDATED',
-        allowedRoles: [...EXECUTIVE_ROLES, ...ENGINEERING_ROLES, 'PRODUCTION_MANAGER'],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...ENGINEERING_ROLES,
+          'PRODUCTION_MANAGER',
+        ],
       },
       {
         label: 'Stock Pile',
         href: '/admin/stock-piles',
         icon: 'Mountain',
         badge: 'NEW',
-        allowedRoles: [...EXECUTIVE_ROLES, ...ENGINEERING_ROLES, ...PM_ROLES, 'PRODUCTION_MANAGER'],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...ENGINEERING_ROLES,
+          ...PM_ROLES,
+          'PRODUCTION_MANAGER',
+        ],
       },
       {
         label: 'Security',
@@ -329,13 +399,22 @@ export const adminNav: readonly AdminNavItem[] = [
         label: 'Inventory',
         href: '/admin/inventory',
         icon: 'Boxes',
-        allowedRoles: [...EXECUTIVE_ROLES, ...SALES_ROLES, ...PM_ROLES, ...PROCUREMENT_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...SALES_ROLES,
+          ...PM_ROLES,
+          ...PROCUREMENT_ROLES,
+        ],
       },
       {
         label: 'Store Management',
         href: '/admin/store-management',
         icon: 'Warehouse',
-        allowedRoles: [...EXECUTIVE_ROLES, ...SALES_ROLES, ...PROCUREMENT_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...SALES_ROLES,
+          ...PROCUREMENT_ROLES,
+        ],
       },
       {
         label: 'Customers',
@@ -362,7 +441,12 @@ export const adminNav: readonly AdminNavItem[] = [
         label: 'Invoices',
         href: '/admin/invoices',
         icon: 'Receipt',
-        allowedRoles: [...EXECUTIVE_ROLES, ...FINANCE_ROLES, 'SALES_MANAGER', 'PROJECT_MANAGER'],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...FINANCE_ROLES,
+          'SALES_MANAGER',
+          'PROJECT_MANAGER',
+        ],
       },
       {
         label: 'Payments',
@@ -386,7 +470,11 @@ export const adminNav: readonly AdminNavItem[] = [
         label: 'Suppliers',
         href: '/admin/suppliers',
         icon: 'Truck',
-        allowedRoles: [...EXECUTIVE_ROLES, ...FINANCE_ROLES, ...PROCUREMENT_ROLES],
+        allowedRoles: [
+          ...EXECUTIVE_ROLES,
+          ...FINANCE_ROLES,
+          ...PROCUREMENT_ROLES,
+        ],
       },
     ],
   },
@@ -418,7 +506,12 @@ export const adminNav: readonly AdminNavItem[] = [
     label: 'Visitors Management',
     href: '/admin/visitors',
     icon: 'UserCheck',
-    allowedRoles: [...EXECUTIVE_ROLES, ...PM_ROLES, 'CUSTOMER_CARE', 'SITE_SUPERVISOR'],
+    allowedRoles: [
+      ...EXECUTIVE_ROLES,
+      ...PM_ROLES,
+      'CUSTOMER_CARE',
+      'SITE_SUPERVISOR',
+    ],
   },
 
   // ── Reports & Analytics (All internal roles view domain reports) ──
@@ -554,7 +647,8 @@ export function getPrimaryRoleCategory(
   if (roles.some((r) => EXECUTIVE_ROLES.includes(r as any))) return 'executive';
   if (roles.some((r) => SALES_ROLES.includes(r as any))) return 'sales';
   if (roles.some((r) => PM_ROLES.includes(r as any))) return 'pm';
-  if (roles.some((r) => ENGINEERING_ROLES.includes(r as any))) return 'engineering';
+  if (roles.some((r) => ENGINEERING_ROLES.includes(r as any)))
+    return 'engineering';
   return 'executive';
 }
 
@@ -567,12 +661,18 @@ export function getAllowedRolesForPath(
   for (const item of adminNav) {
     if (isNavGroup(item)) {
       for (const child of item.children) {
-        if (child.href === pathname || (pathname.startsWith(child.href) && child.href !== '/admin')) {
+        if (
+          child.href === pathname ||
+          (pathname.startsWith(child.href) && child.href !== '/admin')
+        ) {
           return child.allowedRoles || item.allowedRoles || null;
         }
       }
     } else {
-      if (item.href === pathname || (pathname.startsWith(item.href) && item.href !== '/admin')) {
+      if (
+        item.href === pathname ||
+        (pathname.startsWith(item.href) && item.href !== '/admin')
+      ) {
         return item.allowedRoles || null;
       }
     }

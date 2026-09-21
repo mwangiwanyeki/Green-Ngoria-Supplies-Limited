@@ -21,7 +21,12 @@ export function AdminVatLeach() {
   >('all');
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(25);
-  const query = useVatLeachRentals({ search: debouncedSearch, status, page, limit: perPage });
+  const query = useVatLeachRentals({
+    search: debouncedSearch,
+    status,
+    page,
+    limit: perPage,
+  });
   const { data: stats } = useVatLeachStats();
 
   const columns: ErpColumn<VatLeachRental>[] = [

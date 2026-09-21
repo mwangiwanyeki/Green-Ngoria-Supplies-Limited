@@ -196,22 +196,40 @@ export function AdminSiteOpsList() {
   };
 
   const handleExport = () => {
-    if (!items.length) { toast.error('No data to export'); return; }
-    const headers = ['Date', 'Work Areas', 'Headcount', 'Weather', 'Activities', 'Progress', 'Materials', 'Equipment', 'Issues', 'Next Day Plan'];
+    if (!items.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'Date',
+      'Work Areas',
+      'Headcount',
+      'Weather',
+      'Activities',
+      'Progress',
+      'Materials',
+      'Equipment',
+      'Issues',
+      'Next Day Plan',
+    ];
     const csv = [
       headers.join(','),
-      ...items.map((r) => [
-        formatDate(r.reportDate),
-        r.workAreas ?? '',
-        r.laborCount ?? 0,
-        r.weather ?? '',
-        r.activities,
-        r.progress ?? '',
-        r.materials ?? '',
-        r.equipment ?? '',
-        r.issues ?? '',
-        r.nextDayPlan ?? '',
-      ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')),
+      ...items.map((r) =>
+        [
+          formatDate(r.reportDate),
+          r.workAreas ?? '',
+          r.laborCount ?? 0,
+          r.weather ?? '',
+          r.activities,
+          r.progress ?? '',
+          r.materials ?? '',
+          r.equipment ?? '',
+          r.issues ?? '',
+          r.nextDayPlan ?? '',
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
     ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -219,7 +237,8 @@ export function AdminSiteOpsList() {
     const projectLabel = projects.find((p) => p.id === selectedProjectId);
     a.href = url;
     a.download = `site-ops-${projectLabel?.projectNumber ?? 'reports'}-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 

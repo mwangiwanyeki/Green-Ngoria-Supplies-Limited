@@ -36,7 +36,7 @@ export function Section({
       id={id}
       aria-labelledby={labelledBy}
       className={cn(
-        'relative py-20 sm:py-24 lg:py-32',
+        'relative py-20 sm:py-24 lg:py-32 w-full max-w-full overflow-hidden',
         TONE[tone],
         rule && 'border-t border-hairline',
         className,
@@ -44,7 +44,7 @@ export function Section({
     >
       <div
         className={cn(
-          'relative mx-auto px-5 sm:px-8 lg:px-10',
+          'relative mx-auto px-4 sm:px-8 lg:px-10 w-full max-w-full min-w-0',
           width === 'wide' && 'max-w-[88rem]',
           width === 'default' && 'max-w-7xl',
           width === 'prose' && 'max-w-3xl',

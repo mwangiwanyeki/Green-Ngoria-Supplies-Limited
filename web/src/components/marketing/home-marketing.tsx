@@ -33,8 +33,8 @@ const differentiators = [
   },
   {
     icon: ShieldCheck,
-    title: 'ISO-aligned quality',
-    body: 'Work planned, checked and handed over under ISO 9001 / 14001 / OHSAS 18001.',
+    title: 'Licensed & compliant',
+    body: 'Licensed under Kenya Mining Act 2016, NEMA EMCA Cap 387 and verified KRA taxpayer.',
   },
   {
     icon: Layers,
@@ -282,17 +282,10 @@ export function LeadershipPreview() {
 /* ───────────────────── Certifications strip ─────────────────── */
 
 export function CertificationsStrip() {
-  const items = [
-    ...company.certifications.map((c) => ({ name: c.name, scope: c.scope })),
-    {
-      name: 'NEMA/PR/SYA/002',
-      scope: 'Nyangoma gold processing plant approval',
-    },
-    {
-      name: 'KRA Tax Compliance',
-      scope: 'Available on request during prequalification',
-    },
-  ];
+  const items = company.certifications.map((c) => ({
+    name: c.name,
+    scope: c.scope,
+  }));
   return (
     <ul className="flex flex-wrap justify-center gap-3">
       {items.map((c) => (

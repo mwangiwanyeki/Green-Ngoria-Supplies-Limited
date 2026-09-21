@@ -20,7 +20,8 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_PORTAL_URL?.trim() ||
     'https://portal.greenngoria.com',
   adminUrl:
-    process.env.NEXT_PUBLIC_ADMIN_URL?.trim() || 'https://admin.greenngoria.com',
+    process.env.NEXT_PUBLIC_ADMIN_URL?.trim() ||
+    'https://admin.greenngoria.com',
   apiUrl:
     process.env.NEXT_PUBLIC_API_URL?.trim() || 'https://api.greenngoria.com',
 

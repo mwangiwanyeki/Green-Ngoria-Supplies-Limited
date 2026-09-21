@@ -28,7 +28,15 @@ export const PAYMENT_METHODS = [
 ] as const;
 export type PaymentMethod = (typeof PAYMENT_METHODS)[number];
 
-export const CURRENCIES = ['USD', 'KES', 'TZS', 'UGX', 'RWF', 'EUR', 'GBP'] as const;
+export const CURRENCIES = [
+  'USD',
+  'KES',
+  'TZS',
+  'UGX',
+  'RWF',
+  'EUR',
+  'GBP',
+] as const;
 export type Currency = (typeof CURRENCIES)[number];
 
 export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
@@ -196,9 +204,9 @@ export function useInvoice(id: string | null) {
   return useQuery<InvoiceDetail>({
     queryKey: QK.invoices.detail(orgId, id ?? ''),
     queryFn: () =>
-      get<InvoiceDetail>(
-        `/organizations/${orgId}/finance/invoices/${id}`,
-      ).then((r) => r.data),
+      get<InvoiceDetail>(`/organizations/${orgId}/finance/invoices/${id}`).then(
+        (r) => r.data,
+      ),
     enabled: !!accessToken && !!orgId && !!id,
     staleTime: 30_000,
   });

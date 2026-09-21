@@ -215,7 +215,9 @@ function SidebarContent({
       <div
         className={cn(
           'border-b border-white/[0.06] shrink-0 transition-all duration-300',
-          collapsed ? 'p-3 flex flex-col items-center gap-2' : 'px-5 py-4 space-y-2',
+          collapsed
+            ? 'p-3 flex flex-col items-center gap-2'
+            : 'px-5 py-4 space-y-2',
         )}
       >
         <div className="flex items-center justify-between w-full">
@@ -228,11 +230,7 @@ function SidebarContent({
             aria-label="Green Ngoria — admin home"
             onClick={onNavigate}
           >
-            {collapsed ? (
-              <Logo markOnly height={32} />
-            ) : (
-              <Logo height={36} />
-            )}
+            {collapsed ? <Logo markOnly height={32} /> : <Logo height={36} />}
           </Link>
 
           {!collapsed && onToggleCollapse && (
@@ -296,7 +294,10 @@ function SidebarContent({
                       {active && (
                         <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-teal-500" />
                       )}
-                      <Icon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                      <Icon
+                        className="h-4.5 w-4.5 shrink-0"
+                        aria-hidden="true"
+                      />
                     </Link>
                   </TooltipTrigger>
                   <TooltipContent side="right" sideOffset={12}>
@@ -373,8 +374,12 @@ function SidebarContent({
                     className="z-50 w-56 rounded-xl border border-hairline bg-card/95 p-2 text-card-foreground shadow-2xl backdrop-blur-xl animate-in fade-in-0 zoom-in-95"
                   >
                     <div className="px-2.5 py-1.5 border-b border-hairline/60 mb-1">
-                      <div className="text-xs font-bold text-foreground">{item.label}</div>
-                      <div className="text-[10px] text-muted-foreground">Functional section</div>
+                      <div className="text-xs font-bold text-foreground">
+                        {item.label}
+                      </div>
+                      <div className="text-[10px] text-muted-foreground">
+                        Functional section
+                      </div>
                     </div>
                     <div className="space-y-0.5">
                       {item.children.map((child) => {
@@ -393,7 +398,9 @@ function SidebarContent({
                             )}
                           >
                             <ChildIcon className="h-3.5 w-3.5 shrink-0" />
-                            <span className="truncate flex-1">{child.label}</span>
+                            <span className="truncate flex-1">
+                              {child.label}
+                            </span>
                             {child.badge && (
                               <span className="rounded bg-teal-500/20 px-1 py-0.2 text-[9px] font-bold text-teal-600 dark:text-teal-400">
                                 {child.badge}

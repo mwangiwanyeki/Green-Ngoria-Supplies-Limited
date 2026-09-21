@@ -104,7 +104,12 @@ const rfqSchema = z.object({
 
 type RfqFormValues = z.infer<typeof rfqSchema>;
 
-const EMPTY_ITEM = { description: '', quantity: 1, unit: 'EA', technicalSpecs: '' };
+const EMPTY_ITEM = {
+  description: '',
+  quantity: 1,
+  unit: 'EA',
+  technicalSpecs: '',
+};
 
 const EMPTY_RFQ: RfqFormValues = {
   title: '',
@@ -207,7 +212,8 @@ function buildColumns(handlers: RowHandlers): ColumnDef<RfqItem>[] {
       accessorKey: 'itemsCount',
       header: 'Line Items',
       cell: ({ row }) => {
-        const count = row.original._count?.items ?? row.original.itemsCount ?? 0;
+        const count =
+          row.original._count?.items ?? row.original.itemsCount ?? 0;
         return (
           <span className="font-semibold tabular-nums">
             {count} {count === 1 ? 'item' : 'items'}
@@ -290,25 +296,46 @@ export function AdminRfqsList() {
   };
 
   const handleExport = () => {
-    if (!items.length) { toast.error('No data to export'); return; }
-    const headers = ['RFQ #', 'Title', 'Client', 'Status', 'Line Items', 'Required By', 'Created'];
+    if (!items.length) {
+      toast.error('No data to export');
+      return;
+    }
+    const headers = [
+      'RFQ #',
+      'Title',
+      'Client',
+      'Status',
+      'Line Items',
+      'Required By',
+      'Created',
+    ];
     const csv = [
       headers.join(','),
-      ...items.map((r) => [
-        r.rfqNumber ?? '',
-        r.title ?? '',
-        r.client?.companyName ?? r.clientName ?? '',
-        r.status ?? '',
-        r._count?.items ?? r.itemsCount ?? 0,
-        (r.requiredByDate ?? r.responseDeadline) ? new Date(r.requiredByDate ?? r.responseDeadline ?? '').toLocaleDateString('en-KE') : 'ASAP',
-        new Date(r.createdAt).toLocaleDateString('en-KE'),
-      ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')),
+      ...items.map((r) =>
+        [
+          r.rfqNumber ?? '',
+          r.title ?? '',
+          r.client?.companyName ?? r.clientName ?? '',
+          r.status ?? '',
+          r._count?.items ?? r.itemsCount ?? 0,
+          (r.requiredByDate ?? r.responseDeadline)
+            ? new Date(
+                r.requiredByDate ?? r.responseDeadline ?? '',
+              ).toLocaleDateString('en-KE')
+            : 'ASAP',
+          new Date(r.createdAt).toLocaleDateString('en-KE'),
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(','),
+      ),
     ].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = `rfqs-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click(); URL.revokeObjectURL(url);
+    a.href = url;
+    a.download = `rfqs-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
     toast.success('Export ready');
   };
 
@@ -477,7 +504,10 @@ export function AdminRfqsList() {
               deadline.
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={(event) => void handleSubmit(onSubmit)(event)} noValidate>
+          <form
+            onSubmit={(event) => void handleSubmit(onSubmit)(event)}
+            noValidate
+          >
             <div className="grid gap-4 p-6">
               <div className="space-y-1.5">
                 <Label htmlFor="rfq-title">
@@ -583,7 +613,10 @@ export function AdminRfqsList() {
                   </Button>
                 </div>
                 {errors.items?.message && (
-                  <p className="text-xs font-medium text-destructive" role="alert">
+                  <p
+                    className="text-xs font-medium text-destructive"
+                    role="alert"
+                  >
                     {errors.items.message}
                   </p>
                 )}
@@ -643,7 +676,11 @@ export function AdminRfqsList() {
               >
                 Cancel
               </Button>
-              <Button type="submit" variant="brand" loading={createRfq.isPending}>
+              <Button
+                type="submit"
+                variant="brand"
+                loading={createRfq.isPending}
+              >
                 Create RFQ Record
               </Button>
             </DialogFooter>

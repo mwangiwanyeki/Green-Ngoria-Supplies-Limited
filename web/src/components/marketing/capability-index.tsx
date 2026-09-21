@@ -73,7 +73,8 @@ export function CapabilityIndex({
                           {division.name}
                         </span>
                         <span className="rounded bg-brand-500/10 px-2 py-0.5 font-mono text-xs font-bold text-brand-700 dark:text-brand-400">
-                          {String(division.scope.length).padStart(2, '0')} scope items
+                          {String(division.scope.length).padStart(2, '0')} scope
+                          items
                         </span>
                       </div>
                       <p className="measure mt-2 text-sm leading-6 text-muted-foreground">
